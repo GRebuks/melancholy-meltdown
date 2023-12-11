@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcyf1f0v6qfmf"]
+
+[ext_resource type="Theme" uid="uid://dex4xgw3px7q8" path="res://Assets/UI/Themes/Health_bar_theme.tres" id="1_e70mb"]
+
+[node name="HealthBar" type="ProgressBar"]
+offset_left = 357.0
+offset_top = 587.0
+offset_right = 714.0
+offset_bottom = 627.0
+theme = ExtResource("1_e70mb")
+value = 20.0
