@@ -10,16 +10,7 @@ public partial class Consumable : Area2D
     public float AddictionEffect = 5f;
     public float SpeedEffect = 100f;
     public float Weight = 0f;
-
-    // Class constructor for default values
-    public Consumable()
-    {
-        Type = "Health";
-        Title = "Pack of Marlboro reds";
-        HealthEffect = 10f;
-        AddictionEffect = 5f;
-        SpeedEffect = 100f;
-    }
+    public float AlcoholEffect = 0f;
 
     // Class constructor for custom values
     public Consumable(string Type = "Health", string Title = "Consumable", float HealthEffect = 0f, float AddictionEffect = 0f, float SpeedEffect = 0f)

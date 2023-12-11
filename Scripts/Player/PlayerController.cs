@@ -7,6 +7,7 @@ public partial class PlayerController : CharacterBody2D
 	public const float JumpVelocity = -400.0f;
 	public float Health = 100f;
 	public float Addiction = 0f;
+	public float BloodAlcoholContent = 0f;
 
 	public Consumable consumable = null;
 
@@ -48,6 +49,29 @@ public partial class PlayerController : CharacterBody2D
             }
 		}
 
+		if(BloodAlcoholContent !> 0f)
+		{
+			// Camera shake
+			// Get the camera node
+			Camera2D camera = (Camera2D)GetNode("Camera2D");
+			// Get the camera's position
+			Vector2 cameraPosition = camera.Position;
+            // Shake the camera using GD.randrange
+            // Add mathf.clamp to keep the camera within the screen
+			cameraPosition.X += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+			cameraPosition.Y += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+
+            // Add mathf.clamp to keep the camera within the screen
+			cameraPosition.X = Mathf.Clamp(cameraPosition.X, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+			cameraPosition.Y = Mathf.Clamp(cameraPosition.Y, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+
+
+            // Set the camera's position
+            camera.Position = cameraPosition;
+
+            BloodAlcoholContent -= 0.001f;
+			GD.Print("Blood Alcohol Content: " + BloodAlcoholContent);
+        }
 		Velocity = velocity;
 		MoveAndSlide();
 	}
