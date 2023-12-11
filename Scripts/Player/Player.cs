@@ -6,7 +6,10 @@ public partial class Player : CharacterBody2D
     public float Speed = 300.0f;
     public const float JumpVelocity = -400.0f;
     public float Addiction = 0f;
+
     public float BloodAlcoholContent = 0f;
+    public float timePassed = 0f;
+    Vector2 targetPosition = new Vector2();
 
     public Consumable consumable = null;
 
@@ -17,6 +20,7 @@ public partial class Player : CharacterBody2D
     private float _health = 60f;
     public float MaxHealth { get; private set; } = 60f;
 
+    public float _healthDecreaseMultiplier = 1.0f;
     private float _healthDecreaseRate = 1.0f;
     public float Health
     {
@@ -68,11 +72,13 @@ public partial class Player : CharacterBody2D
             }
         }
 
-        if (BloodAlcoholContent! > 0f)
+        if (BloodAlcoholContent !> 0f)
         {
             // Camera shake
             Camera2D camera = (Camera2D)GetNode("Camera2D");
             Vector2 cameraPosition = camera.Position;
+
+            // Add camera shake
             cameraPosition.X += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
             cameraPosition.Y += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
 
@@ -88,12 +94,41 @@ public partial class Player : CharacterBody2D
             // Add mathf.clamp to keep the camera within the screen
             camera.RotationDegrees = Mathf.Clamp(camera.RotationDegrees, -BloodAlcoholContent * 10, BloodAlcoholContent * 10);
 
-            if (BloodAlcoholContent > 2)
+            if (BloodAlcoholContent > 2f)
             {
-                //Add random velocity to the player
-                velocity.X += (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
-                velocity.Y += (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+                if (timePassed > 1f && timePassed < 2f)
+                {
+                    velocity.X = Mathf.MoveToward(velocity.X, targetPosition.X, BloodAlcoholContent * 20 / timePassed);
+                    velocity.Y = Mathf.MoveToward(velocity.Y, targetPosition.Y, BloodAlcoholContent * 20 / timePassed);
+                }
+                else if (timePassed > 4f)
+                {
+                    targetPosition.X = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+                    targetPosition.Y = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+                    timePassed = 0f;
+                }
 
+                timePassed += (float)delta;
+            }
+
+            if (BloodAlcoholContent > 2f)
+            {
+                if (timePassed > 1f && timePassed < 2f)
+                {
+                    velocity.X = Mathf.MoveToward(velocity.X, targetPosition.X, BloodAlcoholContent * 20 / timePassed);
+                    velocity.Y = Mathf.MoveToward(velocity.Y, targetPosition.Y, BloodAlcoholContent * 20 / timePassed);
+                } else if (timePassed > 3f)
+                {
+                    targetPosition.X = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+                    targetPosition.Y = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+                    timePassed = 0f;
+                }
+                // Move towards the target position with a velocity that is proportional to the distance between the player and the target position
+                velocity.X = Mathf.MoveToward(velocity.X, targetPosition.X, BloodAlcoholContent * 20 / timePassed);
+                velocity.Y = Mathf.MoveToward(velocity.Y, targetPosition.Y, BloodAlcoholContent * 20 / timePassed);
+
+                timePassed += (float)delta;
+                GD.Print("Time: " + timePassed);
             }
 
             BloodAlcoholContent -= 0.001f;
@@ -103,7 +138,7 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
 
         // Moved this to _PhysicsProcess, sorry not sorry
-        Health -= _healthDecreaseRate * (float)delta;
+        Health -= _healthDecreaseRate * _healthDecreaseMultiplier * (float)delta;
     }
 
     // on area entered
