@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://uh33d0qldgj6"]
+[gd_scene load_steps=12 format=3 uid="uid://uh33d0qldgj6"]
 
-[ext_resource type="Script" path="res://Scripts/Player/PlayerHealth.cs" id="1_slpqv"]
+[ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_1hnh8"]
 [ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_vwmyc"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="3_ko5uy"]
 [ext_resource type="Texture2D" uid="uid://kaj5tt3dpwbo" path="res://Assets/Sprites/map.jpg" id="3_spi8j"]
 [ext_resource type="Texture2D" uid="uid://y3ty734chgbh" path="res://Assets/Sprites/brick.jpg" id="4_ryrue"]
-[ext_resource type="Script" path="res://Scripts/Consumables/Consumable.cs" id="5_r6lqe"]
 [ext_resource type="Texture2D" uid="uid://j2rty45hr0ke" path="res://Assets/Sprites/marlboro_red.png" id="6_5saut"]
 [ext_resource type="Script" path="res://Scripts/Consumables/Booze.cs" id="7_5sb8r"]
 
@@ -25,7 +24,7 @@ radius = 17.1172
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 motion_mode = 1
-script = ExtResource("1_slpqv")
+script = ExtResource("1_1hnh8")
 
 [node name="Sprite" type="Sprite2D" parent="Player"]
 texture = ExtResource("2_vwmyc")
@@ -43,11 +42,12 @@ shape = SubResource("CircleShape2D_4n8uc")
 
 [node name="UI" parent="Player" instance=ExtResource("3_ko5uy")]
 anchors_preset = -1
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
-script = null
 
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -1
@@ -66,7 +66,7 @@ texture = ExtResource("4_ryrue")
 
 [node name="TestConsumable" type="Area2D" parent="." groups=["Consumable"]]
 position = Vector2(215, 183)
-script = ExtResource("5_r6lqe")
+script = ExtResource("7_5sb8r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestConsumable"]
 shape = SubResource("CircleShape2D_j51ia")
