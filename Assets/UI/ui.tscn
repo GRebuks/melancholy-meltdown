@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk401qd56y6i7"]
+[gd_scene load_steps=3 format=3 uid="uid://dk401qd56y6i7"]
 
-[ext_resource type="Script" path="res://Assets/UI/UIControl.cs" id="1_pqer8"]
 [ext_resource type="PackedScene" uid="uid://bcyf1f0v6qfmf" path="res://Assets/UI/health_bar.tscn" id="1_svdgd"]
 [ext_resource type="Script" path="res://Scripts/UI/HealthBar.cs" id="2_wb0w4"]
 
@@ -11,7 +10,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_pqer8")
 
 [node name="HealthBar" parent="." instance=ExtResource("1_svdgd")]
 layout_mode = 0

@@ -7,8 +7,9 @@ public partial class Booze : Consumable
     {
         Type = "Booze";
         Title = "Bottle of Jack Daniels";
-        HealthEffect = 0f;
+        HealthEffect = 10f;
         AddictionEffect = 0f;
         SpeedEffect = 0f;
+        AlcoholEffect = 2f;
     }
 }
