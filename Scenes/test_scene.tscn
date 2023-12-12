@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://uh33d0qldgj6"]
+[gd_scene load_steps=16 format=3 uid="uid://d3lni61kdoji2"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_1hnh8"]
 [ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_vwmyc"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://y3ty734chgbh" path="res://Assets/Sprites/brick.jpg" id="4_ryrue"]
 [ext_resource type="Texture2D" uid="uid://j2rty45hr0ke" path="res://Assets/Sprites/marlboro_red.png" id="6_5saut"]
 [ext_resource type="Script" path="res://Scripts/Consumables/Booze.cs" id="7_5sb8r"]
+[ext_resource type="Script" path="res://Scripts/Quests/TestQuest.cs" id="8_78inp"]
+[ext_resource type="Texture2D" uid="uid://dsh1x354jj6e5" path="res://LRD3.png" id="8_lbhf0"]
+[ext_resource type="PackedScene" uid="uid://dmx0oa8gsclxx" path="res://Scripts/Consumables/booze.tscn" id="8_ob50k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1y67"]
 size = Vector2(31, 32)
@@ -20,7 +23,10 @@ size = Vector2(120, 80)
 [sub_resource type="CircleShape2D" id="CircleShape2D_j51ia"]
 radius = 17.1172
 
-[node name="Test scene" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
+radius = 45.0999
+
+[node name="TestScene" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 motion_mode = 1
@@ -75,15 +81,16 @@ shape = SubResource("CircleShape2D_j51ia")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("6_5saut")
 
-[node name="Booze" type="Area2D" parent="." groups=["Consumable"]]
-position = Vector2(-14, 233)
-script = ExtResource("7_5sb8r")
+[node name="Booze" parent="." instance=ExtResource("8_ob50k")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Booze"]
-shape = SubResource("CircleShape2D_j51ia")
+[node name="TestQuest" type="Area2D" parent="." groups=["Quest"]]
+position = Vector2(91, 231)
+script = ExtResource("8_78inp")
 
-[node name="Sprite" type="Sprite2D" parent="Booze"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("6_5saut")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestQuest"]
+shape = SubResource("CircleShape2D_ccqtk")
+
+[node name="Sprite" type="Sprite2D" parent="TestQuest"]
+texture = ExtResource("8_lbhf0")
 
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]
