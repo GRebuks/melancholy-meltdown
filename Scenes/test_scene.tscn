@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://uh33d0qldgj6"]
+[gd_scene load_steps=11 format=3 uid="uid://uh33d0qldgj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_1hnh8"]
 [ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_vwmyc"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="3_ko5uy"]
 [ext_resource type="Texture2D" uid="uid://kaj5tt3dpwbo" path="res://Assets/Sprites/map.jpg" id="3_spi8j"]
 [ext_resource type="Texture2D" uid="uid://y3ty734chgbh" path="res://Assets/Sprites/brick.jpg" id="4_ryrue"]
-[ext_resource type="Texture2D" uid="uid://j2rty45hr0ke" path="res://Assets/Sprites/marlboro_red.png" id="6_5saut"]
-[ext_resource type="Script" path="res://Scripts/Consumables/Booze.cs" id="7_5sb8r"]
+[ext_resource type="PackedScene" uid="uid://c0ffrdweapx57" path="res://Assets/Objects/Consumables/marijuana.tscn" id="7_7e1nr"]
+[ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="8_jj00s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1y67"]
 size = Vector2(31, 32)
@@ -16,9 +16,6 @@ radius = 22.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyjj"]
 size = Vector2(120, 80)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_j51ia"]
-radius = 17.1172
 
 [node name="Test scene" type="Node2D"]
 
@@ -31,6 +28,15 @@ texture = ExtResource("2_vwmyc")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
+[node name="UI" parent="Player/Camera2D" instance=ExtResource("3_ko5uy")]
+anchors_preset = -1
+offset_left = -949.0
+offset_top = -534.0
+offset_right = 971.0
+offset_bottom = 546.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_a1y67")
@@ -39,15 +45,6 @@ shape = SubResource("RectangleShape2D_a1y67")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_4n8uc")
-
-[node name="UI" parent="Player" instance=ExtResource("3_ko5uy")]
-anchors_preset = -1
-offset_left = -949.0
-offset_top = -534.0
-offset_right = 971.0
-offset_bottom = 546.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -1
@@ -64,26 +61,21 @@ shape = SubResource("RectangleShape2D_ovyjj")
 scale = Vector2(-0.0199976, 0.0199994)
 texture = ExtResource("4_ryrue")
 
-[node name="TestConsumable" type="Area2D" parent="." groups=["Consumable"]]
-position = Vector2(215, 183)
-script = ExtResource("7_5sb8r")
+[node name="Booze" parent="." instance=ExtResource("8_jj00s")]
+position = Vector2(150, 50)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestConsumable"]
-shape = SubResource("CircleShape2D_j51ia")
+[node name="Marijuana" parent="." instance=ExtResource("7_7e1nr")]
+position = Vector2(150, 100)
 
-[node name="Sprite" type="Sprite2D" parent="TestConsumable"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("6_5saut")
+[node name="Marijuana2" parent="." instance=ExtResource("7_7e1nr")]
 
-[node name="Booze" type="Area2D" parent="." groups=["Consumable"]]
-position = Vector2(-14, 233)
-script = ExtResource("7_5sb8r")
+[node name="Marijuana3" parent="." instance=ExtResource("7_7e1nr")]
+position = Vector2(100, 100)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Booze"]
-shape = SubResource("CircleShape2D_j51ia")
+[node name="Booze2" parent="." instance=ExtResource("8_jj00s")]
+position = Vector2(100, 50)
 
-[node name="Sprite" type="Sprite2D" parent="Booze"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("6_5saut")
+[node name="Booze3" parent="." instance=ExtResource("8_jj00s")]
+position = Vector2(50, 100)
 
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]

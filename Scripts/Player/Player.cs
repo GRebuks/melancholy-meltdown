@@ -3,6 +3,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+    public float BaseSpeed = 300.0f;
     public float Speed = 300.0f;
     public const float JumpVelocity = -400.0f;
     public float Addiction = 0f;
@@ -17,11 +18,16 @@ public partial class Player : CharacterBody2D
     private ProgressBar _healthBar;
     private Label label;
 
+    // Camera
+    public Camera2D camera;
+
     private float _health = 60f;
     public float MaxHealth { get; private set; } = 60f;
 
     public float _healthDecreaseMultiplier = 1.0f;
     private float _healthDecreaseRate = 1.0f;
+    private float _speedDecreaseRate = 5.0f;
+    private float _minSpeedDecreaseRate = 5.0f;
     public float Health
     {
         get { return _health; }
@@ -35,15 +41,20 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        _healthBar = GetNode<ProgressBar>("UI/HealthBar");
-        label = GetNode<Label>("UI/EmotionalDamage");
+        camera = (Camera2D)GetNode("Camera2D");
+        _healthBar = camera.GetNode<ProgressBar>("UI/HealthBar");
+        label = camera.GetNode<Label>("UI/EmotionalDamage");
         Health = 60f;
     }
+
 
     public override void _PhysicsProcess(double delta)
     {
         Vector2 velocity = Velocity;
         Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+
+        _speedDecreaseRate = 0.0005f * MathF.Pow(Speed - BaseSpeed, 2) + _minSpeedDecreaseRate;
+
         if (direction != Vector2.Zero)
         {
             velocity.X = direction.X * Speed;
@@ -74,8 +85,7 @@ public partial class Player : CharacterBody2D
 
         if (BloodAlcoholContent !> 0f)
         {
-            // Camera shake
-            Camera2D camera = (Camera2D)GetNode("Camera2D");
+            // Camera shaka
             Vector2 cameraPosition = camera.Position;
 
             // Add camera shake
@@ -90,9 +100,9 @@ public partial class Player : CharacterBody2D
             camera.Position = cameraPosition;
 
             // Add camera rotation
-            camera.RotationDegrees += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+            // camera.RotationDegrees += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
             // Add mathf.clamp to keep the camera within the screen
-            camera.RotationDegrees = Mathf.Clamp(camera.RotationDegrees, -BloodAlcoholContent * 10, BloodAlcoholContent * 10);
+            // camera.RotationDegrees = Mathf.Clamp(camera.RotationDegrees, -BloodAlcoholContent * 10, BloodAlcoholContent * 10);
 
             if (BloodAlcoholContent > 2f)
             {
@@ -101,7 +111,7 @@ public partial class Player : CharacterBody2D
                     velocity.X = Mathf.MoveToward(velocity.X, targetPosition.X, BloodAlcoholContent * 20 / timePassed);
                     velocity.Y = Mathf.MoveToward(velocity.Y, targetPosition.Y, BloodAlcoholContent * 20 / timePassed);
                 }
-                else if (timePassed > 4f)
+                else if (timePassed > 2f)
                 {
                     targetPosition.X = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
                     targetPosition.Y = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
@@ -109,26 +119,6 @@ public partial class Player : CharacterBody2D
                 }
 
                 timePassed += (float)delta;
-            }
-
-            if (BloodAlcoholContent > 2f)
-            {
-                if (timePassed > 1f && timePassed < 2f)
-                {
-                    velocity.X = Mathf.MoveToward(velocity.X, targetPosition.X, BloodAlcoholContent * 20 / timePassed);
-                    velocity.Y = Mathf.MoveToward(velocity.Y, targetPosition.Y, BloodAlcoholContent * 20 / timePassed);
-                } else if (timePassed > 3f)
-                {
-                    targetPosition.X = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
-                    targetPosition.Y = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
-                    timePassed = 0f;
-                }
-                // Move towards the target position with a velocity that is proportional to the distance between the player and the target position
-                velocity.X = Mathf.MoveToward(velocity.X, targetPosition.X, BloodAlcoholContent * 20 / timePassed);
-                velocity.Y = Mathf.MoveToward(velocity.Y, targetPosition.Y, BloodAlcoholContent * 20 / timePassed);
-
-                timePassed += (float)delta;
-                GD.Print("Time: " + timePassed);
             }
 
             BloodAlcoholContent -= 0.001f;
@@ -136,6 +126,22 @@ public partial class Player : CharacterBody2D
         }
         Velocity = velocity;
         MoveAndSlide();
+
+        // Increases or decreases player speed, depending on current value
+        if (Speed > 301f)
+        {
+            Speed += _speedDecreaseRate * (float)delta;
+            GD.Print(Speed);
+            GD.Print(_speedDecreaseRate);
+        } 
+        else if (Speed < 300f)
+        {
+            Speed -= -_speedDecreaseRate * (float)delta;
+            GD.Print("");
+            GD.Print(Speed);
+            GD.Print(_speedDecreaseRate);
+            GD.Print(_speedDecreaseRate * (float)delta);
+        }
 
         // Moved this to _PhysicsProcess, sorry not sorry
         Health -= _healthDecreaseRate * _healthDecreaseMultiplier * (float)delta;
@@ -153,7 +159,7 @@ public partial class Player : CharacterBody2D
             {
                 this.consumable = consumable;
                 GD.Print("");
-                GD.Print("You collected a " + consumable.Title);
+                GD.Print("You collected " + consumable.Title);
             }
         }
     }
@@ -185,7 +191,7 @@ public partial class Player : CharacterBody2D
         // Apply effects
         applyConsumableEffects(consumable);
         GD.Print("");
-        GD.Print("You consumed a " + consumable.Title);
+        GD.Print("You consumed " + consumable.Title);
         displayPlayerStats();
 
         // Destroy the consumable

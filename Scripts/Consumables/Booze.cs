@@ -6,7 +6,7 @@ public partial class Booze : Consumable
     public Booze()
     {
         Type = "Booze";
-        Title = "Bottle of Jack Daniels";
+        Title = "a Bottle of Jack Daniels";
         HealthEffect = 10f;
         AddictionEffect = 0f;
         SpeedEffect = 0f;
