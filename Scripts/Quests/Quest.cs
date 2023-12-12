@@ -12,9 +12,9 @@ public partial class Quest : Area2D
     public float Weight = 0f;
     public float AlcoholEffect = 0f;
 
-    public string RequiredConsumableType = "Booze";
+    public string RequiredConsumableType;
 
-    protected string ConsumablePath = "res://Scripts/Consumables/";
+    protected string ConsumablePath = "res://Assets/Objects/Consumables/";
     protected string RewardConsumablePath;
     public string RewardConsumableName;
     public PackedScene RewardConsumable;

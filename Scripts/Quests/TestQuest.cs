@@ -11,6 +11,8 @@ public partial class TestQuest : Quest
         SpeedEffect = 100f;
         AlcoholEffect = 0f;
 
+        RequiredConsumableType = "Marijuana";
+
         RewardConsumableName = "booze.tscn";
 
         RewardConsumablePath = ConsumablePath + RewardConsumableName;

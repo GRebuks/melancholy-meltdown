@@ -1,19 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3lni61kdoji2"]
-
+[gd_scene load_steps=13 format=3 uid="uid://ndrk3ik18w6a"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_1hnh8"]
 [ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_vwmyc"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="3_ko5uy"]
 [ext_resource type="Texture2D" uid="uid://kaj5tt3dpwbo" path="res://Assets/Sprites/map.jpg" id="3_spi8j"]
 [ext_resource type="Texture2D" uid="uid://y3ty734chgbh" path="res://Assets/Sprites/brick.jpg" id="4_ryrue"]
-
 [ext_resource type="PackedScene" uid="uid://c0ffrdweapx57" path="res://Assets/Objects/Consumables/marijuana.tscn" id="7_7e1nr"]
-[ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="8_jj00s"]
-[ext_resource type="Texture2D" uid="uid://j2rty45hr0ke" path="res://Assets/Sprites/marlboro_red.png" id="6_5saut"]
-[ext_resource type="Script" path="res://Scripts/Consumables/Booze.cs" id="7_5sb8r"]
 [ext_resource type="Script" path="res://Scripts/Quests/TestQuest.cs" id="8_78inp"]
-[ext_resource type="Texture2D" uid="uid://dsh1x354jj6e5" path="res://LRD3.png" id="8_lbhf0"]
-[ext_resource type="PackedScene" uid="uid://dmx0oa8gsclxx" path="res://Scripts/Consumables/booze.tscn" id="8_ob50k"]
+[ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="8_jj00s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1y67"]
 size = Vector2(31, 32)
@@ -24,15 +18,10 @@ radius = 22.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyjj"]
 size = Vector2(120, 80)
 
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_j51ia"]
-radius = 17.1172
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
 radius = 45.0999
 
 [node name="TestScene" type="Node2D"]
-
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 motion_mode = 1
@@ -93,7 +82,6 @@ position = Vector2(100, 50)
 [node name="Booze3" parent="." instance=ExtResource("8_jj00s")]
 position = Vector2(50, 100)
 
-
 [node name="TestQuest" type="Area2D" parent="." groups=["Quest"]]
 position = Vector2(91, 231)
 script = ExtResource("8_78inp")
@@ -102,7 +90,6 @@ script = ExtResource("8_78inp")
 shape = SubResource("CircleShape2D_ccqtk")
 
 [node name="Sprite" type="Sprite2D" parent="TestQuest"]
-texture = ExtResource("8_lbhf0")
-
+texture = ExtResource("2_vwmyc")
 
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]
