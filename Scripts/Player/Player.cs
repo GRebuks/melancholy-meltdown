@@ -8,7 +8,7 @@ public partial class Player : CharacterBody2D
     public const float JumpVelocity = -400.0f;
     public float Addiction = 0f;
 
-    public float BloodAlcoholContent = 0f;
+    [Export] public float BloodAlcoholContent = 0f;
     public float timePassed = 0f;
     Vector2 targetPosition = new Vector2();
 
@@ -72,7 +72,7 @@ public partial class Player : CharacterBody2D
             // Consume the consumable on key press E
             if (Input.IsActionJustPressed("ui_accept"))
             {
-                consumeConsumable();
+                ConsumeConsumable();
             }
             // Drop consumable on key press Q
             else if (Input.IsActionJustPressed("ui_cancel"))
@@ -159,12 +159,43 @@ public partial class Player : CharacterBody2D
             {
                 this.consumable = consumable;
                 GD.Print("");
-                GD.Print("You collected " + consumable.Title);
+                GD.Print("You collected a " + consumable.Title);
+                GD.Print("Consumable type: " + consumable.Type);
+            }
+        }
+
+        // If the area is in group consumable
+        if (area.IsInGroup("Quest"))
+        {
+            // Get information about the consumable
+            Quest quest = (Quest)area;
+            if (this.consumable != null)
+            {
+                if (quest.RequiredConsumableType == this.consumable.Type)
+                {
+                    // Apply effects
+                    ApplyQuestEffects(quest);
+                    GD.Print("Quest completed!");
+                    DisplayPlayerStats();
+
+                    CallDeferred("InstantiateRewardConsumable", quest);
+
+                    consumable.QueueFree();
+                    consumable = null;
+
+                    quest.QueueFree();
+                }
+            }
+            else
+            {
+                GD.Print("");
+                GD.Print("Quest: " + quest.Title);
+                GD.Print("Required consumable: " + quest.RequiredConsumableType);
             }
         }
     }
 
-    private void applyConsumableEffects(Consumable consumable)
+    private void ApplyConsumableEffects(Consumable consumable)
     {
         // Apply the health effect
         Health += consumable.HealthEffect;
@@ -178,25 +209,47 @@ public partial class Player : CharacterBody2D
         // Apply the alcohol effect
         BloodAlcoholContent += consumable.AlcoholEffect;
     }
+    private void ApplyQuestEffects(Quest quest)
+    {
+        // Apply the health effect
+        Health += quest.HealthEffect;
 
-    private void displayPlayerStats()
+        // Apply the addiction effect
+        Addiction += quest.AddictionEffect;
+
+        // Apply the speed effect
+        Speed += quest.SpeedEffect;
+
+        // Apply the alcohol effect
+        BloodAlcoholContent += quest.AlcoholEffect;
+    }
+
+    private void DisplayPlayerStats()
     {
         GD.Print("Health: " + Health);
         GD.Print("Addiction: " + Addiction);
         GD.Print("Speed: " + Speed);
     }
 
-    private void consumeConsumable()
+    private void ConsumeConsumable()
     {
         // Apply effects
-        applyConsumableEffects(consumable);
+        ApplyConsumableEffects(consumable);
         GD.Print("");
-        GD.Print("You consumed " + consumable.Title);
-        displayPlayerStats();
+        GD.Print("You consumed a " + consumable.Title);
+        DisplayPlayerStats();
 
         // Destroy the consumable
         consumable.QueueFree();
 
         consumable = null;
+    }
+
+    private void InstantiateRewardConsumable(Quest quest)
+    {
+        Node2D rewardNode = quest.RewardConsumable.Instantiate() as Node2D;
+        GetTree().Root.GetNode("TestScene").AddChild(rewardNode);
+        rewardNode.Position = new Vector2(quest.Position.X, quest.Position.Y);
+
     }
 }
