@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn1c84ebfasj4"]
+
+[ext_resource type="Script" path="res://Scripts/Consumables/Booze.cs" id="1_48tli"]
+[ext_resource type="Texture2D" uid="uid://cc62jqmstb310" path="res://Assets/Sprites/dzhupelDrink.png" id="2_xqkqr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvj8q"]
+size = Vector2(13, 31)
+
+[node name="Booze" type="Area2D" groups=["Consumable"]]
+position = Vector2(-14, 233)
+script = ExtResource("1_48tli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1.5)
+shape = SubResource("RectangleShape2D_lvj8q")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_xqkqr")
