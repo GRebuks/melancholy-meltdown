@@ -5,7 +5,6 @@ public partial class Player : CharacterBody2D
 {
     public float BaseSpeed = 300.0f;
     public float Speed = 300.0f;
-    public const float JumpVelocity = -400.0f;
     public float Addiction = 0f;
 
     [Export] public float BloodAlcoholContent = 0f;
@@ -122,7 +121,6 @@ public partial class Player : CharacterBody2D
             }
 
             BloodAlcoholContent -= 0.001f;
-            GD.Print("Blood Alcohol Content: " + BloodAlcoholContent);
         }
         Velocity = velocity;
         MoveAndSlide();
@@ -130,17 +128,11 @@ public partial class Player : CharacterBody2D
         // Increases or decreases player speed, depending on current value
         if (Speed > 301f)
         {
-            Speed += _speedDecreaseRate * (float)delta;
-            GD.Print(Speed);
-            GD.Print(_speedDecreaseRate);
+            Speed -= _speedDecreaseRate * (float)delta;
         } 
         else if (Speed < 300f)
         {
-            Speed -= -_speedDecreaseRate * (float)delta;
-            GD.Print("");
-            GD.Print(Speed);
-            GD.Print(_speedDecreaseRate);
-            GD.Print(_speedDecreaseRate * (float)delta);
+            Speed += _speedDecreaseRate * (float)delta;
         }
 
         // Moved this to _PhysicsProcess, sorry not sorry
