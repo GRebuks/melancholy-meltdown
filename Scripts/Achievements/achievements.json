@@ -4,7 +4,7 @@
     "description": "Start the test scene",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 1,
+    "progress": 2,
     "completed": true
   },
   "Lights Out!": {
@@ -12,7 +12,7 @@
     "description": "Black out from alcohol overconsumption for the first time",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 1,
+    "progress": 2,
     "completed": true
   },
   "The Chemist": {
@@ -20,7 +20,7 @@
     "description": "Consume all psychoactive substances at the same time",
     "icon": "res://Assets/Sprites/Achievements/the_chemist.png",
     "goal": 1,
-    "progress": 1,
+    "progress": 2,
     "completed": true
   },
   "The Speedrunner": {
@@ -28,8 +28,8 @@
     "description": "That's not the aim of the game",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 0,
-    "completed": false
+    "progress": 1,
+    "completed": true
   },
   "The Good Citizen": {
     "name": "The Good Citizen",
@@ -44,15 +44,15 @@
     "description": "Don't consume anything",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 0,
-    "completed": false
+    "progress": 1,
+    "completed": true
   },
   "Close Call": {
     "name": "Close Call",
     "description": "Consume a healing item a second before dying",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 1,
+    "progress": 2,
     "completed": true
   }
 }
