@@ -176,7 +176,7 @@ public partial class Player : CharacterBody2D
             }
         }
 
-        if(BloodAlcoholContent > 0 && BloodTHCContent > 0 && !theChemist)
+        if(BloodAlcoholContent > 0 && BloodTHCContent > 0 && BloodSugarContent > 0 && !theChemist)
         {
             AchievementManager.AddProgress("The Chemist", progress);
             theChemist = true;
