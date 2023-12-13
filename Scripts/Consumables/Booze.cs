@@ -7,10 +7,11 @@ public partial class Booze : Consumable
     {
         Type = "Booze";
         Title = "Bottle of Jack Daniels";
+        Description = "Might as well be water for Dzhupels";
         HealthEffect = 10f;
-
-        AddictionEffect = 0f;
-        SpeedEffect = 0f;
         AlcoholEffect = 2f;
+
+        Effects.Add("Health", HealthEffect);
+        Effects.Add("Alcohol", AlcoholEffect);
     }
 }

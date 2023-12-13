@@ -6,10 +6,15 @@ public partial class Marijuana : Consumable
     public Marijuana()
     {
         Type = "Marijuana";
-        Title = "some hashish";
+        Title = "Marijuana";
+        Description = "Something to take the edge off with";
+        DisplayColor = new Color(0, 255, 0, 1);
         HealthEffect = 15f;
-        AddictionEffect = 10f;
         SpeedEffect = -50f;
-        AlcoholEffect = 0f;
+        THCEffect = 1f;
+
+        Effects.Add("Health", HealthEffect);
+        Effects.Add("Speed", SpeedEffect);
+        Effects.Add("THC", THCEffect);
     }
 }

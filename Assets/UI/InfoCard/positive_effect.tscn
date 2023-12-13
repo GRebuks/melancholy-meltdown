@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://csjjdyxcjvf3q"]
+
+[node name="PositiveEffect" type="Label"]
+theme_override_colors/font_color = Color(0, 0.752941, 0, 1)
+text = "Positive effect: +10"

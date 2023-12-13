@@ -1,21 +1,27 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Quest : Area2D
 {
     public string Type = "Health quest";
-    public string Title = "Bring a consumable";
+    public string Title = "Consumable quest";
+    public string Description = "Bring a consumable";
+    
+    protected float HealthEffect = 0f;
+    protected float SpeedEffect = 0f;
+    protected float Weight = 0f;
+    protected float AlcoholEffect = 0f;
 
-    public float HealthEffect = 0f;
-    public float AddictionEffect = 0f;
-    public float SpeedEffect = 0f;
-    public float Weight = 0f;
-    public float AlcoholEffect = 0f;
-
-    public string RequiredConsumableType;
+    public Dictionary<string, float> Effects = new Dictionary<string, float>();
 
     protected string ConsumablePath = "res://Assets/Objects/Consumables/";
-    protected string RewardConsumablePath;
-    public string RewardConsumableName;
-    public PackedScene RewardConsumable;
+    protected string RewardConsumableFile;
+    protected string RequiredConsumableFile;
+
+    protected PackedScene RewardConsumable;
+    public Consumable RewardConsumableNode;
+
+    protected PackedScene RequiredConsumable;
+    public Consumable RequiredConsumableNode;
 }
