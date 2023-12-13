@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://ndrk3ik18w6a"]
+[gd_scene load_steps=21 format=3 uid="uid://ndrk3ik18w6a"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_1hnh8"]
+[ext_resource type="Texture2D" uid="uid://dm1cyyu4rjl7o" path="res://Assets/Sprites/Dzhupels.png" id="2_r8a8e"]
 [ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_vwmyc"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="3_ko5uy"]
 [ext_resource type="Texture2D" uid="uid://kaj5tt3dpwbo" path="res://Assets/Sprites/map.jpg" id="3_spi8j"]
@@ -15,6 +16,114 @@ size = Vector2(31, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_4n8uc"]
 radius = 22.0
 
+[sub_resource type="Animation" id="Animation_gk4up"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_5txud"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5e7et"]
+resource_name = "Run"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_8mri6"]
+resource_name = "IdleDown"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_6erqq"]
+resource_name = "RunDown"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_663ls"]
+resource_name = "RunUp"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7qdl"]
+_data = {
+"Idle": SubResource("Animation_gk4up"),
+"IdleDown": SubResource("Animation_8mri6"),
+"RESET": SubResource("Animation_5txud"),
+"Run": SubResource("Animation_5e7et"),
+"RunDown": SubResource("Animation_6erqq"),
+"RunUp": SubResource("Animation_663ls")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyjj"]
 size = Vector2(120, 80)
 
@@ -28,7 +137,8 @@ motion_mode = 1
 script = ExtResource("1_1hnh8")
 
 [node name="Sprite" type="Sprite2D" parent="Player"]
-texture = ExtResource("2_vwmyc")
+texture = ExtResource("2_r8a8e")
+hframes = 11
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -49,6 +159,12 @@ shape = SubResource("RectangleShape2D_a1y67")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_4n8uc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+root_node = NodePath("../Sprite")
+libraries = {
+"": SubResource("AnimationLibrary_n7qdl")
+}
 
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -1
