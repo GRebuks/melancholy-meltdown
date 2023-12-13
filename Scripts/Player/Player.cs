@@ -62,6 +62,8 @@ public partial class Player : CharacterBody2D
 
     private float _thcDecreaseRate = 5.0f;
     private float _minTHCDecreaseRate = 0.001f;
+
+    private const Int64 progress = 1L;
     public float Health
     {
         get { return _health; }
@@ -124,6 +126,9 @@ public partial class Player : CharacterBody2D
         BloodTHCContent = 0f;
         animation = GetNode<AnimationPlayer>("AnimationPlayer");
         sprite = GetNode<Sprite2D>("Sprite");
+
+        // Complete the test achievement
+        AchievementManager.AddProgress("Test achievement", progress);
     }
 
 
@@ -230,6 +235,7 @@ public partial class Player : CharacterBody2D
 
             if (BloodAlcoholContent > 5f)
             {
+                AchievementManager.AddProgress("Lights Out!", progress);
                 Blackout.Visible = true;
                 if (Blackout.Color.A < 1)
                 {
