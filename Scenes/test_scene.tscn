@@ -35,7 +35,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5e7et"]
 resource_name = "Run"
-length = 0.3
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
