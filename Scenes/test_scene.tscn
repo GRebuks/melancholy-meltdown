@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c0ffrdweapx57" path="res://Assets/Objects/Consumables/marijuana.tscn" id="7_7e1nr"]
 [ext_resource type="Script" path="res://Scripts/Quests/TestQuest.cs" id="8_78inp"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="8_jj00s"]
+[ext_resource type="PackedScene" uid="uid://c1dcj0jxj7sq4" path="res://Assets/Objects/Consumables/sugar.tscn" id="10_6h4ev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1y67"]
 size = Vector2(31, 32)
@@ -17,7 +18,7 @@ size = Vector2(31, 32)
 radius = 22.0
 
 [sub_resource type="Animation" id="Animation_gk4up"]
-resource_name = "Idle"
+resource_name = "Dzhupels1"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -26,11 +27,17 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [8]
+"values": [8, 8, 8, 8]
 }
+[sub_resource type="Animation" id="Animation_5e7et"]
+resource_name = "Dzhupels2"
+length = 0.4
+loop_mode = 1
+
 
 [sub_resource type="Animation" id="Animation_8mri6"]
 resource_name = "IdleDown"
@@ -57,11 +64,16 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [8, 9, 10, 8]
 }
+
+[sub_resource type="Animation" id="Animation_6erqq"]
+resource_name = "Dzhupels3"
+length = 0.4
 
 [sub_resource type="Animation" id="Animation_5e7et"]
 resource_name = "Run"
@@ -74,23 +86,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [8, 9, 10]
-}
 
-[sub_resource type="Animation" id="Animation_6erqq"]
-resource_name = "RunDown"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
@@ -98,7 +94,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_663ls"]
-resource_name = "RunUp"
+resource_name = "Dzhupels4"
 length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
@@ -114,14 +110,29 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_5txud"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n7qdl"]
 _data = {
-"Idle": SubResource("Animation_gk4up"),
-"IdleDown": SubResource("Animation_8mri6"),
-"RESET": SubResource("Animation_5txud"),
-"Run": SubResource("Animation_5e7et"),
-"RunDown": SubResource("Animation_6erqq"),
-"RunUp": SubResource("Animation_663ls")
+"Dzhupels1": SubResource("Animation_gk4up"),
+"Dzhupels2": SubResource("Animation_5e7et"),
+"Dzhupels3": SubResource("Animation_6erqq"),
+"Dzhupels4": SubResource("Animation_663ls"),
+"RESET": SubResource("Animation_5txud")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyjj"]
@@ -206,6 +217,9 @@ shape = SubResource("CircleShape2D_ccqtk")
 
 [node name="Sprite" type="Sprite2D" parent="TestQuest"]
 texture = ExtResource("2_vwmyc")
+
+[node name="Sugar" parent="." instance=ExtResource("10_6h4ev")]
+position = Vector2(81, -9)
 
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Player/Area2D" to="Player" method="_on_area_exited"]

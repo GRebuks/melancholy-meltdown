@@ -5,8 +5,12 @@ using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
+
+
     public float BaseSpeed = 300.0f;
     public float Speed = 300.0f;
+    Texture2D texture;
+    public Dictionary<string, Texture2D> skins;
 
     public float timePassed = 0f;
     Vector2 targetPosition = new Vector2();
@@ -67,6 +71,9 @@ public partial class Player : CharacterBody2D
     private float _healthDecreaseRate = 1.0f;
     private float _speedDecreaseRate = 5.0f;
     private float _minSpeedDecreaseRate = 5.0f;
+
+    private float BloodSugarContent = 0.0f;
+    private float _bloodSugarDecreaseRate = 1.0f;
 
     private float _alcoholDecreaseRate = 5.0f;
     private float _minAlcoholDecreaseRate = 0.001f;
@@ -135,10 +142,18 @@ public partial class Player : CharacterBody2D
 
         BloodAlcoholContent = 0f;
         BloodTHCContent = 0f;
+        BloodSugarContent = 0f;
         animation = GetNode<AnimationPlayer>("AnimationPlayer");
         sprite = GetNode<Sprite2D>("Sprite");
-
-        // Complete the test achievement
+        skins = new Dictionary<string, Texture2D>();
+        Resource textureResource = ResourceLoader.Load("res://Assets/Sprites/Dzhupels.png");
+        skins.Add("dzhupels", (Texture2D)textureResource);
+        textureResource = ResourceLoader.Load("res://Assets/Sprites/1DzhupelsSarkanasBikses.png");
+        skins.Add("biksains", (Texture2D)textureResource);
+        textureResource = ResourceLoader.Load("res://Assets/Sprites/2DzhupelsSarkansDzempers.png");
+        skins.Add("dzempers", (Texture2D)textureResource);
+        textureResource = ResourceLoader.Load("res://Assets/Sprites/3DzhupelsSarkansKostims.png");
+        skins.Add("kostims", (Texture2D)textureResource);
         AchievementManager.AddProgress("The Tester", progress);
     }
 
@@ -174,34 +189,41 @@ public partial class Player : CharacterBody2D
         _alcoholDecreaseRate = 0.000015f * MathF.Pow(BloodAlcoholContent, 2) + _minAlcoholDecreaseRate;
         _thcDecreaseRate = 0.000015f * MathF.Pow(BloodTHCContent, 2) + _minTHCDecreaseRate;
 
+        if (BloodSugarContent > 0f)
+        {
+            direction = direction * -1f;
+            BloodSugarContent -= _bloodSugarDecreaseRate * (float)delta;
+        }
+
         if (direction != Vector2.Zero)
         {
             if (direction.Y < 0)
             {
                 sprite.Scale = new Vector2(-1, sprite.Scale.Y);
-                animation.Play("RunUp");
+                animation.Play("Dzhupels4");
             } 
             else if (direction.Y > 0) 
             {
-                animation.Play("RunDown");
+                animation.Play("Dzhupels3");
                 sprite.Scale = new Vector2(1, sprite.Scale.Y);
             } 
             else if (direction.X < 0)
             {
-                animation.Play("Run");
+                animation.Play("Dzhupels2");
                 sprite.Scale = new Vector2(-1, sprite.Scale.Y);
             }
             else if (direction.X > 0)
             {
-                animation.Play("Run");
+                animation.Play("Dzhupels2");
                 sprite.Scale = new Vector2(1, sprite.Scale.Y);
             }
+
             velocity.X = direction.X * Speed;
             velocity.Y = direction.Y * Speed;
         }
         else
         {
-            animation.Play("Idle");
+            animation.Play("Dzhupels1");
             velocity.X = Mathf.MoveToward(velocity.X, 0, Speed);
             velocity.Y = Mathf.MoveToward(velocity.Y, 0, Speed);
         }
@@ -305,6 +327,7 @@ public partial class Player : CharacterBody2D
             _thcBar.Visible = false;
             Baked.Color = new Color(Baked.Color.R, Baked.Color.G, Baked.Color.B, 0);
         }
+
         Velocity = velocity;
         MoveAndSlide();
 
@@ -317,6 +340,8 @@ public partial class Player : CharacterBody2D
         {
             Speed += _speedDecreaseRate * (float)delta;
         }
+
+        timePassed = 0;
 
         // Moved this to _PhysicsProcess, sorry not sorry
         Health -= _healthDecreaseRate * _healthDecreaseMultiplier * (float)delta;
@@ -350,6 +375,7 @@ public partial class Player : CharacterBody2D
                     ClearConsumableCard();
                     // Apply effects
                     ApplyQuestEffects(quest);
+                    ApplyClothing(quest.rewardClothes);
                     GD.Print("Quest completed!");
                     AchievementManager.AddProgress("The Good Citizen", progress);
                     theGoodCitizen = true;
@@ -391,6 +417,9 @@ public partial class Player : CharacterBody2D
                     break;
                 case "THC":
                     BloodTHCContent += effect.Value;
+                    break;
+                case "Sugar":
+                    BloodSugarContent += effect.Value;
                     break;
             }
         }
@@ -471,7 +500,7 @@ public partial class Player : CharacterBody2D
                 return EffectLabelNode;
             }
             // If the effect is alcohol or THC
-            else if (effect.Key == "Alcohol" || effect.Key == "THC")
+            else if (effect.Key == "Alcohol" || effect.Key == "THC" || effect.Key == "Sugar")
             {
                 Label EffectLabelNode = CreateEffectLabel(effect, card);
                 EffectLabelNode.AddThemeColorOverride("font_color", new Color(1, 0, 0));
@@ -490,7 +519,7 @@ public partial class Player : CharacterBody2D
                 return EffectLabelNode;
             }
             // If the effect is alcohol or THC
-            else if (effect.Key == "Alcohol" || effect.Key == "THC")
+            else if (effect.Key == "Alcohol" || effect.Key == "THC" || effect.Key == "Sugar")
             {
                 Label EffectLabelNode = CreateEffectLabel(effect, card);
                 EffectLabelNode.AddThemeColorOverride("font_color", new Color(0, 1, 0));
@@ -566,5 +595,33 @@ public partial class Player : CharacterBody2D
 
         ConsumableEffectLabels.Clear();
         ConsumableCard.Visible = false;
+    }
+
+    private void SkinChoice(string skinName)
+    {
+        sprite.Texture = skins[skinName];
+    }
+
+    private void ApplyClothing(Clothes clothes)
+    {
+        SkinChoice(clothes.TextureName);
+        ApplyClothingEffects(clothes);
+    }
+
+    private void ApplyClothingEffects(Clothes clothes)
+    {
+        foreach (KeyValuePair<string, float> effect in clothes.Effects)
+        {
+            if (effect.Key == "PermanentHealth")
+            {
+                MaxHealth += effect.Value;
+                Health += effect.Value;
+            }
+            if (effect.Key == "PermanentSpeed")
+            {
+                BaseSpeed += effect.Value;
+                Speed += effect.Value;
+            }
+        }
     }
 }
