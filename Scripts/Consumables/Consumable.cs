@@ -15,6 +15,7 @@ public partial class Consumable : Area2D
     protected float Weight = 0f;
     protected float AlcoholEffect = 0f;
     protected float THCEffect = 0f;
+    protected float SugarEffect = 0f;
 
     public Dictionary<string, float> Effects = new Dictionary<string, float>();
 }
