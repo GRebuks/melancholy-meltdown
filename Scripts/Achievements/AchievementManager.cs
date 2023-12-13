@@ -47,11 +47,13 @@ public partial class AchievementManager : Node
     // Constructor
     public AchievementManager()
     {
-        // Add new achievements
-        // AddNewAchievements();
-
-        // Comment this out and uncomment the top line if you want to hard reset achievements
         achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
+        if (achievements == null)
+        {
+            achievements = new Dictionary<string, Dictionary<string, object>>();
+            AddNewAchievements();
+            achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
+        }
     }
 
     // Add progress to an achievement
@@ -76,10 +78,8 @@ public partial class AchievementManager : Node
     {
         if ((bool)achievements[name]["completed"])
         {
-            GD.Print(name + " is already completed");
             return;
         }
-        GD.Print("Achievement completed: " + name);
         Dictionary<string, object> achievement = achievements[name];
         achievement["completed"] = true;
         AchievementNameQueue.Add(name);
@@ -98,8 +98,6 @@ public partial class AchievementManager : Node
 
             // Write the JSON string to the specified file
             System.IO.File.WriteAllText(filePath, json);
-
-            GD.Print("Achievements saved to: " + filePath);
         }
         catch (Exception e)
         {
@@ -116,14 +114,6 @@ public partial class AchievementManager : Node
 
             // Convert the JSON string to a dictionary
             Dictionary<string, Dictionary<string, object>> achievements = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(json);
-
-            GD.Print("Achievements loaded from: " + filePath);
-
-            // Print all achievements
-            foreach (KeyValuePair<string, Dictionary<string, object>> achievement in achievements)
-            {
-                GD.Print(achievement.Key + ": " + achievement.Value["progress"] + "/" + achievement.Value["goal"]);
-            }
 
             return achievements;
         }
@@ -149,7 +139,7 @@ public partial class AchievementManager : Node
     // Hard reset all achievements
     public static void HardResetAchievements()
     {
-        AddAchievement("Test achievement", "Start the test scene", "res://Assets/Sprites/Achievements/test_achevement.png", 1L, 0L);
+        AddAchievement("Test achievement", "Start the test scene", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
 
 
         // Reset all achievements
@@ -165,13 +155,21 @@ public partial class AchievementManager : Node
     public static void AddNewAchievements()
     {
         // Add new achievements
-        AddAchievement("Test achievement", "Start the test scene", "res://Assets/Sprites/Achievements/test_achevement.png", 1L, 0L);
-        AddAchievement("Lights Out!", "Black out from alcohol overconsumption for the first time", "res://Assets/Sprites/Achievements/test_achevement.png", 1L, 0L);
-        AddAchievement("The Chemist", "Consume all psychoactive substances at the same time", "res://Assets/Sprites/Achievements/test_achevement.png", 1L, 0L);
-        AddAchievement("Nuclear meltdown", "Die faster than 60 seconds", "res://Assets/Sprites/Achievements/test_achevement.png", 1L, 0L);
-        AddAchievement("The Good Citizen", "Finish a quest for the first time", "res://Assets/Sprites/Achievements/test_achevement.png", 1L, 0L);
-        AddAchievement("The Minimalist", "Don't consume anything", "res://Assets/Sprites/Achievements/test_achevement.png", 1L, 0L);
-        AddAchievement("Close Call", "Consume a healing item a second before dying", "res://Assets/Sprites/Achievements/test_achevement.png", 1L, 0L);
+        
+        // DONE
+        AddAchievement("The Tester", "Start the test scene", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
+        AddAchievement("Lights Out!", "Black out from alcohol overconsumption for the first time", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
+        AddAchievement("The Chemist", "Consume all psychoactive substances at the same time", "res://Assets/Sprites/Achievements/the_chemist.png", 1L, 0L);
+        // DONE
+        AddAchievement("The Speedrunner", "That's not the aim of the game", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
+        AddAchievement("The Good Citizen", "Finish a quest for the first time", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
+        AddAchievement("The Minimalist", "Don't consume anything", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
+        AddAchievement("Close Call", "Consume a healing item a second before dying", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
         SaveAchievementsToFile(achievements, "Scripts/Achievements/achievements.json");
     }
 
@@ -187,6 +185,7 @@ public partial class AchievementManager : Node
             activeAchievementPanel = (Panel)achievementUI.Instantiate();
             activeAchievementPanel.GetNode<Label>("Title").Text = achievement["name"].ToString();
             activeAchievementPanel.GetNode<Label>("Description").Text = achievement["description"].ToString();
+            activeAchievementPanel.GetNode<TextureRect>("Icon").Texture = (Texture2D)ResourceLoader.Load(achievement["icon"].ToString());
 
             UI.AddChild(activeAchievementPanel);
 
@@ -209,6 +208,10 @@ public partial class AchievementManager : Node
         {
             AchievementNameQueue.RemoveAt(0);
             OutputAchievementCompletion(AchievementNameQueue[0]);
+        }
+        else if (AchievementNameQueue.Count == 1)
+        {
+            AchievementNameQueue.RemoveAt(0);
         }
     }
 }

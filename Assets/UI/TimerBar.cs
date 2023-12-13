@@ -14,14 +14,6 @@ public partial class TimerBar : ProgressBar
 
 	public override void _Process(double delta)
 	{
-        if (timer.IsStopped())
-		{
-            Visible = false;
-        }
-        else
-		{
-            Visible = true;
-            Value = timer.TimeLeft;
-        }
+        Value = timer.TimeLeft;
     }
 }

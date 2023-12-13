@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsg14abcsogsd"]
 
-[ext_resource type="Texture2D" uid="uid://c5cbdsimaqqe0" path="res://Assets/Sprites/Achievements/test_achevement.png" id="1_mlj6h"]
+[ext_resource type="Texture2D" uid="uid://c5cbdsimaqqe0" path="res://Assets/Sprites/Achievements/test_achievement.png" id="1_mlj6h"]
 [ext_resource type="Script" path="res://Assets/UI/TimerBar.cs" id="2_oelm4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bfv8"]
@@ -47,7 +47,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 18
 text = "This is the description of an achievement."
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.167
