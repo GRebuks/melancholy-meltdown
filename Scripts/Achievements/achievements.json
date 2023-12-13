@@ -4,7 +4,7 @@
     "description": "Start the test scene",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 7,
+    "progress": 1,
     "completed": true
   },
   "Lights Out!": {
@@ -20,7 +20,7 @@
     "description": "Consume all psychoactive substances at the same time",
     "icon": "res://Assets/Sprites/Achievements/the_chemist.png",
     "goal": 1,
-    "progress": 560,
+    "progress": 1,
     "completed": true
   },
   "The Speedrunner": {
@@ -28,8 +28,8 @@
     "description": "That's not the aim of the game",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 1504,
-    "completed": true
+    "progress": 0,
+    "completed": false
   },
   "The Good Citizen": {
     "name": "The Good Citizen",
@@ -44,8 +44,8 @@
     "description": "Don't consume anything",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 5,
-    "completed": true
+    "progress": 0,
+    "completed": false
   },
   "Close Call": {
     "name": "Close Call",
