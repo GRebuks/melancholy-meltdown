@@ -46,7 +46,18 @@ public partial class Player : CharacterBody2D
 
     private float _bloodAlcoholContent = 0f;
     private float _bloodTHCContent = 0f;
-    private float _health = 60f;
+    private float _health = 10f;
+
+    // Achievement progress
+    private int consumedItems = 0;
+    private float totalPassedTime = 0f;
+
+    private bool theGoodCitizen = false;
+    private bool theMinimalist = false;
+    private bool theSpeedrunner = false;
+    private bool theChemist = false;
+    private bool closeCall = false;
+    private bool lightsOut = false;
 
     public float MaxBAC { get; private set; } = 6f;
     public float MaxTHC { get; private set; } = 3f;
@@ -62,6 +73,8 @@ public partial class Player : CharacterBody2D
 
     private float _thcDecreaseRate = 5.0f;
     private float _minTHCDecreaseRate = 0.001f;
+
+    private const Int64 progress = 1L;
     public float Health
     {
         get { return _health; }
@@ -124,15 +137,36 @@ public partial class Player : CharacterBody2D
         BloodTHCContent = 0f;
         animation = GetNode<AnimationPlayer>("AnimationPlayer");
         sprite = GetNode<Sprite2D>("Sprite");
+
+        // Complete the test achievement
+        AchievementManager.AddProgress("The Tester", progress);
     }
 
 
     public override void _PhysicsProcess(double delta)
     {
+        totalPassedTime += (float)delta;
         if(Health <= 0)
         {
-            ZoomCamera();
+            if(consumedItems == 0 && !theMinimalist)
+            {
+                AchievementManager.AddProgress("The Minimalist", progress);
+                theMinimalist = true;
+            }
+
+            if(totalPassedTime < 60 && !theSpeedrunner)
+            {
+                AchievementManager.AddProgress("The Speedrunner", progress);
+                theSpeedrunner = true;
+            }
         }
+
+        if(BloodAlcoholContent > 0 && BloodTHCContent > 0 && !theChemist)
+        {
+            AchievementManager.AddProgress("The Chemist", progress);
+            theChemist = true;
+        }
+
         Vector2 velocity = Velocity;
         Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 
@@ -230,6 +264,11 @@ public partial class Player : CharacterBody2D
 
             if (BloodAlcoholContent > 5f)
             {
+                if(!lightsOut)
+                {
+                    AchievementManager.AddProgress("Lights Out!", progress);
+                    lightsOut = true;
+                }
                 Blackout.Visible = true;
                 if (Blackout.Color.A < 1)
                 {
@@ -312,6 +351,8 @@ public partial class Player : CharacterBody2D
                     // Apply effects
                     ApplyQuestEffects(quest);
                     GD.Print("Quest completed!");
+                    AchievementManager.AddProgress("The Good Citizen", progress);
+                    theGoodCitizen = true;
 
                     CallDeferred("InstantiateRewardConsumable", quest);
 
@@ -380,6 +421,13 @@ public partial class Player : CharacterBody2D
 
     private void ConsumeConsumable()
     {
+        // If health is less than 1f
+        if (Health <= 1f && !closeCall)
+        {
+            AchievementManager.AddProgress("Close Call", progress);
+            closeCall = true;
+        }
+        consumedItems++;
         // Apply effects
         ApplyConsumableEffects(consumable);
         GD.Print("");
