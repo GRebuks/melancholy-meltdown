@@ -33,13 +33,12 @@ texture = ExtResource("2_vwmyc")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="UI" parent="Player/Camera2D" instance=ExtResource("3_ko5uy")]
+z_index = 5
 anchors_preset = -1
-offset_left = -949.0
-offset_top = -534.0
-offset_right = 971.0
-offset_bottom = 546.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(-0.5, 0)
@@ -93,3 +92,4 @@ shape = SubResource("CircleShape2D_ccqtk")
 texture = ExtResource("2_vwmyc")
 
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]
+[connection signal="area_exited" from="Player/Area2D" to="Player" method="_on_area_exited"]

@@ -1,34 +1,148 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk401qd56y6i7"]
+[gd_scene load_steps=7 format=3 uid="uid://dk401qd56y6i7"]
 
+[ext_resource type="Theme" uid="uid://408t2h602blj" path="res://Assets/UI/Themes/THC_bar_theme.tres" id="1_6spwl"]
 [ext_resource type="PackedScene" uid="uid://bcyf1f0v6qfmf" path="res://Assets/UI/health_bar.tscn" id="1_svdgd"]
 [ext_resource type="Script" path="res://Scripts/UI/HealthBar.cs" id="2_wb0w4"]
+[ext_resource type="Theme" uid="uid://brnskt5hhc2c7" path="res://Assets/UI/Themes/BAC_bar_theme.tres" id="3_oyvc6"]
+[ext_resource type="PackedScene" uid="uid://164nw3660ytf" path="res://Assets/UI/InfoCard/consumable_card.tscn" id="5_x6rlx"]
+[ext_resource type="PackedScene" uid="uid://c7yd55e83gddo" path="res://Assets/UI/InfoCard/quest_card.tscn" id="6_oukri"]
 
 [node name="UI" type="Control"]
 clip_contents = true
-custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="THCBar" type="ProgressBar" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -118.0
+offset_right = -60.0
+offset_bottom = -78.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_6spwl")
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
+[node name="THC" type="Label" parent="THCBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tetrahydrocannabinol: "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HealthBar" parent="." instance=ExtResource("1_svdgd")]
-layout_mode = 0
-offset_left = 750.0
-offset_top = 950.0
-offset_right = 1107.0
-offset_bottom = 990.0
+z_index = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -70.0
+offset_right = -60.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
 max_value = 60.0
 step = 0.0
 value = 60.0
 show_percentage = false
 script = ExtResource("2_wb0w4")
 
-[node name="EmotionalDamage" type="Label" parent="."]
-layout_mode = 0
-offset_left = 750.0
-offset_top = 950.0
-offset_right = 1107.0
-offset_bottom = 990.0
+[node name="EmotionalDamage" type="Label" parent="HealthBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
 text = "Emotional Damage: 100%"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BACBar" type="ProgressBar" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -120.0
+offset_right = -10.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_oyvc6")
+max_value = 5.0
+value = 5.0
+show_percentage = false
+
+[node name="BAC" type="Label" parent="BACBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Blood Alcohol Content: 100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blackout" type="ColorRect" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1634.0
+offset_bottom = 2232.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Baked" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1634.0
+offset_bottom = 2232.0
+color = Color(0, 0.470588, 0, 0)
+
+[node name="ConsumableCard" parent="." instance=ExtResource("5_x6rlx")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 400.0
+offset_bottom = 240.0
+
+[node name="QuestCard" parent="." instance=ExtResource("6_oukri")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
