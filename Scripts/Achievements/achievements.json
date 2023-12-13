@@ -1,58 +1,58 @@
 {
   "The Tester": {
-    "name": "The Tester",
-    "description": "Start the test scene",
-    "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
-    "goal": 1,
-    "progress": 1,
-    "completed": true
+	"name": "The Tester",
+	"description": "Start the test scene",
+	"icon": "res://Assets/Sprites/Achievements/test_achievement.png",
+	"goal": 1,
+	"progress": 2,
+	"completed": true
   },
   "Lights Out!": {
-    "name": "Lights Out!",
-    "description": "Black out from alcohol overconsumption for the first time",
-    "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
-    "goal": 1,
-    "progress": 1,
-    "completed": true
+	"name": "Lights Out!",
+	"description": "Black out from alcohol overconsumption for the first time",
+	"icon": "res://Assets/Sprites/Achievements/test_achievement.png",
+	"goal": 1,
+	"progress": 1,
+	"completed": true
   },
   "The Chemist": {
-    "name": "The Chemist",
-    "description": "Consume all psychoactive substances at the same time",
-    "icon": "res://Assets/Sprites/Achievements/the_chemist.png",
-    "goal": 1,
-    "progress": 1,
-    "completed": true
+	"name": "The Chemist",
+	"description": "Consume all psychoactive substances at the same time",
+	"icon": "res://Assets/Sprites/Achievements/the_chemist.png",
+	"goal": 1,
+	"progress": 1,
+	"completed": true
   },
   "The Speedrunner": {
-    "name": "The Speedrunner",
-    "description": "That's not the aim of the game",
-    "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
-    "goal": 1,
-    "progress": 0,
-    "completed": false
+	"name": "The Speedrunner",
+	"description": "That's not the aim of the game",
+	"icon": "res://Assets/Sprites/Achievements/test_achievement.png",
+	"goal": 1,
+	"progress": 1,
+	"completed": true
   },
   "The Good Citizen": {
-    "name": "The Good Citizen",
-    "description": "Finish a quest for the first time",
-    "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
-    "goal": 1,
-    "progress": 1,
-    "completed": true
+	"name": "The Good Citizen",
+	"description": "Finish a quest for the first time",
+	"icon": "res://Assets/Sprites/Achievements/test_achievement.png",
+	"goal": 1,
+	"progress": 1,
+	"completed": true
   },
   "The Minimalist": {
-    "name": "The Minimalist",
-    "description": "Don't consume anything",
-    "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
-    "goal": 1,
-    "progress": 0,
-    "completed": false
+	"name": "The Minimalist",
+	"description": "Don't consume anything",
+	"icon": "res://Assets/Sprites/Achievements/test_achievement.png",
+	"goal": 1,
+	"progress": 1,
+	"completed": true
   },
   "Close Call": {
-    "name": "Close Call",
-    "description": "Consume a healing item a second before dying",
-    "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
-    "goal": 1,
-    "progress": 1,
-    "completed": true
+	"name": "Close Call",
+	"description": "Consume a healing item a second before dying",
+	"icon": "res://Assets/Sprites/Achievements/test_achievement.png",
+	"goal": 1,
+	"progress": 1,
+	"completed": true
   }
 }
