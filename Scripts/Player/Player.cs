@@ -204,17 +204,20 @@ public partial class Player : CharacterBody2D
             } 
             else if (direction.Y > 0) 
             {
-                animation.Play("Dzhupels3");
+                GD.Print(direction);
+                animation.Play("Dzhupels2");
                 sprite.Scale = new Vector2(1, sprite.Scale.Y);
             } 
             else if (direction.X < 0)
             {
-                animation.Play("Dzhupels2");
+                GD.Print(direction);
+                animation.Play("Dzhupels3");
                 sprite.Scale = new Vector2(-1, sprite.Scale.Y);
             }
             else if (direction.X > 0)
             {
-                animation.Play("Dzhupels2");
+                GD.Print(direction);
+                animation.Play("Dzhupels3");
                 sprite.Scale = new Vector2(1, sprite.Scale.Y);
             }
 

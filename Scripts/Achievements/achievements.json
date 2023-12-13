@@ -52,7 +52,7 @@
     "description": "Consume a healing item a second before dying",
     "icon": "res://Assets/Sprites/Achievements/test_achievement.png",
     "goal": 1,
-    "progress": 0,
-    "completed": false
+    "progress": 1,
+    "completed": true
   }
 }
