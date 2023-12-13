@@ -13,6 +13,10 @@ public partial class Player : CharacterBody2D
 
     public Consumable consumable = null;
 
+    // Animation
+    public Sprite2D sprite;
+    private AnimationPlayer animation;
+
     // Health bar
     private ProgressBar _healthBar;
     private Label _healthBarLabel;
@@ -118,6 +122,8 @@ public partial class Player : CharacterBody2D
 
         BloodAlcoholContent = 0f;
         BloodTHCContent = 0f;
+        animation = GetNode<AnimationPlayer>("AnimationPlayer");
+        sprite = GetNode<Sprite2D>("Sprite");
     }
 
 
@@ -136,11 +142,32 @@ public partial class Player : CharacterBody2D
 
         if (direction != Vector2.Zero)
         {
+            if (direction.Y < 0)
+            {
+                sprite.Scale = new Vector2(-1, sprite.Scale.Y);
+                animation.Play("RunUp");
+            } 
+            else if (direction.Y > 0) 
+            {
+                animation.Play("RunDown");
+                sprite.Scale = new Vector2(1, sprite.Scale.Y);
+            } 
+            else if (direction.X < 0)
+            {
+                animation.Play("Run");
+                sprite.Scale = new Vector2(-1, sprite.Scale.Y);
+            }
+            else if (direction.X > 0)
+            {
+                animation.Play("Run");
+                sprite.Scale = new Vector2(1, sprite.Scale.Y);
+            }
             velocity.X = direction.X * Speed;
             velocity.Y = direction.Y * Speed;
         }
         else
         {
+            animation.Play("Idle");
             velocity.X = Mathf.MoveToward(velocity.X, 0, Speed);
             velocity.Y = Mathf.MoveToward(velocity.Y, 0, Speed);
         }
