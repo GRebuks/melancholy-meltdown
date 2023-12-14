@@ -12,9 +12,13 @@ public partial class Player : CharacterBody2D
     Texture2D texture;
     public Dictionary<string, Texture2D> skins;
     public string currentSkin = "naked";
+    public Vector2 direction;
+    public Vector2 velocity;
 
     public float timePassed = 0f;
+    public float deathTimePassed = 0f;
     Vector2 targetPosition = new Vector2();
+    public bool blockMovement = false;
 
     public Consumable consumable = null;
 
@@ -189,6 +193,31 @@ public partial class Player : CharacterBody2D
                 AchievementManager.AddProgress("The Speedrunner", progress);
                 theSpeedrunner = true;
             }
+            // Destroy the consumable
+            if (consumable != null)
+            {
+                // Destroy the consumable
+                consumable.QueueFree();
+                consumable = null;
+                ClearConsumableCard();
+            }
+            // Block user movement
+            blockMovement = true;
+            camera.Zoom = new Vector2(5, 5);
+            animation.Play("DzhupelsCrying");
+            deathTimePassed += (float)delta;
+            if (deathTimePassed > 3)
+            {
+                Blackout.Visible = true;
+                if (Blackout.Color.A < 1)
+                {
+                    Blackout.Color = IncreaseAlpha(Blackout.Color);
+                }
+                else
+                {
+                    // Put route to main menu here
+                }
+            }
         }
 
         if(BloodAlcoholContent > 0 && BloodTHCContent > 0 && BloodSugarContent > 0 && !theChemist)
@@ -196,9 +225,11 @@ public partial class Player : CharacterBody2D
             AchievementManager.AddProgress("The Chemist", progress);
             theChemist = true;
         }
-
-        Vector2 velocity = Velocity;
-        Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
+        if (!blockMovement)
+        {
+            velocity = Velocity;
+            direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
+        }
 
         _speedDecreaseRate = 0.0005f * MathF.Pow(Speed - BaseSpeed, 2) + _minSpeedDecreaseRate;
         _alcoholDecreaseRate = 0.000015f * MathF.Pow(BloodAlcoholContent, 2) + _minAlcoholDecreaseRate;
@@ -216,12 +247,12 @@ public partial class Player : CharacterBody2D
             {
                 sprite.Scale = new Vector2(-Math.Abs(sprite.Scale.X), sprite.Scale.Y);
                 animation.Play("Dzhupels4");
-            } 
-            else if (direction.Y > 0) 
+            }
+            else if (direction.Y > 0)
             {
                 animation.Play("Dzhupels2");
                 sprite.Scale = new Vector2(Math.Abs(sprite.Scale.X), sprite.Scale.Y);
-            } 
+            }
             else if (direction.X < 0)
             {
                 animation.Play("Dzhupels3");
@@ -236,7 +267,7 @@ public partial class Player : CharacterBody2D
             velocity.X = direction.X * Speed;
             velocity.Y = direction.Y * Speed;
         }
-        else
+        else if (!blockMovement)
         {
             animation.Play("Dzhupels1");
             velocity.X = Mathf.MoveToward(velocity.X, 0, Speed);
