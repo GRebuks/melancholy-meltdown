@@ -1,29 +1,12 @@
-[gd_scene load_steps=48 format=3 uid="uid://cu0ckxoh0h84j"]
+[gd_scene load_steps=26 format=3 uid="uid://d4a7koh72e6dj"]
 
-[ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="2_4bxcj"]
-[ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_1352e"]
-[ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="2_wy47o"]
-[ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_8pyiq"]
-[ext_resource type="Texture2D" uid="uid://d0tjyaqft1big" path="res://Assets/Materials/new_gradient_texture_2d.tres" id="3_ptkvm"]
-[ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="4_w6kp0"]
-[ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="7_p6m7v"]
-[ext_resource type="Texture2D" uid="uid://dm1cyyu4rjl7o" path="res://Assets/Sprites/Dzhupels.png" id="8_wyr8h"]
-[ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="9_c45f1"]
-[ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="9_hm58e"]
-[ext_resource type="PackedScene" uid="uid://bua6b1ms165h6" path="res://Assets/Objects/sweater_quest.tscn" id="12_rys28"]
-[ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="13_o3ja6"]
-[ext_resource type="PackedScene" path="res://Assets/Objects/Quests/playtime_quest.tscn" id="15_0iqw8"]
-[ext_resource type="PackedScene" uid="uid://bugd2urlwauwm" path="res://Assets/Objects/Quests/pants_quest.tscn" id="15_b4ndk"]
-[ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="17_1empj"]
-[ext_resource type="AudioStream" uid="uid://ceic3cvrnkupx" path="res://Assets/Audio/gulpingEffect.mp3" id="10_dhm1e"]
-[ext_resource type="AudioStream" uid="uid://d02bmftsnpx5s" path="res://Assets/Audio/putDownEffect.mp3" id="11_hyl8d"]
-[ext_resource type="PackedScene" uid="uid://dtpdmipjticcc" path="res://Assets/Objects/Quests/test_quest.tscn" id="11_syvun"]
-[ext_resource type="AudioStream" uid="uid://brqdvvkv0sevd" path="res://Assets/Audio/pickUpEffect.mp3" id="12_1jt01"]
-[ext_resource type="Script" path="res://Scripts/Quests/PantsQuest.cs" id="12_nu0dv"]
-[ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="13_o3ja6"]
-[ext_resource type="PackedScene" uid="uid://dfphki6ndrdx0" path="res://Assets/Objects/Consumables/sweater.tscn" id="14_swu7r"]
-[ext_resource type="PackedScene" uid="uid://b5g16h1sw8tdc" path="res://Assets/Objects/Consumables/pants.tscn" id="15_7083u"]
-[ext_resource type="AudioStream" uid="uid://dgbicg2jxwpj1" path="res://Assets/Audio/bgMusic.mp3" id="16_2brl0"]
+[ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_gbuc6"]
+[ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="2_ad0vb"]
+[ext_resource type="Texture2D" uid="uid://d0tjyaqft1big" path="res://Assets/Materials/new_gradient_texture_2d.tres" id="3_ea1pt"]
+[ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="4_1gyqg"]
+[ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="5_8vb5n"]
+[ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="6_a4lb3"]
+[ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="10_1nts8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
 
@@ -48,7 +31,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ljh5v"]
-texture = ExtResource("2_4bxcj")
+texture = ExtResource("1_gbuc6")
 3:0/0 = 0
 3:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wyhax")
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -2062,117 +2045,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3mdo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx6c5"]
-size = Vector2(190.628, 191.003)
-
-[sub_resource type="Sky" id="Sky_sl3iy"]
-
-[sub_resource type="Environment" id="Environment_j5ly4"]
-background_mode = 3
-sky = SubResource("Sky_sl3iy")
-glow_enabled = true
-glow_intensity = 3.5
-glow_strength = 1.4
-glow_blend_mode = 0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_867qn"]
-size = Vector2(66, 21.5771)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ukpnn"]
-radius = 39.2046
-
-[sub_resource type="Animation" id="Animation_gk4up"]
-resource_name = "Dzhupels1"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 8, 8, 8]
-}
-
-[sub_resource type="Animation" id="Animation_5e7et"]
-resource_name = "Run"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_6erqq"]
-resource_name = "Dzhupels3"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [8, 9, 10]
-}
-
-[sub_resource type="Animation" id="Animation_663ls"]
-resource_name = "Dzhupels4"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_5txud"]
-length = 0.001
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7qdl"]
-_data = {
-"Dzhupels1": SubResource("Animation_gk4up"),
-"Dzhupels2": SubResource("Animation_5e7et"),
-"Dzhupels3": SubResource("Animation_6erqq"),
-"Dzhupels4": SubResource("Animation_663ls"),
-"RESET": SubResource("Animation_5txud")
-}
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
-radius = 45.0999
+size = Vector2(187.067, 182.193)
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -2201,7 +2074,7 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-texture = ExtResource("2_wy47o")
+texture = ExtResource("2_ad0vb")
 offset = Vector2(0, -16)
 
 [node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost/LampPost"]
@@ -2211,7 +2084,7 @@ scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = ExtResource("3_ptkvm")
+texture = ExtResource("3_ea1pt")
 texture_scale = 0.83
 
 [node name="Bulb" type="Sprite2D" parent="TileMap/LampPost/LampPost"]
@@ -2219,7 +2092,7 @@ modulate = Color(2, 2, 2, 1)
 z_index = 1
 material = SubResource("CanvasItemMaterial_4tsql")
 position = Vector2(4.54537, -34.4365)
-texture = ExtResource("3_8pyiq")
+texture = ExtResource("4_1gyqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost"]
 position = Vector2(-1.49953, 6.32614)
@@ -2233,7 +2106,7 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-texture = ExtResource("2_wy47o")
+texture = ExtResource("2_ad0vb")
 offset = Vector2(0, -16)
 
 [node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost2/LampPost"]
@@ -2243,7 +2116,7 @@ scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = ExtResource("3_ptkvm")
+texture = ExtResource("3_ea1pt")
 texture_scale = 0.83
 
 [node name="Bulb" type="Sprite2D" parent="TileMap/LampPost2/LampPost"]
@@ -2251,7 +2124,7 @@ modulate = Color(2, 2, 2, 1)
 z_index = 1
 material = SubResource("CanvasItemMaterial_4tsql")
 position = Vector2(4.54537, -34.4365)
-texture = ExtResource("3_8pyiq")
+texture = ExtResource("4_1gyqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
 position = Vector2(-1.49953, 6.32614)
@@ -2265,7 +2138,7 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-texture = ExtResource("2_wy47o")
+texture = ExtResource("2_ad0vb")
 offset = Vector2(0, -16)
 
 [node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost3/LampPost"]
@@ -2275,7 +2148,7 @@ scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = ExtResource("3_ptkvm")
+texture = ExtResource("3_ea1pt")
 texture_scale = 0.83
 
 [node name="Bulb" type="Sprite2D" parent="TileMap/LampPost3/LampPost"]
@@ -2283,7 +2156,7 @@ modulate = Color(2, 2, 2, 1)
 z_index = 1
 material = SubResource("CanvasItemMaterial_4tsql")
 position = Vector2(4.54537, -34.4365)
-texture = ExtResource("3_8pyiq")
+texture = ExtResource("4_1gyqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost3"]
 position = Vector2(-1.49953, 6.32614)
@@ -2297,17 +2170,17 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-texture = ExtResource("2_wy47o")
+texture = ExtResource("2_ad0vb")
 offset = Vector2(0, -16)
 
 [node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost4/LampPost"]
 z_index = 1
 position = Vector2(4.73281, 6.80075)
-scale = Vector2(1.98188, 1.87217)
+scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = ExtResource("3_ptkvm")
+texture = ExtResource("3_ea1pt")
 texture_scale = 0.83
 
 [node name="Bulb" type="Sprite2D" parent="TileMap/LampPost4/LampPost"]
@@ -2315,7 +2188,7 @@ modulate = Color(2, 2, 2, 1)
 z_index = 1
 material = SubResource("CanvasItemMaterial_4tsql")
 position = Vector2(4.54537, -34.4365)
-texture = ExtResource("3_8pyiq")
+texture = ExtResource("4_1gyqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
@@ -2357,7 +2230,7 @@ scale = Vector2(5.335, 5.335)
 
 [node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints"]
 position = Vector2(-192, 0)
-script = ExtResource("2_1352e")
+script = ExtResource("5_8vb5n")
 Direction = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint2"]
@@ -2365,7 +2238,7 @@ shape = SubResource("CircleShape2D_h4v3o")
 
 [node name="SpawnPoint3" type="Area2D" parent="SpawnRoomPoints"]
 position = Vector2(0, 192)
-script = ExtResource("2_1352e")
+script = ExtResource("5_8vb5n")
 Direction = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint3"]
@@ -2373,7 +2246,7 @@ shape = SubResource("CircleShape2D_iqj06")
 
 [node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints"]
 position = Vector2(0, -192)
-script = ExtResource("2_1352e")
+script = ExtResource("5_8vb5n")
 Direction = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint4"]
@@ -2381,7 +2254,7 @@ shape = SubResource("CircleShape2D_fwdye")
 
 [node name="SpawnPoint" type="Area2D" parent="SpawnRoomPoints"]
 position = Vector2(192, 0)
-script = ExtResource("2_1352e")
+script = ExtResource("5_8vb5n")
 Direction = 3
 metadata/Direction = 0
 
@@ -2390,103 +2263,24 @@ shape = SubResource("CircleShape2D_3mdo5")
 
 [node name="TileCheck" type="Area2D" parent="."]
 scale = Vector2(5.335, 5.335)
-script = ExtResource("4_w6kp0")
+script = ExtResource("6_a4lb3")
 metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
-position = Vector2(0.281112, -0.281084)
+position = Vector2(6.97157e-06, -0.74977)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_nx6c5")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-z_as_relative = false
-color = Color(0.101961, 0.156863, 0.160784, 1)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_j5ly4")
-
-[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
-z_index = 1
-y_sort_enabled = true
-collision_mask = 2
-motion_mode = 1
-script = ExtResource("7_p6m7v")
-
-[node name="Sprite" type="Sprite2D" parent="Player"]
-scale = Vector2(2.25, 2.25)
-texture = ExtResource("8_wyr8h")
-hframes = 11
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
-
-[node name="UI" parent="Player/Camera2D/CanvasLayer" instance=ExtResource("9_c45f1")]
-z_index = 5
-anchors_preset = -1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 24.7885)
-shape = SubResource("RectangleShape2D_867qn")
-
-[node name="Area2D" type="Area2D" parent="Player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
-shape = SubResource("CircleShape2D_ukpnn")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-root_node = NodePath("../Sprite")
-libraries = {
-"": SubResource("AnimationLibrary_n7qdl")
-}
-
-[node name="useConsumable" type="AudioStreamPlayer2D" parent="Player"]
-stream = ExtResource("10_dhm1e")
-volume_db = 10.0
-
-[node name="putDownConsumable" type="AudioStreamPlayer2D" parent="Player"]
-stream = ExtResource("11_hyl8d")
-volume_db = 10.0
-
-[node name="pickUpConsumable" type="AudioStreamPlayer2D" parent="Player"]
-stream = ExtResource("12_1jt01")
-volume_db = 10.0
-
-[node name="Booze" parent="." instance=ExtResource("9_hm58e")]
+[node name="Booze" parent="." instance=ExtResource("10_1nts8")]
 position = Vector2(-168, -161)
 
-[node name="Booze2" parent="." instance=ExtResource("9_hm58e")]
+[node name="Booze2" parent="." instance=ExtResource("10_1nts8")]
 position = Vector2(-219, -157)
 
-[node name="Booze3" parent="." instance=ExtResource("9_hm58e")]
+[node name="Booze3" parent="." instance=ExtResource("10_1nts8")]
 position = Vector2(-196, -161)
 
-[node name="Booze4" parent="." instance=ExtResource("9_hm58e")]
+[node name="Booze4" parent="." instance=ExtResource("10_1nts8")]
 position = Vector2(-130, -161)
 
-[node name="PantsQuest" parent="." instance=ExtResource("15_b4ndk")]
-position = Vector2(-164, 402)
-
-[node name="SweaterQuest" parent="." instance=ExtResource("12_rys28")]
-
-[node name="SweaterQuest2" type="Area2D" parent="." groups=["Quest"]]
-position = Vector2(-446, 169)
-script = ExtResource("13_o3ja6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SweaterQuest2"]
-shape = SubResource("CircleShape2D_ccqtk")
-
-[node name="Sprite" type="Sprite2D" parent="SweaterQuest2"]
-texture = ExtResource("17_1empj")
-
-[node name="PlaytimeQuest" parent="." instance=ExtResource("15_0iqw8")]
-position = Vector2(-161, 276)
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_2brl0")
-volume_db = -15.0
-autoplay = true
-
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
-[connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]
-[connection signal="area_exited" from="Player/Area2D" to="Player" method="_on_area_exited"]

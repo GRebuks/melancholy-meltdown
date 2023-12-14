@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://njrgek7lds3a"]
+[gd_scene load_steps=32 format=3 uid="uid://njrgek7lds3a"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_j4jp2"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_2u6vu"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="3_tawc6"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_3vivu"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_jqjgi"]
+[ext_resource type="Texture2D" uid="uid://qf5v1l84l71m" path="res://Assets/Sprites/Signs/SignCyan.png" id="6_m711j"]
+[ext_resource type="Texture2D" uid="uid://d3m23opfquca4" path="res://Assets/Sprites/Signs/SignPink.png" id="7_cf1af"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_fivxj"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_m1d8d"]
 
@@ -2957,12 +2959,12 @@ sources/2 = SubResource("TileSetAtlasSource_4r5lt")
 sources/0 = SubResource("TileSetAtlasSource_2w1se")
 sources/1 = SubResource("TileSetAtlasSource_5xptm")
 
-[sub_resource type="Gradient" id="Gradient_eotce"]
+[sub_resource type="Gradient" id="Gradient_p62sv"]
 offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
 colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_eh1ib"]
-gradient = SubResource("Gradient_eotce")
+gradient = SubResource("Gradient_p62sv")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.183761, 0)
@@ -2973,6 +2975,9 @@ blend_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwcl7"]
 size = Vector2(5.62324, 1.96813)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bqi24"]
+light_mode = 1
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifdg"]
 size = Vector2(14.2783, 15.9981)
 
@@ -2981,7 +2986,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddkwj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
-size = Vector2(190.815, 189.316)
+size = Vector2(190.44, 189.316)
 
 [node name="Node2D" type="Node2D"]
 
@@ -3020,7 +3025,7 @@ offset = Vector2(0, -16)
 
 [node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost2/LampPost"]
 z_index = 1
-position = Vector2(4.73281, 6.80075)
+position = Vector2(3.374, 11.6213)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
@@ -3071,6 +3076,48 @@ texture = ExtResource("5_jqjgi")
 position = Vector2(-1.49953, 6.32614)
 shape = SubResource("RectangleShape2D_gwcl7")
 
+[node name="Sign" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_bqi24")
+position = Vector2(-14.2455, -53.7957)
+rotation = 1.5708
+scale = Vector2(1, 1)
+texture = ExtResource("6_m711j")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign"]
+z_index = 1
+position = Vector2(22.1046, -15.4825)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0.282353, 1, 0.996078, 1)
+energy = 0.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_eh1ib")
+texture_scale = 0.83
+
+[node name="Sign2" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_bqi24")
+position = Vector2(48.7348, -53.2334)
+rotation = 1.5708
+scale = Vector2(1, 1)
+texture = ExtResource("7_cf1af")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign2"]
+z_index = 1
+position = Vector2(22.1046, -15.4825)
+scale = Vector2(2.05543, 1.87217)
+color = Color(1, 0.133333, 0.658824, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_eh1ib")
+texture_scale = 0.83
+
 [node name="ExitPoints" type="Node2D" parent="."]
 position = Vector2(0, 170)
 scale = Vector2(5.335, 5.335)
@@ -3116,7 +3163,8 @@ script = ExtResource("7_fivxj")
 metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
-position = Vector2(0.374884, -31.6776)
+position = Vector2(0.187537, -31.6776)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_m1d8d")]

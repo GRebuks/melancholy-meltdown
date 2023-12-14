@@ -1,4 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://x0bxfebx5vnv"]
+
+[gd_scene load_steps=34 format=3 uid="uid://x0bxfebx5vnv"]
+
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_2nyap"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_bapr4"]
@@ -7,6 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="3_bgd06"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_a80q5"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_s8xfu"]
+[ext_resource type="Texture2D" uid="uid://c8mni3jtdwo0u" path="res://Assets/Sprites/Signs/SignGreen.png" id="6_q65ps"]
+[ext_resource type="Texture2D" uid="uid://rbtfn0fyvgo2" path="res://Assets/Sprites/Signs/NeonSign.png" id="7_xaf77"]
+[ext_resource type="Texture2D" uid="uid://fvwex6wq7q01" path="res://Assets/Sprites/Signs/LightsRoundCyan.png" id="8_iydsb"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_i6fpo"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
@@ -2962,6 +2967,16 @@ sources/2 = SubResource("TileSetAtlasSource_4r5lt")
 sources/0 = SubResource("TileSetAtlasSource_2w1se")
 sources/1 = SubResource("TileSetAtlasSource_5xptm")
 
+[sub_resource type="Gradient" id="Gradient_61lgy"]
+offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
+colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_knjk4"]
+gradient = SubResource("Gradient_61lgy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.183761, 0)
+
 [sub_resource type="Gradient" id="Gradient_jdfwt"]
 offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
 colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
@@ -2977,6 +2992,9 @@ blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hco4x"]
 size = Vector2(5.62324, 1.96813)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1wbkf"]
+light_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifdg"]
 size = Vector2(14.2783, 15.9981)
@@ -3011,6 +3029,16 @@ layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(1, 720896, 7, 131075, 655360, 9, -196614, 0, 6, -196613, 65536, 6, -196612, 131072, 6, -196611, 196608, 6, -196610, 262144, 6, 65537, 720896, 8, 131073, 720896, 9, -131070, 393216, 7, 196610, 589824, 11, 262146, 458752, 11, -131069, 524288, 7, 196611, 655360, 10, 262147, 524288, 11, 262140, 393216, 9)
+
+[node name="PointLight2D3" type="PointLight2D" parent="TileMap"]
+z_index = 1
+position = Vector2(-59.0441, 81.537)
+scale = Vector2(4.22479, 3.50502)
+color = Color(0.968627, 0, 0.788235, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_knjk4")
+texture_scale = 0.5
 
 [node name="LampPost2" type="StaticBody2D" parent="TileMap"]
 position = Vector2(21.7432, -27.179)
@@ -3075,6 +3103,100 @@ texture = ExtResource("5_s8xfu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
 shape = SubResource("RectangleShape2D_hco4x")
+
+[node name="Sign2" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_1wbkf")
+position = Vector2(-89.9719, -48.7348)
+rotation = 1.5708
+scale = Vector2(1, 1)
+texture = ExtResource("6_q65ps")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign2"]
+z_index = 1
+position = Vector2(22.1046, -15.4825)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0, 0.847059, 0.0901961, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_knjk4")
+texture_scale = 0.83
+
+[node name="Sign3" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_1wbkf")
+position = Vector2(-22.6804, -65.4171)
+rotation = -3.14159
+scale = Vector2(1, 1)
+texture = ExtResource("7_xaf77")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign3"]
+z_index = 1
+position = Vector2(-0.937218, -36.3636)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0.968627, 0, 0.788235, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_knjk4")
+texture_scale = 0.83
+
+[node name="Sign5" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_1wbkf")
+position = Vector2(7.31021, -65.0422)
+rotation = -3.14159
+scale = Vector2(1, 1)
+texture = ExtResource("7_xaf77")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign5"]
+z_index = 1
+position = Vector2(-0.937218, -36.3636)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0.968627, 0, 0.788235, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_knjk4")
+texture_scale = 0.83
+
+[node name="Sign4" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_1wbkf")
+position = Vector2(47.985, -56.045)
+rotation = -3.14159
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("8_iydsb")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign4"]
+z_index = 1
+position = Vector2(-0.892593, -70.0674)
+scale = Vector2(3.565, 3.248)
+color = Color(0.0431373, 0.8, 0.792157, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_knjk4")
+texture_scale = 0.83
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap"]
+z_index = 1
+position = Vector2(56.4199, 16.3074)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0.968627, 0, 0.788235, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_knjk4")
+texture_scale = 0.83
 
 [node name="ExitPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
