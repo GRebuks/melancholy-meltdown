@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=32 format=3 uid="uid://njrgek7lds3a"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_j4jp2"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d3m23opfquca4" path="res://Assets/Sprites/Signs/SignPink.png" id="7_cf1af"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_fivxj"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_m1d8d"]
+[ext_resource type="PackedScene" uid="uid://3530s1iw6sww" path="res://Assets/Objects/Quests/playtime_quest.tscn" id="9_bdbeq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3175,5 +3177,14 @@ position = Vector2(-212, 387)
 
 [node name="ConsumableSpawn3" parent="." instance=ExtResource("8_m1d8d")]
 position = Vector2(298, 227)
+
+[node name="PlaytimeQuest" parent="." instance=ExtResource("9_bdbeq")]
+position = Vector2(-288, -9)
+
+[node name="ConsumableSpawn4" parent="." instance=ExtResource("8_m1d8d")]
+position = Vector2(134, 260)
+
+[node name="ConsumableSpawn5" parent="." instance=ExtResource("8_m1d8d")]
+position = Vector2(-89, -142)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

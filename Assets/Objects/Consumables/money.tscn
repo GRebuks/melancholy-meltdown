@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://15bcelstwi5w"]
+
+[ext_resource type="Script" path="res://Scripts/Consumables/Money.cs" id="1_ak7k5"]
+[ext_resource type="Texture2D" uid="uid://bptp0peedht51" path="res://Assets/Sprites/Money.png" id="2_gesyr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqgm4"]
+size = Vector2(16, 17)
+
+[node name="Money" type="Area2D" groups=["Consumable"]]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_ak7k5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_kqgm4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_gesyr")

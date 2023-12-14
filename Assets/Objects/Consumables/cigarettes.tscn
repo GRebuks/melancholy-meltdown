@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdsoh8hwxu86t"]
+
+[ext_resource type="Script" path="res://Scripts/Consumables/Cigarettes.cs" id="1_815a2"]
+[ext_resource type="Texture2D" uid="uid://cas74inlkqmxi" path="res://Assets/Sprites/Ciggs.png" id="2_feh7m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de1n3"]
+size = Vector2(20, 24)
+
+[node name="Cigarettes" type="Area2D" groups=["Consumable"]]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_815a2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_de1n3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_feh7m")

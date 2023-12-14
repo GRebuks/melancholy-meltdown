@@ -9,6 +9,15 @@ public partial class ConsumableSpawn : Node2D
 		"booze",
 		"marijuana",
 		"sugar",
+		"pipe_bomb",
+		"cigarettes",
+		"chicken",
+		"chinese_food",
+		"money",
+		"weird_liquid",
+		"coke",
+		"ice_cream",
+		"cactus",
 	};
 
 	private Node2D scene;
@@ -16,11 +25,10 @@ public partial class ConsumableSpawn : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		// 50 50 chance of spawning a consumable
 		Random random = new Random();
 		int randomChance = random.Next(100);
 
-		if (randomChance < 50)
+		if (randomChance < 70)
 		{
             SpawnConsumable();
         }

@@ -17,7 +17,7 @@ public partial class Quest : Area2D
 
     protected string ConsumablePath = "res://Assets/Objects/Consumables/";
     protected string RewardConsumableFile;
-    protected string RequiredConsumableFile;
+    public string RequiredConsumableFile;
 
     protected PackedScene RewardConsumable;
     public Consumable RewardConsumableNode;

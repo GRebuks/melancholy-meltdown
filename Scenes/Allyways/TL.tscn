@@ -1,7 +1,5 @@
 
 [gd_scene load_steps=32 format=3 uid="uid://cncp6l0ts1e8w"]
-
-
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_rgm67"]
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_s3rtb"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_f8j63"]
@@ -13,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b30pxu0dhnft1" path="res://Assets/Sprites/Signs/SignYellow.png" id="8_qxjqf"]
 
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_5xhmb"]
+[ext_resource type="PackedScene" uid="uid://3530s1iw6sww" path="res://Assets/Objects/Quests/playtime_quest.tscn" id="9_ll43l"]
 
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
@@ -3230,5 +3229,8 @@ shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_5xhmb")]
 position = Vector2(-299, -137)
+
+[node name="PlaytimeQuest" parent="." instance=ExtResource("9_ll43l")]
+position = Vector2(267, 277)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

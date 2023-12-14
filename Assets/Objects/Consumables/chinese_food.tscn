@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck0btg6b8rdop"]
+
+[ext_resource type="Script" path="res://Scripts/Consumables/ChineseFood.cs" id="1_vjpfk"]
+[ext_resource type="Texture2D" uid="uid://b5whbj83ppanp" path="res://Assets/Sprites/ChineseFood.png" id="2_aetco"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o38jp"]
+size = Vector2(20, 24)
+
+[node name="ChineseFood" type="Area2D" groups=["Consumable"]]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_vjpfk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_o38jp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = ExtResource("2_aetco")

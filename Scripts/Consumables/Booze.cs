@@ -5,7 +5,7 @@ public partial class Booze : Consumable
 {
     public Booze()
     {
-        Type = "Booze";
+        Type = "Drug";
         Title = "Bottle of Booze";
         Description = "Might as well be water for Dzhupels";
         HealthEffect = 10f;

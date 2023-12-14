@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgrjsakofey6a"]
+[gd_scene load_steps=4 format=3 uid="uid://3530s1iw6sww"]
 
 [ext_resource type="Script" path="res://Scripts/Quests/PlaytimeQuest.cs" id="1_lb3n8"]
-[ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_k7tmj"]
+[ext_resource type="Texture2D" uid="uid://duw8y23sqowg3" path="res://Assets/Sprites/child.png" id="2_2mhlt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
 radius = 45.0999
@@ -14,4 +14,4 @@ script = ExtResource("1_lb3n8")
 shape = SubResource("CircleShape2D_ccqtk")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_k7tmj")
+texture = ExtResource("2_2mhlt")

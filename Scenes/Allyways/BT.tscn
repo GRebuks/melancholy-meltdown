@@ -3156,4 +3156,7 @@ shape = SubResource("RectangleShape2D_j8qhw")
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_psb50")]
 position = Vector2(163, -68)
 
+[node name="ConsumableSpawn2" parent="." instance=ExtResource("8_psb50")]
+position = Vector2(-160, -341)
+
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

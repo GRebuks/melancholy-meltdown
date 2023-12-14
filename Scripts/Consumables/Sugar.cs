@@ -5,8 +5,8 @@ public partial class Sugar : Consumable
 {
     public Sugar()
     {
-        Type = "Sugar";
-        Title = "Sugar";
+        Type = "Drug";
+        Title = "\"Sugar\"";
         Description = "Adds some emotional stability and SPEEED";
         HealthEffect = 20f;
         SpeedEffect = 500f;

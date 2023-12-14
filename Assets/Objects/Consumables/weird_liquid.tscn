@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqycraj8024fc"]
+
+[ext_resource type="Script" path="res://Scripts/Consumables/WeirdLiquid.cs" id="1_5y0ph"]
+[ext_resource type="Texture2D" uid="uid://dsmd6yv1ukjux" path="res://Assets/Sprites/WeirdLiquid.png" id="2_wslb0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkw34"]
+
+[node name="WeirdLiquid" type="Area2D" groups=["Consumable"]]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_5y0ph")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gkw34")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("2_wslb0")

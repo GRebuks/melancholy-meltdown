@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://csbp0544v5jlx"]
+
+[ext_resource type="Script" path="res://Scripts/Consumables/IceCream.cs" id="1_t2jcr"]
+[ext_resource type="Texture2D" uid="uid://dpjodebtt4pvr" path="res://Assets/Sprites/IceCream.png" id="2_bab23"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5b2s"]
+size = Vector2(20, 22)
+
+[node name="IceCream" type="Area2D" groups=["Consumable"]]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_t2jcr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_v5b2s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_bab23")
