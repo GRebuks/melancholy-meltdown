@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-public partial class Pants : Clothes
+public partial class Sweater : Clothes
 {
-    public Pants()
+    public Sweater()
     {
-        Type = "Pants";
-        Title = "Pants";
-        Description = "Gives Dzhupel pants with a belt";
+        Type = "Sweater";
+        Title = "Sweater";
+        Description = "This sweater comes with sweat.";
         PermanentHealthEffect = 10f;
         PermanentSpeedEffect = 50f;
-        TextureName = "pants";
+        TextureName = "sweater";
 
         Effects.Add("PermanentHealth", PermanentHealthEffect);
         Effects.Add("PermanentSpeed", PermanentSpeedEffect);

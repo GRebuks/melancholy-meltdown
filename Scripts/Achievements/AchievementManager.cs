@@ -53,13 +53,13 @@ public partial class AchievementManager : Node
     // Constructor
     public AchievementManager()
     {
+        //achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
+        //if (achievements == null)
+        //{
+        achievements = new Dictionary<string, Dictionary<string, object>>();
+        AddNewAchievements();
         achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
-        if (achievements == null)
-        {
-            achievements = new Dictionary<string, Dictionary<string, object>>();
-            AddNewAchievements();
-            achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
-        }
+        //}
     }
 
     // Add progress to an achievement
@@ -176,6 +176,7 @@ public partial class AchievementManager : Node
         AddAchievement("The Minimalist", "Don't consume anything", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
         // DONE
         AddAchievement("Close Call", "Consume a healing item a second before dying", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        AddAchievement("Dressed to Impress", "Wear all clothing items at the same time", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
         SaveAchievementsToFile(achievements, "Scripts/Achievements/achievements.json");
     }
 

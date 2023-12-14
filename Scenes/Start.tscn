@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cu0ckxoh0h84j"]
+[gd_scene load_steps=42 format=3 uid="uid://cu0ckxoh0h84j"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="2_4bxcj"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_1352e"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dm1cyyu4rjl7o" path="res://Assets/Sprites/Dzhupels.png" id="8_wyr8h"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="9_c45f1"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="9_hm58e"]
+[ext_resource type="PackedScene" uid="uid://dtpdmipjticcc" path="res://Assets/Objects/Quests/test_quest.tscn" id="11_syvun"]
+[ext_resource type="Script" path="res://Scripts/Quests/PantsQuest.cs" id="12_nu0dv"]
+[ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="13_o3ja6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
 
@@ -2297,7 +2300,7 @@ offset = Vector2(0, -16)
 [node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost4/LampPost"]
 z_index = 1
 position = Vector2(4.73281, 6.80075)
-scale = Vector2(2.05543, 1.87217)
+scale = Vector2(1.98188, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
@@ -2447,6 +2450,18 @@ position = Vector2(-196, -161)
 
 [node name="Booze4" parent="." instance=ExtResource("9_hm58e")]
 position = Vector2(-130, -161)
+
+[node name="PantsQuest" parent="." instance=ExtResource("11_syvun")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-253, 169)
+script = ExtResource("12_nu0dv")
+
+[node name="SweaterQuest" parent="." instance=ExtResource("11_syvun")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-354, -130)
+script = ExtResource("13_o3ja6")
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]
