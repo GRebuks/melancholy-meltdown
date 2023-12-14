@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=32 format=3 uid="uid://cenaodo0rjj6t"]
+
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_jidyl"]
 [ext_resource type="Texture2D" uid="uid://btews5cyaaj15" path="res://Assets/Tilemaps/Building1.png" id="1_x6gtm"]
@@ -8,8 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_4k2qp"]
 [ext_resource type="Texture2D" uid="uid://dw7j25silutoe" path="res://Assets/Sprites/Signs/DeadSign.png" id="6_r8e2c"]
 [ext_resource type="Texture2D" uid="uid://rbtfn0fyvgo2" path="res://Assets/Sprites/Signs/NeonSign.png" id="7_1bkc4"]
-[ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="7_omfax"]
-[ext_resource type="PackedScene" uid="uid://c0ffrdweapx57" path="res://Assets/Objects/Consumables/marijuana.tscn" id="8_skqml"]
+
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="7_oe78k"]
+
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3241,10 +3244,13 @@ position = Vector2(23.0553, -14.9954)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
-[node name="Booze" parent="." instance=ExtResource("7_omfax")]
-position = Vector2(555, -207)
+[node name="ConsumableSpawn" parent="." instance=ExtResource("7_oe78k")]
+position = Vector2(240, -237)
 
-[node name="Marijuana" parent="." instance=ExtResource("8_skqml")]
-position = Vector2(224, -243)
+[node name="ConsumableSpawn2" parent="." instance=ExtResource("7_oe78k")]
+position = Vector2(559, -234)
+
+[node name="ConsumableSpawn3" parent="." instance=ExtResource("7_oe78k")]
+position = Vector2(107, -78)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
