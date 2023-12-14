@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c7ky31t14ese0"]
+[gd_scene load_steps=30 format=3 uid="uid://c7ky31t14ese0"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_j2tis"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_krmet"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_ljoaf"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_6f1n1"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_rr4ox"]
+[ext_resource type="PackedScene" path="res://Assets/Objects/Quests/alcoholic_quest.tscn" id="9_4otyd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3096,5 +3097,11 @@ position = Vector2(212, -43)
 
 [node name="ConsumableSpawn3" parent="." instance=ExtResource("8_rr4ox")]
 position = Vector2(-99, 172)
+
+[node name="AlcoholicQuest" parent="." instance=ExtResource("9_4otyd")]
+position = Vector2(-290, 125)
+
+[node name="ConsumableSpawn4" parent="." instance=ExtResource("8_rr4ox")]
+position = Vector2(142, 216)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cenaodo0rjj6t"]
+[gd_scene load_steps=28 format=3 uid="uid://cenaodo0rjj6t"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_jidyl"]
 [ext_resource type="Texture2D" uid="uid://btews5cyaaj15" path="res://Assets/Tilemaps/Building1.png" id="1_x6gtm"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="2_e82xo"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_4k2qp"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="7_oe78k"]
+[ext_resource type="PackedScene" uid="uid://chrp6ly1sy4xu" path="res://Assets/Objects/Quests/junkie_quest.tscn" id="8_vuevo"]
+[ext_resource type="PackedScene" path="res://Assets/Objects/Quests/alcoholic_quest.tscn" id="10_ry0bg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3177,5 +3179,14 @@ position = Vector2(559, -234)
 
 [node name="ConsumableSpawn3" parent="." instance=ExtResource("7_oe78k")]
 position = Vector2(107, -78)
+
+[node name="JunkieQuest" parent="." instance=ExtResource("8_vuevo")]
+position = Vector2(545, 110)
+
+[node name="AlcoholicQuest" parent="." instance=ExtResource("10_ry0bg")]
+position = Vector2(125, -195)
+
+[node name="ConsumableSpawn4" parent="." instance=ExtResource("7_oe78k")]
+position = Vector2(-420, -138)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

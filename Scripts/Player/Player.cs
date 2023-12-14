@@ -56,7 +56,7 @@ public partial class Player : CharacterBody2D
 
     private float _bloodAlcoholContent = 0f;
     private float _bloodTHCContent = 0f;
-    private float _health = 10f;
+    private float _health = 60f;
 
     // Achievement progress
     private int consumedItems = 0;
@@ -70,6 +70,8 @@ public partial class Player : CharacterBody2D
     private bool lightsOut = false;
 
     private int isInQuestArea = 0;
+
+    private Quest activeQuest = null;
 
     public float MaxBAC { get; private set; } = 6f;
     public float MaxTHC { get; private set; } = 3f;
@@ -97,7 +99,7 @@ public partial class Player : CharacterBody2D
         {
             _health = Mathf.Clamp(value, 0f, MaxHealth);
             _healthBar.Value = _health;
-            _healthBarLabel.Text = $"Emotional Damage: {(int)(_health * 100 / MaxHealth)}% | {(int)_health}/{(int)MaxHealth} | {MathF.Round(_health, 2)}s";
+            _healthBarLabel.Text = $"Emotional Stability: {(int)(_health * 100 / MaxHealth)}% | {(int)_health}/{(int)MaxHealth} | {MathF.Round(_health, 2)}s";
         }
     }
 
@@ -356,6 +358,14 @@ public partial class Player : CharacterBody2D
             Baked.Color = new Color(Baked.Color.R, Baked.Color.G, Baked.Color.B, 0);
         }
 
+        if (activeQuest != null)
+        {
+            if (Input.IsActionJustPressed("complete"))
+            {
+                FinishQuest(activeQuest);
+            }
+        }
+
         Velocity = velocity;
         MoveAndSlide();
 
@@ -395,26 +405,54 @@ public partial class Player : CharacterBody2D
         {
             // Get information about the consumable
             Quest quest = (Quest)area;
+            activeQuest = quest;
             isInQuestArea++;
             ClearQuestCard();
             UpdateQuestCard(quest);
-            if (this.consumable != null)
+        }
+    }
+
+    private void FinishQuest(Quest quest)
+    {
+        if (this.consumable != null)
+        {
+            if (quest.RequiredConsumableFile == "any")
             {
-                if (quest.RequiredConsumableNode.Type == this.consumable.Type)
+                if (consumable.Type == "Drug")
                 {
-                    ClearConsumableCard();
-                    // Apply effects
-                    ApplyQuestEffects(quest);
-                    AchievementManager.AddProgress("The Good Citizen", progress);
-                    theGoodCitizen = true;
-
-                    CallDeferred("InstantiateRewardConsumable", quest);
-
-                    consumable.QueueFree();
-                    consumable = null;
-
-                    quest.QueueFree();
+                    AchievementManager.AddProgress("The Troublemaker", progress);
                 }
+
+                if (consumable.Type == "Bomb")
+                {
+                    AchievementManager.AddProgress("The New Generation", progress);
+                }
+
+                ClearConsumableCard();
+                ApplyQuestEffects(quest);
+                CallDeferred("InstantiateRewardConsumable", quest);
+
+                consumable.QueueFree();
+                consumable = null;
+
+                quest.QueueFree();
+                activeQuest = null;
+            }
+            else if (quest.RequiredConsumableNode.Name == this.consumable.Name)
+            {
+                ClearConsumableCard();
+                // Apply effects
+                ApplyQuestEffects(quest);
+                AchievementManager.AddProgress("The Good Citizen", progress);
+                theGoodCitizen = true;
+
+                CallDeferred("InstantiateRewardConsumable", quest);
+
+                consumable.QueueFree();
+                consumable = null;
+
+                quest.QueueFree();
+                activeQuest = null;
             }
         }
     }
@@ -427,6 +465,7 @@ public partial class Player : CharacterBody2D
             if (isInQuestArea == 0)
             {
                 ClearQuestCard();
+                activeQuest = null;
             }
         }
     }
@@ -482,12 +521,17 @@ public partial class Player : CharacterBody2D
 
     private void ConsumeConsumable()
     {
+        if (consumable.Type == "Bomb")
+        {
+            AchievementManager.AddProgress("Go out in style", 1);
+        }
+
         if (consumable.Type == "Clothes")
         {
             ApplyClothing(consumable);
         } else {
             // If health is less than 1f
-            if (Health <= 1f && !closeCall)
+            if (Health <= 1f && Health > 0f && !closeCall)
             {
                 AchievementManager.AddProgress("Close Call", progress);
                 closeCall = true;
@@ -504,6 +548,10 @@ public partial class Player : CharacterBody2D
 
     private void InstantiateRewardConsumable(Quest quest)
     {
+        if(quest.RewardConsumableNode == null)
+        {
+            return;
+        }
         // SCENE CHANGE
         //GetTree().Root.GetNode("TestScene").AddChild(quest.RewardConsumableNode);
         GetTree().Root.GetNode<Node2D>("Node2D").AddChild(quest.RewardConsumableNode);
@@ -595,8 +643,15 @@ public partial class Player : CharacterBody2D
         QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("Title").Text = quest.Title;
         QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("Description").Text = quest.Description;
 
-        QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").Text = quest.RequiredConsumableNode.Title;
-        QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").AddThemeColorOverride("font_color", quest.RequiredConsumableNode.DisplayColor);
+        if (quest.RequiredConsumableFile == "any")
+        {
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").Text = "Anything";
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").AddThemeColorOverride("font_color", new Color(120, 120, 0, 1));
+        } else
+        {
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").Text = quest.RequiredConsumableNode.Title;
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").AddThemeColorOverride("font_color", quest.RequiredConsumableNode.DisplayColor);
+        }
 
         if(quest.RewardConsumableNode != null)
         {

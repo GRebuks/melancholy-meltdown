@@ -20,12 +20,10 @@ public partial class AchievementManager : Node
 
     public override void _Ready()
     {
-        //sceneNode = GetTree().Root.GetChild<Node2D>(0);
         //UI = GetTree().Root.GetNode<Node2D>("TestScene").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
 
         UI = GetTree().Root.GetNode<Node2D>("Node2D").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<CanvasLayer>("CanvasLayer").GetNode<Control>("UI");
 
-        //UI = sceneNode.GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
         AchievementNameQueue = new List<string>();
     }
 
@@ -53,13 +51,13 @@ public partial class AchievementManager : Node
     // Constructor
     public AchievementManager()
     {
-        //achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
-        //if (achievements == null)
-        //{
-        achievements = new Dictionary<string, Dictionary<string, object>>();
-        AddNewAchievements();
         achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
-        //}
+        if (achievements == null)
+        {
+            achievements = new Dictionary<string, Dictionary<string, object>>();
+            AddNewAchievements();
+            achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
+        }
     }
 
     // Add progress to an achievement
@@ -176,7 +174,14 @@ public partial class AchievementManager : Node
         AddAchievement("The Minimalist", "Don't consume anything", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
         // DONE
         AddAchievement("Close Call", "Consume a healing item a second before dying", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
         AddAchievement("Dressed to Impress", "Wear all clothing items at the same time", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
+        AddAchievement("The Troublemaker", "Give a psychoactive substance to a child", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
+        AddAchievement("The New Generation", "Give an explosive device to a child", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
+        // DONE
+        AddAchievement("Go out in style", "Eat a pipe bomb [INSERT EXPLOSION EFFECT]", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
         SaveAchievementsToFile(achievements, "Scripts/Achievements/achievements.json");
     }
 

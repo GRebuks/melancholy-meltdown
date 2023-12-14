@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dry10tcp44yur"]
+
+[ext_resource type="Script" path="res://Scripts/Consumables/Coke.cs" id="1_i3xg4"]
+[ext_resource type="Texture2D" uid="uid://be4yxmnt7m82t" path="res://Assets/Sprites/CokeCola.png" id="2_vb62m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfo1n"]
+size = Vector2(14, 20)
+
+[node name="Coke" type="Area2D" groups=["Consumable"]]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_i3xg4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jfo1n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("2_vb62m")

@@ -15,7 +15,7 @@ anchor_bottom = 0.102
 offset_left = -0.480042
 offset_top = 10.0
 offset_right = 0.47998
-offset_bottom = -0.160004
+offset_bottom = -0.160011
 grow_horizontal = 2
 
 [node name="Title" type="Label" parent="."]
@@ -46,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 18
 text = "This is the description of an achievement."
+autowrap_mode = 3
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1

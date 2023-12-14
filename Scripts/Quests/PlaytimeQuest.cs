@@ -20,9 +20,7 @@ public partial class PlaytimeQuest : Quest
 
         // REQUIRED CONSUMABLE
         // Add the required consumable file name to make this consumable required
-        RequiredConsumableFile = "booze.tscn";
-        RequiredConsumable = (PackedScene)ResourceLoader.Load(ConsumablePath + RequiredConsumableFile);
-        RequiredConsumableNode = RequiredConsumable.Instantiate() as Consumable;
+        RequiredConsumableFile = "any";
 
         Effects.Add("Health", HealthEffect);
     }

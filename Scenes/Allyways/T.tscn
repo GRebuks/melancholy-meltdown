@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d36ifwtp41fg2"]
+[gd_scene load_steps=27 format=3 uid="uid://d36ifwtp41fg2"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_ijemb"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_f0ira"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_xcog8"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="7_h2l0c"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_yiwe0"]
+[ext_resource type="PackedScene" uid="uid://chrp6ly1sy4xu" path="res://Assets/Objects/Quests/junkie_quest.tscn" id="8_0gb8d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3103,5 +3104,8 @@ shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("7_h2l0c")]
 position = Vector2(194, 196)
+
+[node name="JunkieQuest" parent="." instance=ExtResource("8_0gb8d")]
+position = Vector2(-188, 194)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0g5u1sxvo24u"]
+[gd_scene load_steps=4 format=3 uid="uid://chrp6ly1sy4xu"]
 
 [ext_resource type="Script" path="res://Scripts/Quests/JunkieQuest.cs" id="1_jdj44"]
 [ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_tfyp8"]
