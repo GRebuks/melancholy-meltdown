@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dk401qd56y6i7"]
 
-[ext_resource type="Theme" uid="uid://408t2h602blj" path="res://Assets/UI/Themes/THC_bar_theme.tres" id="1_6spwl"]
+[ext_resource type="Theme" uid="uid://hdvrawobavsb" path="res://Assets/UI/Themes/THC_bar_theme.tres" id="1_6spwl"]
 [ext_resource type="PackedScene" uid="uid://bcyf1f0v6qfmf" path="res://Assets/UI/health_bar.tscn" id="1_svdgd"]
 [ext_resource type="Script" path="res://Scripts/UI/HealthBar.cs" id="2_wb0w4"]
-[ext_resource type="Theme" uid="uid://brnskt5hhc2c7" path="res://Assets/UI/Themes/BAC_bar_theme.tres" id="3_oyvc6"]
+[ext_resource type="Theme" uid="uid://dn337hy0jlfi8" path="res://Assets/UI/Themes/BAC_bar_theme.tres" id="3_oyvc6"]
 [ext_resource type="PackedScene" uid="uid://164nw3660ytf" path="res://Assets/UI/InfoCard/consumable_card.tscn" id="5_x6rlx"]
 [ext_resource type="PackedScene" uid="uid://c7yd55e83gddo" path="res://Assets/UI/InfoCard/quest_card.tscn" id="6_oukri"]
 

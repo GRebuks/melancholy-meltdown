@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cncp6l0ts1e8w"]
+[gd_scene load_steps=28 format=3 uid="uid://cncp6l0ts1e8w"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_rgm67"]
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_s3rtb"]
@@ -557,11 +557,13 @@ texture = ExtResource("1_s3rtb")
 13:7/0 = 0
 13:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:7/0/physics_layer_0/angular_velocity = 0.0
+13:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -5.125, -3.25, 8, -3.125, 8, -8)
 13:7/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 13:7/0/physics_layer_1/angular_velocity = 0.0
 14:7/0 = 0
 14:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 14:7/0/physics_layer_0/angular_velocity = 0.0
+14:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.75, -3.25, -8, -3.25, -8, -8, 8, -8)
 14:7/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 14:7/0/physics_layer_1/angular_velocity = 0.0
 1:8/0 = 0
@@ -2962,26 +2964,30 @@ texture = ExtResource("1_rgm67")
 
 [sub_resource type="TileSet" id="TileSet_7e2ao"]
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_6ba6g")
-physics_layer_1/collision_layer = 1
+physics_layer_1/collision_layer = 0
+physics_layer_1/collision_mask = 0
 physics_layer_1/physics_material = SubResource("PhysicsMaterial_v5hjn")
 sources/2 = SubResource("TileSetAtlasSource_4r5lt")
 sources/0 = SubResource("TileSetAtlasSource_2w1se")
 sources/1 = SubResource("TileSetAtlasSource_5xptm")
 
-[sub_resource type="Gradient" id="Gradient_7rmpf"]
+[sub_resource type="Gradient" id="Gradient_er7p6"]
 offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
 colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0r03p"]
-gradient = SubResource("Gradient_7rmpf")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kab5"]
+gradient = SubResource("Gradient_er7p6")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.183761, 0)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a8lgq"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_srjft"]
 blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uli6d"]
+size = Vector2(5.62324, 1.96813)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifdg"]
 size = Vector2(14.2783, 15.9981)
@@ -2996,6 +3002,7 @@ size = Vector2(189.878, 189.316)
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 scale = Vector2(5.335, 5.335)
 tile_set = SubResource("TileSet_7e2ao")
 format = 2
@@ -3009,65 +3016,108 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(-393212, 393218, 20, -327676, 393218, 21, -262140, 393218, 21, -196604, 393218, 21, -131068, 393218, 21, -65532, 393218, 21, 4, 393218, 21, 65540, 393218, 21, 196612, 393218, 22, -393211, 524290, 20, -327675, 524290, 21, -262139, 524290, 21, -196603, 524290, 21, -131067, 524290, 21, -65531, 524290, 21, 5, 524290, 21, 65541, 524290, 21, 131077, 524290, 21, 196613, 524290, 22, 262148, 851970, 20, 327684, 851970, 22, 262149, 917506, 20, 327685, 917506, 22, 327674, 589826, 20, 393210, 589826, 22, 327675, 655362, 20, 393211, 655362, 22, 327676, 655362, 20, 393212, 655362, 22, 327677, 655362, 20, 393213, 655362, 22, 327678, 720898, 20, 393214, 720898, 22, 327679, 786434, 20, 393215, 786434, 22, 262144, 851970, 20, 327680, 851970, 22, 262145, 851970, 20, 327681, 851970, 22, 262146, 851970, 20, 327682, 851970, 22, 262147, 851970, 20, 327683, 851970, 22, 131076, 393218, 21, -131078, 851968, 6, -131077, 917504, 6, -131076, 262146, 4, -131075, 327682, 4, -393222, 196610, 0, -327686, 196610, 1, -393221, 262146, 0, -327685, 262146, 1, -393220, 262146, 0, -327684, 262146, 1, -393219, 327682, 0, -327683, 327682, 1, -262150, 196610, 2, -262149, 262146, 2, -196614, 851968, 5, -196613, 917504, 5, -262148, 262146, 2, -262147, 327682, 2, -196612, 262146, 2, -196611, 327682, 2, -65542, 851968, 7, -65541, 917504, 7)
 
-[node name="LampPost" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(56.9672, -81.7394)
-texture = ExtResource("2_rtd1h")
+[node name="LampPost3" type="StaticBody2D" parent="TileMap"]
+position = Vector2(57.1696, -65.6045)
+collision_layer = 2
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost3"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_rtd1h")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost3/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_1kab5")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost3/LampPost"]
 modulate = Color(2, 2, 2, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+z_index = 1
+material = SubResource("CanvasItemMaterial_srjft")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_117d5")
 
-[node name="LampPost2" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(-70.493, 35.7863)
-texture = ExtResource("2_rtd1h")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost3"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_uli6d")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost2"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost5" type="StaticBody2D" parent="TileMap"]
+position = Vector2(-70.6654, 52.2962)
+scale = Vector2(1, 1)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost5"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_rtd1h")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost5/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_1kab5")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost2"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost5/LampPost"]
 modulate = Color(2, 2, 2, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+z_index = 1
+material = SubResource("CanvasItemMaterial_srjft")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_117d5")
 
-[node name="LampPost4" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(8.04499, -16.5098)
-texture = ExtResource("2_rtd1h")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost5"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_uli6d")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost4"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost" type="StaticBody2D" parent="TileMap"]
+position = Vector2(-24.18, -30.9278)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_rtd1h")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_1kab5")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost4"]
-modulate = Color(3, 3, 3, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost/LampPost"]
+modulate = Color(2, 2, 2, 1)
+z_index = 1
+material = SubResource("CanvasItemMaterial_srjft")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_117d5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_uli6d")
 
 [node name="ExitPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
@@ -3112,7 +3162,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(-0.281154, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

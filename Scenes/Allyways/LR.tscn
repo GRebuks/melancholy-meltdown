@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b03vybao64ryy"]
+[gd_scene load_steps=30 format=3 uid="uid://b03vybao64ryy"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_ra6dh"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="1_x5ets"]
@@ -805,9 +805,11 @@ texture = ExtResource("2_lc3f1")
 4:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:9/0/physics_layer_1/angular_velocity = 0.0
 6:9/0 = 0
+6:9/0/z_index = 1
+6:9/0/y_sort_origin = 3
 6:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:9/0/physics_layer_0/angular_velocity = 0.0
-6:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.75, 3.375, 5.875, 3.25, 7, 8, -6.75, 8)
 6:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 6:9/0/physics_layer_1/angular_velocity = 0.0
 8:9/0 = 0
@@ -820,11 +822,6 @@ texture = ExtResource("2_lc3f1")
 9:9/0/physics_layer_0/angular_velocity = 0.0
 9:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 9:9/0/physics_layer_1/angular_velocity = 0.0
-10:9/0 = 0
-10:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-10:9/0/physics_layer_0/angular_velocity = 0.0
-10:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-10:9/0/physics_layer_1/angular_velocity = 0.0
 11:9/0 = 0
 11:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:9/0/physics_layer_0/angular_velocity = 0.0
@@ -875,11 +872,6 @@ texture = ExtResource("2_lc3f1")
 9:10/0/physics_layer_0/angular_velocity = 0.0
 9:10/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 9:10/0/physics_layer_1/angular_velocity = 0.0
-10:10/0 = 0
-10:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-10:10/0/physics_layer_0/angular_velocity = 0.0
-10:10/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-10:10/0/physics_layer_1/angular_velocity = 0.0
 7:11/0 = 0
 7:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:11/0/physics_layer_0/angular_velocity = 0.0
@@ -1060,6 +1052,16 @@ texture = ExtResource("2_lc3f1")
 10:14/0/physics_layer_0/angular_velocity = 0.0
 10:14/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 10:14/0/physics_layer_1/angular_velocity = 0.0
+10:9/size_in_atlas = Vector2i(1, 2)
+10:9/0 = 0
+10:9/0/texture_origin = Vector2i(0, 6)
+10:9/0/z_index = 1
+10:9/0/y_sort_origin = 5
+10:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:9/0/physics_layer_0/angular_velocity = 0.0
+10:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 5.75, 8, 5.75, 7.875, 9.875, -8, 10)
+10:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:9/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x3t6i"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -3063,26 +3065,30 @@ texture = ExtResource("1_ra6dh")
 
 [sub_resource type="TileSet" id="TileSet_7e2ao"]
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_6ba6g")
-physics_layer_1/collision_layer = 1
+physics_layer_1/collision_layer = 0
+physics_layer_1/collision_mask = 0
 physics_layer_1/physics_material = SubResource("PhysicsMaterial_v5hjn")
 sources/2 = SubResource("TileSetAtlasSource_4r5lt")
 sources/0 = SubResource("TileSetAtlasSource_w4rmn")
 sources/1 = SubResource("TileSetAtlasSource_mkece")
 
-[sub_resource type="Gradient" id="Gradient_7rmpf"]
+[sub_resource type="Gradient" id="Gradient_yng5t"]
 offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
 colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0r03p"]
-gradient = SubResource("Gradient_7rmpf")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ugakn"]
+gradient = SubResource("Gradient_yng5t")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.183761, 0)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a8lgq"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8ynoh"]
 blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3cq7"]
+size = Vector2(5.62324, 1.96813)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifdg"]
 size = Vector2(14.2783, 15.9981)
@@ -3097,6 +3103,7 @@ size = Vector2(206.373, 188.566)
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -170)
 scale = Vector2(5.335, 5.335)
 tile_set = SubResource("TileSet_7e2ao")
@@ -3109,94 +3116,151 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-196613, 458754, 0, -131077, 458754, 1, -196612, 458754, 0, -131076, 458754, 1, -196611, 458754, 0, -131075, 458754, 1, -196610, 524290, 0, -131074, 524290, 1, -262145, 786434, 0, -196609, 786434, 1, -131073, 786434, 4, -327680, 851970, 0, -196608, 2, 5, -327679, 917506, 0, -393214, 983042, 0, -327678, 983042, 1, -196606, 786433, 2, -393213, 1048578, 0, -327677, 1048578, 1, -262141, 1048578, 2, -196605, 851969, 2, -393212, 1048578, 0, -327676, 1048578, 1, -262140, 1048578, 2, -196604, 851969, 2, -393211, 1114114, 0, -327675, 1114114, 1, -262139, 1114114, 2, -196603, 917505, 2, -196614, 393218, 0, -131078, 393218, 1, -65542, 393218, 2, -6, 393217, 4, 327674, 2, 20, 393210, 2, 22, -65541, 458754, 2, -5, 2, 1, 327675, 65538, 20, 393211, 65538, 22, -65540, 458754, 2, -4, 65538, 1, 327676, 65538, 20, 393212, 65538, 22, -65539, 458754, 2, -3, 458753, 4, 327677, 65538, 20, 393213, 65538, 22, -65538, 524290, 2, -2, 524290, 4, 327678, 65538, 20, 393214, 65538, 22, -1, 393217, 9, 327679, 65538, 20, 393215, 65538, 22, -262144, 851970, 1, 262144, 131074, 20, 327680, 131074, 22, -262143, 917506, 1, -196607, 917506, 4, -65535, 393217, 9, 262145, 393218, 20, 327681, 393218, 22, -262142, 983042, 2, -131070, 983042, 2, -65534, 983042, 4, 262146, 458754, 20, 327682, 458754, 22, -131069, 1048578, 2, -65533, 2, 3, 262147, 458754, 20, 327683, 458754, 22, -131068, 1048578, 2, -65532, 65538, 3, 262148, 458754, 20, 327684, 458754, 22, -131067, 1114114, 2, -65531, 1114114, 4, 262149, 524290, 20, 327685, 524290, 22)
+layer_1/tile_data = PackedInt32Array(-196613, 458754, 0, -131077, 458754, 1, -196612, 458754, 0, -131076, 458754, 1, -196611, 458754, 0, -131075, 458754, 1, -196610, 524290, 0, -131074, 524290, 1, -262145, 786434, 0, -196609, 786434, 1, -131073, 786434, 4, -327680, 851970, 0, -196608, 2, 5, -327679, 917506, 0, -393214, 983042, 0, -327678, 983042, 1, -196606, 786433, 2, -393213, 1048578, 0, -327677, 1048578, 1, -262141, 1048578, 2, -196605, 851969, 2, -393212, 1048578, 0, -327676, 1048578, 1, -262140, 1048578, 2, -196604, 851969, 2, -393211, 1114114, 0, -327675, 1114114, 1, -262139, 1114114, 2, -196603, 917505, 2, -196614, 393218, 0, -131078, 393218, 1, -65542, 393218, 2, -6, 393217, 4, 327674, 2, 20, 393210, 2, 22, -65541, 458754, 2, -5, 2, 1, 327675, 65538, 20, 393211, 65538, 22, -65540, 458754, 2, -4, 65538, 1, 327676, 65538, 20, 393212, 65538, 22, -65539, 458754, 2, -3, 458753, 4, 327677, 65538, 20, 393213, 65538, 22, -65538, 524290, 2, -2, 524290, 4, 327678, 65538, 20, 393214, 65538, 22, 327679, 65538, 20, 393215, 65538, 22, -262144, 851970, 1, 262144, 131074, 20, 327680, 131074, 22, -262143, 917506, 1, -196607, 917506, 4, 262145, 393218, 20, 327681, 393218, 22, -262142, 983042, 2, -131070, 983042, 2, -65534, 983042, 4, 262146, 458754, 20, 327682, 458754, 22, -131069, 1048578, 2, -65533, 2, 3, 262147, 458754, 20, 327683, 458754, 22, -131068, 1048578, 2, -65532, 65538, 3, 262148, 458754, 20, 327684, 458754, 22, -131067, 1114114, 2, -65531, 1114114, 4, 262149, 524290, 20, 327685, 524290, 22)
 layer_2/name = "Misc"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
-layer_2/y_sort_enabled = false
+layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(-327680, 65536, 3, -327679, 131072, 3, -327681, 0, 2, -262145, 0, 3, -131073, 1, 7, -393216, 65536, 2, -196608, 65537, 7, -393215, 131072, 2, -196607, 655361, 9, -131071, 655361, 10)
+layer_2/tile_data = PackedInt32Array(-327680, 65536, 3, -327679, 131072, 3, -327681, 0, 2, -262145, 0, 3, -131073, 1, 7, -393216, 65536, 2, -196608, 65537, 7, -393215, 131072, 2, -1, 393217, 9, -65535, 393217, 9, -131071, 655361, 9)
 
-[node name="LampPost" type="Sprite2D" parent="TileMap"]
+[node name="LampPost5" type="StaticBody2D" parent="TileMap"]
+position = Vector2(39.5501, 4.12371)
+scale = Vector2(1, 1)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost5"]
 modulate = Color(1, 1, 1, 0.99)
-position = Vector2(39.5501, -11.8088)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
 texture = ExtResource("2_5clih")
+offset = Vector2(0, -16)
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost"]
-position = Vector2(4.68603, 22.8679)
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost5/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_ugakn")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost5/LampPost"]
 modulate = Color(2, 2, 2, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+z_index = 1
+material = SubResource("CanvasItemMaterial_8ynoh")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_p3j73")
 
-[node name="LampPost2" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(-34.3018, 34.4892)
-texture = ExtResource("2_5clih")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost5"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_y3cq7")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost2"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost6" type="StaticBody2D" parent="TileMap"]
+position = Vector2(66.5417, 48.1724)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost6"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_5clih")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost6/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_ugakn")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost2"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost6/LampPost"]
 modulate = Color(2, 2, 2, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+z_index = 1
+material = SubResource("CanvasItemMaterial_8ynoh")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_p3j73")
 
-[node name="LampPost3" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(66.5417, 32.2399)
-texture = ExtResource("2_5clih")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost6"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_y3cq7")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost3"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost7" type="StaticBody2D" parent="TileMap"]
+position = Vector2(-34.3018, 50.4217)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost7"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_5clih")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost7/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_ugakn")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost3"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost7/LampPost"]
 modulate = Color(2, 2, 2, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+z_index = 1
+material = SubResource("CanvasItemMaterial_8ynoh")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_p3j73")
 
-[node name="LampPost4" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(-67.6664, -11.8088)
-texture = ExtResource("2_5clih")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost7"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_y3cq7")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost4"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost8" type="StaticBody2D" parent="TileMap"]
+position = Vector2(-67.4789, 4.31115)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost8"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_5clih")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost8/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_ugakn")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost4"]
-modulate = Color(3, 3, 3, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost8/LampPost"]
+modulate = Color(2, 2, 2, 1)
+z_index = 1
+material = SubResource("CanvasItemMaterial_8ynoh")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_p3j73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost8"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_y3cq7")
 
 [node name="ExitPoints" type="Node2D" parent="."]
 position = Vector2(0, -170)

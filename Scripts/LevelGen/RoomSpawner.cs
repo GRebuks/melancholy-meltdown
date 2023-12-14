@@ -30,9 +30,8 @@ public partial class RoomSpawner : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (!spawned && Time > 1f)
+        if (!spawned && Time > 0.1f)
         {
-
             Spawn();
             spawned = true;
         }
@@ -53,7 +52,10 @@ public partial class RoomSpawner : Node2D
                 Node2D DownScene = bottomScenes[rand].Instantiate() as Node2D;
                 DownScene.Position = spawnpoint;
                 DownScene.ZIndex = zIndex;
-                GetTree().Root.AddChild(DownScene);
+                //GetTree().Root.AddChild(DownScene);
+                GetTree().Root.GetNode<Node2D>("Node2D").AddChild(DownScene);
+                EnableYSort(DownScene);
+
 
             }
             else if (Direction == 2)
@@ -63,7 +65,9 @@ public partial class RoomSpawner : Node2D
                 Node2D TopScene = topScenes[rand].Instantiate() as Node2D;
                 TopScene.Position = spawnpoint;
                 TopScene.ZIndex = zIndex+2;
-                GetTree().Root.AddChild(TopScene);
+                //GetTree().Root.AddChild(TopScene);
+                GetTree().Root.GetNode<Node2D>("Node2D").AddChild(TopScene);
+                EnableYSort(TopScene);
             }
             else if (Direction == 3)
             {
@@ -72,7 +76,9 @@ public partial class RoomSpawner : Node2D
                 Node2D LeftScene = leftScenes[rand].Instantiate() as Node2D;
                 LeftScene.Position = new Vector2 (spawnpoint.X, spawnpoint.Y);
                 LeftScene.ZIndex = zIndex;
-                GetTree().Root.AddChild(LeftScene);
+                //GetTree().Root.AddChild(LeftScene);
+                GetTree().Root.GetNode<Node2D>("Node2D").AddChild(LeftScene);
+                EnableYSort(LeftScene);
             }
 
             else if (Direction == 4)
@@ -82,10 +88,20 @@ public partial class RoomSpawner : Node2D
                 Node2D RightScene = rightScenes[rand].Instantiate() as Node2D;
                 RightScene.Position = new Vector2(spawnpoint.X, spawnpoint.Y);
                 RightScene.ZIndex = zIndex;
-                GetTree().Root.AddChild(RightScene);
+                //GetTree().Root.AddChild(RightScene);
+                GetTree().Root.GetNode<Node2D>("Node2D").AddChild(RightScene);
+                EnableYSort(RightScene);
             }
             spawned = true;
         }
+    }
+
+    private void EnableYSort(Node2D node)
+    {
+        node.YSortEnabled = true;
+        node.ZIndex = 0;
+        node.GetNode<TileMap>("TileMap").YSortEnabled = true;
+        node.GetNode<TileMap>("TileMap").ZIndex = 0;
     }
 
     public void RoomLists() 
