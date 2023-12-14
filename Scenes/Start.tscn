@@ -2190,7 +2190,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_wy47o")
 offset = Vector2(0, -16)
 
@@ -2213,19 +2212,16 @@ texture = ExtResource("3_8pyiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="LampPost2" type="StaticBody2D" parent="TileMap"]
 position = Vector2(59.7938, -33.552)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost2"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_wy47o")
 offset = Vector2(0, -16)
 
@@ -2248,19 +2244,16 @@ texture = ExtResource("3_8pyiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="LampPost3" type="StaticBody2D" parent="TileMap"]
 position = Vector2(-56.2325, -34.8641)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost3"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_wy47o")
 offset = Vector2(0, -16)
 
@@ -2283,19 +2276,16 @@ texture = ExtResource("3_8pyiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost3"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="LampPost4" type="StaticBody2D" parent="TileMap"]
 position = Vector2(-58.4818, 26.6167)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost4"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_wy47o")
 offset = Vector2(0, -16)
 
@@ -2318,7 +2308,6 @@ texture = ExtResource("3_8pyiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="ExitPoints" type="Node2D" parent="."]
@@ -2467,6 +2456,10 @@ position = Vector2(166, 159)
 
 [node name="JunkieQuest" parent="." instance=ExtResource("13_ppa4a")]
 position = Vector2(-153, -1)
+
+[node name="Sweater" parent="." instance=ExtResource("14_swu7r")]
+
+[node name="Pants" parent="." instance=ExtResource("15_7083u")]
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]

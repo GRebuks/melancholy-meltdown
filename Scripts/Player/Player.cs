@@ -372,6 +372,7 @@ public partial class Player : CharacterBody2D
                 this.consumable = consumable;
                 UpdateConsumableCard(consumable);
             }
+
         }
 
         // If the area is in group consumable
@@ -387,7 +388,6 @@ public partial class Player : CharacterBody2D
                     ClearConsumableCard();
                     // Apply effects
                     ApplyQuestEffects(quest);
-                    ApplyClothing(quest.rewardClothes);
                     GD.Print("Quest completed!");
                     AchievementManager.AddProgress("The Good Citizen", progress);
                     theGoodCitizen = true;
@@ -462,18 +462,23 @@ public partial class Player : CharacterBody2D
 
     private void ConsumeConsumable()
     {
-        // If health is less than 1f
-        if (Health <= 1f && !closeCall)
+        if (consumable.Type == "Clothes")
         {
-            AchievementManager.AddProgress("Close Call", progress);
-            closeCall = true;
+            ApplyClothing(consumable);
+        } else
+        {
+            // If health is less than 1f
+            if (Health <= 1f && !closeCall)
+            {
+                AchievementManager.AddProgress("Close Call", progress);
+                closeCall = true;
+            }
+            consumedItems++;
+            // Apply effects
+            ApplyConsumableEffects(consumable);
+            GD.Print("");
+            GD.Print("You consumed a " + consumable.Title);
         }
-        consumedItems++;
-        // Apply effects
-        ApplyConsumableEffects(consumable);
-        GD.Print("");
-        GD.Print("You consumed a " + consumable.Title);
-
         // Destroy the consumable
         consumable.QueueFree();
         consumable = null;
@@ -641,13 +646,13 @@ public partial class Player : CharacterBody2D
         GD.Print("Skin changed to " + skinName);
     }
 
-    private void ApplyClothing(Clothes clothes)
+    private void ApplyClothing(Consumable clothes)
     {
         SkinChoice(clothes.TextureName);
         ApplyClothingEffects(clothes);
     }
 
-    private void ApplyClothingEffects(Clothes clothes)
+    private void ApplyClothingEffects(Consumable clothes)
     {
         foreach (KeyValuePair<string, float> effect in clothes.Effects)
         {
