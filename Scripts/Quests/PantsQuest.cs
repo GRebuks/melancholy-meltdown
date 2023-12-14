@@ -21,6 +21,5 @@ public partial class PantsQuest : Quest
         RewardConsumable = (PackedScene)ResourceLoader.Load(ConsumablePath + RewardConsumableFile);
         RewardConsumableNode = RewardConsumable.Instantiate() as Consumable;
 
-        rewardClothes = new Pants();
     }
 }
