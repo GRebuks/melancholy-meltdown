@@ -16,6 +16,9 @@ public partial class Consumable : Area2D
     protected float AlcoholEffect = 0f;
     protected float THCEffect = 0f;
     protected float SugarEffect = 0f;
+    protected float PermanentHealthEffect = 0f;
+    protected float PermanentSpeedEffect = 0f;
+    public string TextureName = "";
 
     public Dictionary<string, float> Effects = new Dictionary<string, float>();
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cu0ckxoh0h84j"]
+[gd_scene load_steps=44 format=3 uid="uid://cu0ckxoh0h84j"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="2_4bxcj"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_1352e"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dtpdmipjticcc" path="res://Assets/Objects/Quests/test_quest.tscn" id="11_syvun"]
 [ext_resource type="Script" path="res://Scripts/Quests/PantsQuest.cs" id="12_nu0dv"]
 [ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="13_o3ja6"]
+[ext_resource type="PackedScene" uid="uid://dfphki6ndrdx0" path="res://Assets/Objects/Consumables/sweater.tscn" id="14_swu7r"]
+[ext_resource type="PackedScene" uid="uid://b5g16h1sw8tdc" path="res://Assets/Objects/Consumables/pants.tscn" id="15_7083u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
 
@@ -2188,7 +2190,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_wy47o")
 offset = Vector2(0, -16)
 
@@ -2211,19 +2212,16 @@ texture = ExtResource("3_8pyiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="LampPost2" type="StaticBody2D" parent="TileMap"]
 position = Vector2(59.7938, -33.552)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost2"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_wy47o")
 offset = Vector2(0, -16)
 
@@ -2246,19 +2244,16 @@ texture = ExtResource("3_8pyiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="LampPost3" type="StaticBody2D" parent="TileMap"]
 position = Vector2(-56.2325, -34.8641)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost3"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_wy47o")
 offset = Vector2(0, -16)
 
@@ -2281,19 +2276,16 @@ texture = ExtResource("3_8pyiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost3"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="LampPost4" type="StaticBody2D" parent="TileMap"]
 position = Vector2(-58.4818, 26.6167)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost4"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_wy47o")
 offset = Vector2(0, -16)
 
@@ -2316,7 +2308,6 @@ texture = ExtResource("3_8pyiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="ExitPoints" type="Node2D" parent="."]
@@ -2462,6 +2453,10 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(-354, -130)
 script = ExtResource("13_o3ja6")
+
+[node name="Sweater" parent="." instance=ExtResource("14_swu7r")]
+
+[node name="Pants" parent="." instance=ExtResource("15_7083u")]
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]

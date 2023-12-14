@@ -8,8 +8,6 @@ public partial class Quest : Area2D
     public string Title = "Consumable quest";
     public string Description = "Bring a consumable";
 
-    public Clothes rewardClothes;
-
     protected float HealthEffect = 0f;
     protected float SpeedEffect = 0f;
     protected float Weight = 0f;
