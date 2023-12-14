@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cu0ckxoh0h84j"]
+[gd_scene load_steps=46 format=3 uid="uid://cu0ckxoh0h84j"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="2_4bxcj"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_1352e"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bua6b1ms165h6" path="res://Assets/Objects/Quests/sweater_quest.tscn" id="12_rys28"]
 [ext_resource type="PackedScene" uid="uid://bugd2urlwauwm" path="res://Assets/Objects/Quests/pants_quest.tscn" id="15_b4ndk"]
 [ext_resource type="AudioStream" uid="uid://dgbicg2jxwpj1" path="res://Assets/Audio/bgMusic.mp3" id="16_2brl0"]
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="16_tyk7g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
 
@@ -2138,22 +2139,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_5txud"]
-length = 0.001
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_mlhuf"]
 resource_name = "DzhupelsCrying"
 length = 3.0
@@ -2168,6 +2153,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [11, 12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_5txud"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n7qdl"]
@@ -2467,6 +2468,8 @@ position = Vector2(-153, 167)
 
 [node name="SweaterQuest" parent="." instance=ExtResource("12_rys28")]
 position = Vector2(161, 166)
+
+[node name="ConsumableSpawn" parent="." instance=ExtResource("16_tyk7g")]
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]
