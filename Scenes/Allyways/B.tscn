@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://cafy0wpi1td6w"]
+[gd_scene load_steps=29 format=3 uid="uid://cafy0wpi1td6w"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_otru5"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_70q33"]
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="3_ndh2a"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_fv2qi"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_bm8rn"]
+[ext_resource type="Texture2D" uid="uid://dw7j25silutoe" path="res://Assets/Sprites/Signs/DeadSign.png" id="6_gvpta"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_5wgvm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
@@ -2985,11 +2986,24 @@ blend_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oooxv"]
 size = Vector2(5.62324, 1.96813)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eqqfa"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_eotce"]
+offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
+colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3asrp"]
+gradient = SubResource("Gradient_eotce")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.183761, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifdg"]
 size = Vector2(14.2783, 15.9981)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
-size = Vector2(190.815, 191.94)
+size = Vector2(189.878, 189.878)
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -3025,7 +3039,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_fv2qi")
 offset = Vector2(0, -16)
 
@@ -3048,7 +3061,6 @@ texture = ExtResource("5_bm8rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_oooxv")
 
 [node name="LampPost4" type="StaticBody2D" parent="TileMap"]
@@ -3060,7 +3072,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_fv2qi")
 offset = Vector2(0, -16)
 
@@ -3083,8 +3094,27 @@ texture = ExtResource("5_bm8rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_oooxv")
+
+[node name="Sign2" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_eqqfa")
+position = Vector2(-0.187441, -33.3646)
+scale = Vector2(1, 1)
+texture = ExtResource("6_gvpta")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign2"]
+z_index = 1
+position = Vector2(-0.562324, 13.4958)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0.988235, 0.647059, 0.654902, 1)
+energy = 1.09
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_3asrp")
+texture_scale = 1.43
 
 [node name="ExitPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
@@ -3097,13 +3127,13 @@ position = Vector2(0.562313, 88.0975)
 shape = SubResource("RectangleShape2D_cifdg")
 
 [node name="TileCheck" type="Area2D" parent="."]
-visible = false
 scale = Vector2(5.335, 5.335)
 script = ExtResource("7_5wgvm")
 metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
-position = Vector2(0, -0.187447)
+position = Vector2(-0.0937194, -0.0937125)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

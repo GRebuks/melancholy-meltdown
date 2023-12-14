@@ -2990,7 +2990,7 @@ size = Vector2(5.62324, 1.96813)
 size = Vector2(14.2783, 15.9981)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
-size = Vector2(190.815, 191.94)
+size = Vector2(190.44, 190.44)
 
 [node name="Node2D" type="Node2D"]
 
@@ -3023,7 +3023,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_am24v")
 offset = Vector2(0, -16)
 
@@ -3046,20 +3045,17 @@ texture = ExtResource("5_xcog8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wwqae")
 
 [node name="LampPost4" type="StaticBody2D" parent="TileMap"]
 y_sort_enabled = true
 position = Vector2(-32.9897, -10.4967)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost4"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_am24v")
 offset = Vector2(0, -16)
 
@@ -3082,8 +3078,17 @@ texture = ExtResource("5_xcog8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wwqae")
+
+[node name="PointLight2D3" type="PointLight2D" parent="TileMap"]
+z_index = 1
+position = Vector2(0.374883, 45.5483)
+scale = Vector2(2.05543, 1.87217)
+color = Color(1, 0.266667, 0.984314, 1)
+energy = 2.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_gb24n")
+texture_scale = 2.0
 
 [node name="ExitPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
@@ -3096,13 +3101,13 @@ position = Vector2(-0.937218, -86.9728)
 shape = SubResource("RectangleShape2D_cifdg")
 
 [node name="TileCheck" type="Area2D" parent="."]
-visible = false
 scale = Vector2(5.335, 5.335)
 script = ExtResource("7_yiwe0")
 metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
-position = Vector2(0, -0.187447)
+position = Vector2(-3.78744e-06, -7.95473e-06)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

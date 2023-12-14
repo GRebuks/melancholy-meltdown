@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c0ffrdweapx57" path="res://Assets/Objects/Consumables/marijuana.tscn" id="7_7e1nr"]
 [ext_resource type="Script" path="res://Scripts/Quests/TestQuest.cs" id="8_78inp"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="8_jj00s"]
-[ext_resource type="PackedScene" path="res://Assets/Objects/Consumables/sugar.tscn" id="10_6h4ev"]
+[ext_resource type="PackedScene" uid="uid://c06mnf28ys2um" path="res://Assets/Objects/Consumables/sugar.tscn" id="10_6h4ev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1y67"]
 size = Vector2(31, 32)
