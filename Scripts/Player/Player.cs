@@ -11,6 +11,7 @@ public partial class Player : CharacterBody2D
     [Export] public float Speed = 300.0f;
     Texture2D texture;
     public Dictionary<string, Texture2D> skins;
+    public string currentSkin = "naked";
 
     public float timePassed = 0f;
     Vector2 targetPosition = new Vector2();
@@ -148,13 +149,13 @@ public partial class Player : CharacterBody2D
         sprite = GetNode<Sprite2D>("Sprite");
         skins = new Dictionary<string, Texture2D>();
         Resource textureResource = ResourceLoader.Load("res://Assets/Sprites/Dzhupels.png");
-        skins.Add("dzhupels", (Texture2D)textureResource);
+        skins.Add("naked", (Texture2D)textureResource);
         textureResource = ResourceLoader.Load("res://Assets/Sprites/1DzhupelsSarkanasBikses.png");
-        skins.Add("biksains", (Texture2D)textureResource);
+        skins.Add("pants", (Texture2D)textureResource);
         textureResource = ResourceLoader.Load("res://Assets/Sprites/2DzhupelsSarkansDzempers.png");
-        skins.Add("dzempers", (Texture2D)textureResource);
+        skins.Add("sweater", (Texture2D)textureResource);
         textureResource = ResourceLoader.Load("res://Assets/Sprites/3DzhupelsSarkansKostims.png");
-        skins.Add("kostims", (Texture2D)textureResource);
+        skins.Add("costume", (Texture2D)textureResource);
 
         AchievementManager.ResetAchievements();
         AchievementManager.AddProgress("The Tester", progress);
@@ -262,16 +263,16 @@ public partial class Player : CharacterBody2D
             // Camera shaka
             Vector2 cameraPosition = camera.Position;
 
-            //// Add camera shake
-            //cameraPosition.X += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
-            //cameraPosition.Y += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+            // Add camera shake
+            cameraPosition.X += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+            cameraPosition.Y += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
 
-            //// Add mathf.clamp to keep the camera within the screen
-            //cameraPosition.X = Mathf.Clamp(cameraPosition.X, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
-            //cameraPosition.Y = Mathf.Clamp(cameraPosition.Y, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+            // Add mathf.clamp to keep the camera within the screen
+            cameraPosition.X = Mathf.Clamp(cameraPosition.X, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+            cameraPosition.Y = Mathf.Clamp(cameraPosition.Y, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
 
-            //// Set the camera's position
-            //camera.Position = cameraPosition;
+            // Set the camera's position
+            camera.Position = cameraPosition;
 
             if (BloodAlcoholContent > 0f)
             {
@@ -613,7 +614,24 @@ public partial class Player : CharacterBody2D
 
     private void SkinChoice(string skinName)
     {
-        sprite.Texture = skins[skinName];
+        GD.Print("Skin choice: " + currentSkin);
+        if (currentSkin != skinName)
+        {
+            if (currentSkin != "naked")
+            {
+                currentSkin = "costume";
+                sprite.Texture = skins[currentSkin];
+                AchievementManager.AddProgress("Dressed to Impress", progress);
+                return;
+            }
+        }
+
+        if(currentSkin == "naked")
+        {
+            currentSkin = skinName;
+            sprite.Texture = skins[skinName];
+        }
+        GD.Print("Skin changed to " + skinName);
     }
 
     private void ApplyClothing(Clothes clothes)
