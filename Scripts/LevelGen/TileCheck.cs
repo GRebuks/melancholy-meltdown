@@ -1,29 +1,41 @@
 using Godot;
 using System;
+using static System.Formats.Asn1.AsnWriter;
 
 public partial class TileCheck : Area2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
+	private static bool spawningOnce = false;
 	public void _on_area_entered(Node2D area) 
 	{
 
-		if (area.Name != "TileCheck" && area.Name != "Area2D")
+		if (area.Name != "TileCheck")
 		{
-            string spawn = area.Name;
-			if (spawn.Contains("SpawnPoint"))
-			{
-				GD.Print(area.Name);
-				area.QueueFree();
-			}
+			GD.Print(area.Name);
+			area.QueueFree();
+		
 		}
+
+		CallDeferred("DoubleTileCheck", area);
+
+
 	}
+    private void DoubleTileCheck(Node2D area)
+    {
+        if (area.Name == "TileCheck")
+        {
+            GD.Print(area.Name);
+            area.GetParent().QueueFree();
+            if (!spawningOnce)
+            {
+                PackedScene scene = (PackedScene)ResourceLoader.Load("res://Scenes/Allyways/4Ways.tscn");
+                Node2D paths = scene.Instantiate() as Node2D;
+                paths.GlobalPosition = area.GlobalPosition;
+                GetTree().Root.GetNode<Node2D>("Node2D").AddChild(paths);
+                spawningOnce = true;
+            }
+        }
+    }
 }
+
+

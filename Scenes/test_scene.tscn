@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://y3ty734chgbh" path="res://Assets/Sprites/brick.jpg" id="4_ryrue"]
 [ext_resource type="PackedScene" uid="uid://c0ffrdweapx57" path="res://Assets/Objects/Consumables/marijuana.tscn" id="7_7e1nr"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="8_jj00s"]
+
 [ext_resource type="PackedScene" uid="uid://dtpdmipjticcc" path="res://Assets/Objects/Quests/test_quest.tscn" id="8_xsyx8"]
 [ext_resource type="PackedScene" uid="uid://c06mnf28ys2um" path="res://Assets/Objects/Consumables/sugar.tscn" id="10_6h4ev"]
 

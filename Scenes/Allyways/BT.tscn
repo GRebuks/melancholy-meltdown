@@ -2996,7 +2996,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddkwj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
-size = Vector2(190.815, 191.94)
+size = Vector2(190.815, 188.941)
 
 [node name="Node2D" type="Node2D"]
 
@@ -3087,6 +3087,26 @@ texture = ExtResource("5_qo4pc")
 position = Vector2(-1.49953, 6.32614)
 shape = SubResource("RectangleShape2D_alegh")
 
+[node name="PointLight2D3" type="PointLight2D" parent="TileMap"]
+z_index = 1
+position = Vector2(-46.4855, -37.1134)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0.933333, 0.270588, 0.709804, 1)
+energy = 2.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_f3yuk")
+texture_scale = 0.83
+
+[node name="PointLight2D4" type="PointLight2D" parent="TileMap"]
+z_index = 1
+position = Vector2(43.6739, 29.0534)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0.25098, 0.866667, 0.901961, 1)
+energy = 2.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_f3yuk")
+texture_scale = 0.83
+
 [node name="ExitPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
 
@@ -3124,13 +3144,13 @@ Direction = 2
 shape = SubResource("CircleShape2D_ddkwj")
 
 [node name="TileCheck" type="Area2D" parent="."]
-visible = false
 scale = Vector2(5.335, 5.335)
 script = ExtResource("3_pkdfi")
 metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
-position = Vector2(0, -0.187447)
+position = Vector2(0, 0.374889)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_psb50")]

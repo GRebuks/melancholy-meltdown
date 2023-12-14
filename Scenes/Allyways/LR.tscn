@@ -1,4 +1,5 @@
-[gd_scene load_steps=32 format=3 uid="uid://b03vybao64ryy"]
+
+[gd_scene load_steps=35 format=3 uid="uid://b03vybao64ryy"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_ra6dh"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="1_x5ets"]
@@ -7,8 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="2_lc3f1"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_p3j73"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="3_pb6bn"]
+
+[ext_resource type="Texture2D" uid="uid://c8mni3jtdwo0u" path="res://Assets/Sprites/Signs/SignGreen.png" id="6_hrjy1"]
+[ext_resource type="Texture2D" uid="uid://qf5v1l84l71m" path="res://Assets/Sprites/Signs/SignCyan.png" id="7_yih4x"]
+
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_cgxgq"]
 [ext_resource type="PackedScene" uid="uid://chrp6ly1sy4xu" path="res://Assets/Objects/Quests/junkie_quest.tscn" id="9_d6xkv"]
+
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3092,6 +3098,19 @@ blend_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3cq7"]
 size = Vector2(5.62324, 1.96813)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c6oxu"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_4khnj"]
+offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
+colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tge2v"]
+gradient = SubResource("Gradient_4khnj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.183761, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifdg"]
 size = Vector2(14.2783, 15.9981)
 
@@ -3100,7 +3119,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddkwj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
-size = Vector2(206.373, 188.566)
+size = Vector2(185.754, 153.515)
 
 [node name="Node2D" type="Node2D"]
 
@@ -3118,7 +3137,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-196613, 458754, 0, -131077, 458754, 1, -196612, 458754, 0, -131076, 458754, 1, -196611, 458754, 0, -131075, 458754, 1, -196610, 524290, 0, -131074, 524290, 1, -262145, 786434, 0, -196609, 786434, 1, -131073, 786434, 4, -327680, 851970, 0, -196608, 2, 5, -327679, 917506, 0, -393214, 983042, 0, -327678, 983042, 1, -196606, 786433, 2, -393213, 1048578, 0, -327677, 1048578, 1, -262141, 1048578, 2, -196605, 851969, 2, -393212, 1048578, 0, -327676, 1048578, 1, -262140, 1048578, 2, -196604, 851969, 2, -393211, 1114114, 0, -327675, 1114114, 1, -262139, 1114114, 2, -196603, 917505, 2, -196614, 393218, 0, -131078, 393218, 1, -65542, 393218, 2, -6, 393217, 4, 327674, 2, 20, 393210, 2, 22, -65541, 458754, 2, -5, 2, 1, 327675, 65538, 20, 393211, 65538, 22, -65540, 458754, 2, -4, 65538, 1, 327676, 65538, 20, 393212, 65538, 22, -65539, 458754, 2, -3, 458753, 4, 327677, 65538, 20, 393213, 65538, 22, -65538, 524290, 2, -2, 524290, 4, 327678, 65538, 20, 393214, 65538, 22, 327679, 65538, 20, 393215, 65538, 22, -262144, 851970, 1, 262144, 131074, 20, 327680, 131074, 22, -262143, 917506, 1, -196607, 917506, 4, 262145, 393218, 20, 327681, 393218, 22, -262142, 983042, 2, -131070, 983042, 2, -65534, 983042, 4, 262146, 458754, 20, 327682, 458754, 22, -131069, 1048578, 2, -65533, 2, 3, 262147, 458754, 20, 327683, 458754, 22, -131068, 1048578, 2, -65532, 65538, 3, 262148, 458754, 20, 327684, 458754, 22, -131067, 1114114, 2, -65531, 1114114, 4, 262149, 524290, 20, 327685, 524290, 22)
+layer_1/tile_data = PackedInt32Array(-196613, 458754, 0, -131077, 458754, 1, -196612, 458754, 0, -131076, 458754, 1, -196611, 458754, 0, -131075, 458754, 1, -196610, 524290, 0, -131074, 524290, 1, -262145, 0, 3, -196609, 786434, 1, -131073, 786434, 4, -327680, 65536, 3, -196608, 2, 5, -327679, 131072, 3, -393214, 983042, 0, -327678, 983042, 1, -196606, 786433, 2, -393213, 1048578, 0, -327677, 1048578, 1, -262141, 1048578, 2, -196605, 851969, 2, -393212, 1048578, 0, -327676, 1048578, 1, -262140, 1048578, 2, -196604, 851969, 2, -393211, 1114114, 0, -327675, 1114114, 1, -262139, 1114114, 2, -196603, 917505, 2, -196614, 393218, 0, -131078, 393218, 1, -65542, 393218, 2, -6, 393217, 4, 327674, 2, 20, 393210, 2, 22, -65541, 458754, 2, -5, 2, 1, 327675, 65538, 20, 393211, 65538, 22, -65540, 458754, 2, -4, 65538, 1, 327676, 65538, 20, 393212, 65538, 22, -65539, 458754, 2, -3, 458753, 4, 327677, 65538, 20, 393213, 65538, 22, -65538, 524290, 2, -2, 524290, 4, 327678, 65538, 20, 393214, 65538, 22, 327679, 65538, 20, 393215, 65538, 22, -262144, 851970, 1, 262144, 131074, 20, 327680, 131074, 22, -262143, 917506, 1, -196607, 917506, 4, 262145, 393218, 20, 327681, 393218, 22, -262142, 983042, 2, -131070, 983042, 2, -65534, 983042, 4, 262146, 458754, 20, 327682, 458754, 22, -131069, 1048578, 2, -65533, 2, 3, 262147, 458754, 20, 327683, 458754, 22, -131068, 1048578, 2, -65532, 65538, 3, 262148, 458754, 20, 327684, 458754, 22, -131067, 1114114, 2, -65531, 1114114, 4, 262149, 524290, 20, 327685, 524290, 22, -327681, 0, 2, -393216, 65536, 2, -393215, 131072, 2)
 layer_2/name = "Misc"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -3255,6 +3274,47 @@ texture = ExtResource("3_p3j73")
 position = Vector2(-1.49953, 6.32614)
 shape = SubResource("RectangleShape2D_y3cq7")
 
+[node name="Sign2" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_c6oxu")
+position = Vector2(-33.3646, -0.937206)
+scale = Vector2(1, 1)
+texture = ExtResource("6_hrjy1")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign2"]
+z_index = 1
+position = Vector2(-2.06186, 9.37207)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0, 0.976471, 0.152941, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_tge2v")
+texture_scale = 0.83
+
+[node name="Sign3" type="Sprite2D" parent="TileMap"]
+modulate = Color(2, 2, 2, 0.99)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_c6oxu")
+position = Vector2(47.7976, -25.492)
+rotation = 1.5708
+scale = Vector2(1, 1)
+texture = ExtResource("7_yih4x")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/Sign3"]
+z_index = 1
+position = Vector2(26.9621, -17.1747)
+scale = Vector2(2.05543, 1.87217)
+color = Color(0, 0.917647, 0.956863, 1)
+energy = 0.71
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_tge2v")
+texture_scale = 0.83
+
 [node name="ExitPoints" type="Node2D" parent="."]
 position = Vector2(0, -170)
 scale = Vector2(5.335, 5.335)
@@ -3293,14 +3353,14 @@ Direction = 3
 shape = SubResource("CircleShape2D_ddkwj")
 
 [node name="TileCheck" type="Area2D" parent="."]
-visible = false
 position = Vector2(4, -5)
 scale = Vector2(5.335, 5.335)
 script = ExtResource("3_pb6bn")
 metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
-position = Vector2(7.40403, -31.3027)
+position = Vector2(-1.03092, -15.4639)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_cgxgq")]
