@@ -3025,7 +3025,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_fv2qi")
 offset = Vector2(0, -16)
 
@@ -3048,7 +3047,6 @@ texture = ExtResource("5_bm8rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_oooxv")
 
 [node name="LampPost4" type="StaticBody2D" parent="TileMap"]
@@ -3060,7 +3058,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_fv2qi")
 offset = Vector2(0, -16)
 
@@ -3083,7 +3080,6 @@ texture = ExtResource("5_bm8rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_oooxv")
 
 [node name="ExitPoints" type="Node2D" parent="."]

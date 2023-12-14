@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://d36ifwtp41fg2"]
+[gd_scene load_steps=26 format=3 uid="uid://d36ifwtp41fg2"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_ijemb"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_f0ira"]
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="3_vpf6t"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_am24v"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_xcog8"]
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="7_h2l0c"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_yiwe0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
@@ -3023,7 +3024,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_am24v")
 offset = Vector2(0, -16)
 
@@ -3046,20 +3046,17 @@ texture = ExtResource("5_xcog8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wwqae")
 
 [node name="LampPost4" type="StaticBody2D" parent="TileMap"]
 y_sort_enabled = true
 position = Vector2(-32.9897, -10.4967)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost4"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_am24v")
 offset = Vector2(0, -16)
 
@@ -3082,7 +3079,6 @@ texture = ExtResource("5_xcog8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wwqae")
 
 [node name="ExitPoints" type="Node2D" parent="."]
@@ -3104,5 +3100,8 @@ metadata/Direction = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(0, -0.187447)
 shape = SubResource("RectangleShape2D_j8qhw")
+
+[node name="ConsumableSpawn" parent="." instance=ExtResource("7_h2l0c")]
+position = Vector2(194, 196)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://21rxjor8dlhw"]
+[gd_scene load_steps=30 format=3 uid="uid://21rxjor8dlhw"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_7b2tw"]
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_syq86"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="2_rppli"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_hcv4q"]
 [ext_resource type="Texture2D" uid="uid://cbihs2tis7txk" path="res://Assets/Tilemaps/Store.png" id="4_lbip7"]
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_mwcef"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3219,7 +3220,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_3crip")
 offset = Vector2(0, -16)
 
@@ -3242,7 +3242,6 @@ texture = ExtResource("3_hcv4q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0sjsx")
 
 [node name="LampPost4" type="StaticBody2D" parent="TileMap"]
@@ -3253,7 +3252,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_3crip")
 offset = Vector2(0, -16)
 
@@ -3276,7 +3274,6 @@ texture = ExtResource("3_hcv4q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0sjsx")
 
 [node name="ExitPoints" type="Node2D" parent="."]
@@ -3300,5 +3297,14 @@ metadata/Direction = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(-7.68511, -23.4302)
 shape = SubResource("RectangleShape2D_j8qhw")
+
+[node name="ConsumableSpawn" parent="." instance=ExtResource("8_mwcef")]
+position = Vector2(-555, -224)
+
+[node name="ConsumableSpawn2" parent="." instance=ExtResource("8_mwcef")]
+position = Vector2(-466, 44)
+
+[node name="ConsumableSpawn3" parent="." instance=ExtResource("8_mwcef")]
+position = Vector2(131, -218)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
