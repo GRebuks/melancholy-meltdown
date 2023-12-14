@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://njrgek7lds3a"]
+[gd_scene load_steps=29 format=3 uid="uid://njrgek7lds3a"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_j4jp2"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_2u6vu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_3vivu"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_jqjgi"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_fivxj"]
+[ext_resource type="PackedScene" uid="uid://c06mnf28ys2um" path="res://Assets/Objects/Consumables/sugar.tscn" id="8_3yip3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3004,7 +3005,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(1, 720896, 7, 196604, 458752, 11, 262140, 589824, 11, 327677, 524288, 11, 65537, 720896, 8, 131073, 720896, 9, 131075, 655360, 9, 196611, 655360, 10)
+layer_2/tile_data = PackedInt32Array(1, 720896, 7, 196604, 458752, 11, 262140, 589824, 11, 327677, 524288, 11, 131075, 655360, 9)
 
 [node name="LampPost2" type="StaticBody2D" parent="TileMap"]
 position = Vector2(41.4245, -29.9906)
@@ -3122,5 +3123,8 @@ metadata/Direction = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(0.374884, -31.6776)
 shape = SubResource("RectangleShape2D_j8qhw")
+
+[node name="Sugar" parent="." instance=ExtResource("8_3yip3")]
+position = Vector2(295, 220)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

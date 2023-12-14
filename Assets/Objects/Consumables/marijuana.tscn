@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1s67"]
 
 [node name="Marijuana" type="Area2D" groups=["Consumable"]]
-position = Vector2(49, 49)
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_4uybm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

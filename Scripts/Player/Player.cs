@@ -121,22 +121,22 @@ public partial class Player : CharacterBody2D
     {
         //sceneNode = GetTree().Root.GetChild<Node2D>(0);
         camera = (Camera2D)GetNode("Camera2D");
-        _healthBar = camera.GetNode<ProgressBar>("UI/HealthBar");
+        _healthBar = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<ProgressBar>("UI/HealthBar");
         _healthBarLabel = _healthBar.GetNode<Label>("EmotionalDamage");
 
-        _bacBar = camera.GetNode<ProgressBar>("UI/BACBar");
+        _bacBar = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<ProgressBar>("UI/BACBar");
         _bacBarLabel = _bacBar.GetNode<Label>("BAC");
 
-        _thcBar = camera.GetNode<ProgressBar>("UI/THCBar");
+        _thcBar = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<ProgressBar>("UI/THCBar");
         _thcBarLabel = _thcBar.GetNode<Label>("THC");
 
-        Blackout = camera.GetNode<ColorRect>("UI/Blackout");
-        Baked = camera.GetNode<ColorRect>("UI/Baked");
+        Blackout = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<ColorRect>("UI/Blackout");
+        Baked = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<ColorRect>("UI/Baked");
 
-        QuestCard = camera.GetNode<Panel>("UI/QuestCard");
+        QuestCard = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<Panel>("UI/QuestCard");
         ClearQuestCard();
 
-        ConsumableCard = camera.GetNode<Panel>("UI/ConsumableCard");
+        ConsumableCard = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<Panel>("UI/ConsumableCard");
         ClearConsumableCard();
 
         EffectLabel = (PackedScene)ResourceLoader.Load(_effectLabelPath);
@@ -186,7 +186,7 @@ public partial class Player : CharacterBody2D
         }
 
         Vector2 velocity = Velocity;
-        Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 
         _speedDecreaseRate = 0.0005f * MathF.Pow(Speed - BaseSpeed, 2) + _minSpeedDecreaseRate;
         _alcoholDecreaseRate = 0.000015f * MathF.Pow(BloodAlcoholContent, 2) + _minAlcoholDecreaseRate;
@@ -233,17 +233,25 @@ public partial class Player : CharacterBody2D
 
         if (consumable != null)
         {
-            consumable.Position = new Vector2(this.Position.X, this.Position.Y - 30);
+            consumable.GetParent().RemoveChild(consumable);
+            AddChild(consumable);
+            // Set consumable position to the player's position
+            consumable.Position = new Vector2(0, 0);
+
+            consumable.ZIndex = 1;
             // Consume the consumable on key press E
-            if (Input.IsActionJustPressed("ui_accept"))
+            if (Input.IsActionJustPressed("use"))
             {
                 ConsumeConsumable();
             }
             // Drop consumable on key press Q
-            else if (Input.IsActionJustPressed("ui_cancel"))
+            else if (Input.IsActionJustPressed("drop"))
             {
                 // Drop the consumable
-                consumable.Position = new Vector2(this.Position.X, this.Position.Y - 30);
+                RemoveChild(consumable);
+                GetParent().AddChild(consumable);
+                consumable.ZIndex = 1;
+                consumable.Position = new Vector2(GlobalPosition.X, GlobalPosition.Y + 30f);
                 consumable = null;
                 ClearConsumableCard();
             }
@@ -254,16 +262,16 @@ public partial class Player : CharacterBody2D
             // Camera shaka
             Vector2 cameraPosition = camera.Position;
 
-            // Add camera shake
-            cameraPosition.X += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
-            cameraPosition.Y += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+            //// Add camera shake
+            //cameraPosition.X += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+            //cameraPosition.Y += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
 
-            // Add mathf.clamp to keep the camera within the screen
-            cameraPosition.X = Mathf.Clamp(cameraPosition.X, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
-            cameraPosition.Y = Mathf.Clamp(cameraPosition.Y, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+            //// Add mathf.clamp to keep the camera within the screen
+            //cameraPosition.X = Mathf.Clamp(cameraPosition.X, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+            //cameraPosition.Y = Mathf.Clamp(cameraPosition.Y, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
 
-            // Set the camera's position
-            camera.Position = cameraPosition;
+            //// Set the camera's position
+            //camera.Position = cameraPosition;
 
             if (BloodAlcoholContent > 0f)
             {
@@ -274,13 +282,14 @@ public partial class Player : CharacterBody2D
             {
                 if (timePassed > 1f && timePassed < 2f)
                 {
-                    velocity.X = Mathf.MoveToward(velocity.X, targetPosition.X, BloodAlcoholContent * 20 / timePassed);
-                    velocity.Y = Mathf.MoveToward(velocity.Y, targetPosition.Y, BloodAlcoholContent * 20 / timePassed);
+                    //Set velocity to move towards target position
+                    velocity.X = Mathf.MoveToward(velocity.X, targetPosition.X, BloodAlcoholContent * 50 / timePassed);
+                    velocity.Y = Mathf.MoveToward(velocity.Y, targetPosition.Y, BloodAlcoholContent * 50 / timePassed);
                 }
                 else if (timePassed > 2f)
                 {
-                    targetPosition.X = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
-                    targetPosition.Y = (float)GD.RandRange(-BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+                    targetPosition.X = (float)GD.RandRange(-BloodAlcoholContent * 300, BloodAlcoholContent * 300);
+                    targetPosition.Y = (float)GD.RandRange(-BloodAlcoholContent * 300, BloodAlcoholContent * 300);
                     timePassed = 0f;
                 }
 
@@ -335,16 +344,14 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
 
         // Increases or decreases player speed, depending on current value
-        if (Speed > 301f)
+        if (Speed > BaseSpeed + 1f)
         {
             Speed -= _speedDecreaseRate * (float)delta;
         } 
-        else if (Speed < 300f)
+        else if (Speed < BaseSpeed)
         {
             Speed += _speedDecreaseRate * (float)delta;
         }
-
-        timePassed = 0;
 
         // Moved this to _PhysicsProcess, sorry not sorry
         Health -= _healthDecreaseRate * _healthDecreaseMultiplier * (float)delta;
