@@ -23,7 +23,7 @@ public partial class AchievementManager : Node
         //sceneNode = GetTree().Root.GetChild<Node2D>(0);
         //UI = GetTree().Root.GetNode<Node2D>("TestScene").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
 
-        UI = GetTree().Root.GetNode<Node2D>("Node2D").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
+        UI = GetTree().Root.GetNode<Node2D>("Node2D").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<CanvasLayer>("CanvasLayer").GetNode<Control>("UI");
 
         //UI = sceneNode.GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
         AchievementNameQueue = new List<string>();
