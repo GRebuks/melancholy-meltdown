@@ -26,6 +26,7 @@ text = "Consumable title"
 [node name="Description" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "A description of the shown consumable."
+autowrap_mode = 3
 
 [node name="Effects" type="Label" parent="VBoxContainer"]
 layout_mode = 2

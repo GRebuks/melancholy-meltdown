@@ -17,9 +17,8 @@ public partial class PantsQuest : Quest
 
         // REWARD CONSUMABLE
         // Add the reward consumable file name to make this consumable as a reward
-        RewardConsumableFile = "marijuana.tscn";
+        RewardConsumableFile = "pants.tscn";
         RewardConsumable = (PackedScene)ResourceLoader.Load(ConsumablePath + RewardConsumableFile);
         RewardConsumableNode = RewardConsumable.Instantiate() as Consumable;
-
     }
 }

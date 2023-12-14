@@ -17,9 +17,8 @@ public partial class SweaterQuest : Quest
 
         // REWARD CONSUMABLE
         // Add the reward consumable file name to make this consumable as a reward
-        RewardConsumableFile = "booze.tscn";
+        RewardConsumableFile = "sweater.tscn";
         RewardConsumable = (PackedScene)ResourceLoader.Load(ConsumablePath + RewardConsumableFile);
         RewardConsumableNode = RewardConsumable.Instantiate() as Consumable;
-
     }
 }

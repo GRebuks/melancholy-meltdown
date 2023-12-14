@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_3vivu"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_jqjgi"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_fivxj"]
-[ext_resource type="PackedScene" uid="uid://c06mnf28ys2um" path="res://Assets/Objects/Consumables/sugar.tscn" id="8_3yip3"]
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_m1d8d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3009,14 +3009,12 @@ layer_2/tile_data = PackedInt32Array(1, 720896, 7, 196604, 458752, 11, 262140, 5
 
 [node name="LampPost2" type="StaticBody2D" parent="TileMap"]
 position = Vector2(41.4245, -29.9906)
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="LampPost" type="Sprite2D" parent="TileMap/LampPost2"]
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_3vivu")
 offset = Vector2(0, -16)
 
@@ -3039,7 +3037,6 @@ texture = ExtResource("5_jqjgi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gwcl7")
 
 [node name="LampPost4" type="StaticBody2D" parent="TileMap"]
@@ -3050,7 +3047,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("4_3vivu")
 offset = Vector2(0, -16)
 
@@ -3073,7 +3069,6 @@ texture = ExtResource("5_jqjgi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gwcl7")
 
 [node name="ExitPoints" type="Node2D" parent="."]
@@ -3124,7 +3119,13 @@ metadata/Direction = 0
 position = Vector2(0.374884, -31.6776)
 shape = SubResource("RectangleShape2D_j8qhw")
 
-[node name="Sugar" parent="." instance=ExtResource("8_3yip3")]
-position = Vector2(295, 220)
+[node name="ConsumableSpawn" parent="." instance=ExtResource("8_m1d8d")]
+position = Vector2(-299, 216)
+
+[node name="ConsumableSpawn2" parent="." instance=ExtResource("8_m1d8d")]
+position = Vector2(-212, 387)
+
+[node name="ConsumableSpawn3" parent="." instance=ExtResource("8_m1d8d")]
+position = Vector2(298, 227)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

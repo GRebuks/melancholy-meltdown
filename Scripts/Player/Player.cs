@@ -69,6 +69,8 @@ public partial class Player : CharacterBody2D
     private bool closeCall = false;
     private bool lightsOut = false;
 
+    private int isInQuestArea = 0;
+
     public float MaxBAC { get; private set; } = 6f;
     public float MaxTHC { get; private set; } = 3f;
     public float MaxHealth { get; private set; } = 60f;
@@ -314,6 +316,7 @@ public partial class Player : CharacterBody2D
                 {
                     AchievementManager.AddProgress("Lights Out!", progress);
                     lightsOut = true;
+                    Health -= 10f;
                 }
                 Blackout.Visible = true;
                 if (Blackout.Color.A < 1)
@@ -331,6 +334,7 @@ public partial class Player : CharacterBody2D
                 {
                     Blackout.Visible = false;
                 }
+                lightsOut = false;
             }
 
             BloodAlcoholContent -= _alcoholDecreaseRate * (float)delta * 100;
@@ -372,7 +376,6 @@ public partial class Player : CharacterBody2D
     // on area entered
     private void _on_area_entered(Area2D area)
     {
-        GD.Print("Area entered: ", area.Name);
         // If the area is in group consumable
         if (area.IsInGroup("Consumable"))
         {
@@ -392,6 +395,8 @@ public partial class Player : CharacterBody2D
         {
             // Get information about the consumable
             Quest quest = (Quest)area;
+            isInQuestArea++;
+            ClearQuestCard();
             UpdateQuestCard(quest);
             if (this.consumable != null)
             {
@@ -400,7 +405,6 @@ public partial class Player : CharacterBody2D
                     ClearConsumableCard();
                     // Apply effects
                     ApplyQuestEffects(quest);
-                    GD.Print("Quest completed!");
                     AchievementManager.AddProgress("The Good Citizen", progress);
                     theGoodCitizen = true;
 
@@ -419,7 +423,11 @@ public partial class Player : CharacterBody2D
     {
         if (area.IsInGroup("Quest"))
         {
-            ClearQuestCard();
+            isInQuestArea--;
+            if (isInQuestArea == 0)
+            {
+                ClearQuestCard();
+            }
         }
     }
 
@@ -477,8 +485,7 @@ public partial class Player : CharacterBody2D
         if (consumable.Type == "Clothes")
         {
             ApplyClothing(consumable);
-        } else
-        {
+        } else {
             // If health is less than 1f
             if (Health <= 1f && !closeCall)
             {
@@ -488,8 +495,6 @@ public partial class Player : CharacterBody2D
             consumedItems++;
             // Apply effects
             ApplyConsumableEffects(consumable);
-            GD.Print("");
-            GD.Print("You consumed a " + consumable.Title);
         }
         // Destroy the consumable
         consumable.QueueFree();
@@ -525,7 +530,7 @@ public partial class Player : CharacterBody2D
         if (effect.Value > 0)
         {
             // If the effect is health or speed
-            if (effect.Key == "Health" || effect.Key == "Speed")
+            if (effect.Key == "Health" || effect.Key == "Speed" || effect.Key == "Max Health" || effect.Key == "Base Speed")
             {
                 Label EffectLabelNode = CreateEffectLabel(effect, card);
                 EffectLabelNode.AddThemeColorOverride("font_color", new Color(0, 1, 0));
@@ -544,7 +549,7 @@ public partial class Player : CharacterBody2D
         else if (effect.Value < 0)
         {
             // If the effect is health or speed
-            if (effect.Key == "Health" || effect.Key == "Speed")
+            if (effect.Key == "Health" || effect.Key == "Speed" || effect.Key == "Max Health" || effect.Key == "Base Speed")
             {
                 Label EffectLabelNode = CreateEffectLabel(effect, card);
                 EffectLabelNode.AddThemeColorOverride("font_color", new Color(1, 0, 0));
@@ -593,8 +598,17 @@ public partial class Player : CharacterBody2D
         QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").Text = quest.RequiredConsumableNode.Title;
         QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").AddThemeColorOverride("font_color", quest.RequiredConsumableNode.DisplayColor);
 
-        QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Text = quest.RewardConsumableNode.Title;
-        QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").AddThemeColorOverride("font_color", quest.RewardConsumableNode.DisplayColor);
+        if(quest.RewardConsumableNode != null)
+        {
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Text = quest.RewardConsumableNode.Title;
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").AddThemeColorOverride("font_color", quest.RewardConsumableNode.DisplayColor);
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Visible = true;
+        }
+        else
+        {
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Text = "";
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Visible = false;
+        }
 
         // Foreach effect in the quest
         foreach (KeyValuePair<string, float> effect in quest.Effects)
@@ -620,9 +634,12 @@ public partial class Player : CharacterBody2D
     private void ClearConsumableCard()
     {
         // Iterate through quest effect labels
-        foreach (Label label in ConsumableEffectLabels)
+        if(ConsumableEffectLabels.Count > 0)
         {
-            label.QueueFree();
+            foreach (Label label in ConsumableEffectLabels)
+            {
+                label.QueueFree();
+            }
         }
 
         ConsumableEffectLabels.Clear();
@@ -631,7 +648,6 @@ public partial class Player : CharacterBody2D
 
     private void SkinChoice(string skinName)
     {
-        GD.Print("Skin choice: " + currentSkin);
         if (currentSkin != skinName)
         {
             if (currentSkin != "naked")
@@ -648,7 +664,6 @@ public partial class Player : CharacterBody2D
             currentSkin = skinName;
             sprite.Texture = skins[skinName];
         }
-        GD.Print("Skin changed to " + skinName);
     }
 
     private void ApplyClothing(Consumable clothes)
@@ -661,12 +676,12 @@ public partial class Player : CharacterBody2D
     {
         foreach (KeyValuePair<string, float> effect in clothes.Effects)
         {
-            if (effect.Key == "PermanentHealth")
+            if (effect.Key == "Max Health")
             {
                 MaxHealth += effect.Value;
                 Health += effect.Value;
             }
-            if (effect.Key == "PermanentSpeed")
+            if (effect.Key == "Base Speed")
             {
                 BaseSpeed += effect.Value;
                 Speed += effect.Value;

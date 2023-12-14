@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://dm1cyyu4rjl7o" path="res://Assets/Sprites/Dzhupels.png" id="8_wyr8h"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="9_c45f1"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="9_hm58e"]
+[ext_resource type="PackedScene" uid="uid://bua6b1ms165h6" path="res://Assets/Objects/sweater_quest.tscn" id="12_rys28"]
+[ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="13_o3ja6"]
+[ext_resource type="PackedScene" path="res://Assets/Objects/Quests/playtime_quest.tscn" id="15_0iqw8"]
+[ext_resource type="PackedScene" uid="uid://bugd2urlwauwm" path="res://Assets/Objects/Quests/pants_quest.tscn" id="15_b4ndk"]
+[ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="17_1empj"]
 [ext_resource type="AudioStream" uid="uid://ceic3cvrnkupx" path="res://Assets/Audio/gulpingEffect.mp3" id="10_dhm1e"]
 [ext_resource type="AudioStream" uid="uid://d02bmftsnpx5s" path="res://Assets/Audio/putDownEffect.mp3" id="11_hyl8d"]
 [ext_resource type="PackedScene" uid="uid://dtpdmipjticcc" path="res://Assets/Objects/Quests/test_quest.tscn" id="11_syvun"]
@@ -2167,6 +2172,9 @@ _data = {
 "RESET": SubResource("Animation_5txud")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
+radius = 45.0999
+
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
@@ -2458,21 +2466,23 @@ position = Vector2(-196, -161)
 [node name="Booze4" parent="." instance=ExtResource("9_hm58e")]
 position = Vector2(-130, -161)
 
-[node name="PantsQuest" parent="." instance=ExtResource("11_syvun")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(-253, 169)
-script = ExtResource("12_nu0dv")
+[node name="PantsQuest" parent="." instance=ExtResource("15_b4ndk")]
+position = Vector2(-164, 402)
 
-[node name="SweaterQuest" parent="." instance=ExtResource("11_syvun")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(-354, -130)
+[node name="SweaterQuest" parent="." instance=ExtResource("12_rys28")]
+
+[node name="SweaterQuest2" type="Area2D" parent="." groups=["Quest"]]
+position = Vector2(-446, 169)
 script = ExtResource("13_o3ja6")
 
-[node name="Sweater" parent="." instance=ExtResource("14_swu7r")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SweaterQuest2"]
+shape = SubResource("CircleShape2D_ccqtk")
 
-[node name="Pants" parent="." instance=ExtResource("15_7083u")]
+[node name="Sprite" type="Sprite2D" parent="SweaterQuest2"]
+texture = ExtResource("17_1empj")
+
+[node name="PlaytimeQuest" parent="." instance=ExtResource("15_0iqw8")]
+position = Vector2(-161, 276)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_2brl0")

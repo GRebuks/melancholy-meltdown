@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cenaodo0rjj6t"]
+[gd_scene load_steps=26 format=3 uid="uid://cenaodo0rjj6t"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_jidyl"]
 [ext_resource type="Texture2D" uid="uid://btews5cyaaj15" path="res://Assets/Tilemaps/Building1.png" id="1_x6gtm"]
@@ -6,8 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="2_27vbf"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="2_e82xo"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_4k2qp"]
-[ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="7_omfax"]
-[ext_resource type="PackedScene" uid="uid://c0ffrdweapx57" path="res://Assets/Objects/Consumables/marijuana.tscn" id="8_skqml"]
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="7_oe78k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3029,7 +3028,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_e82xo")
 offset = Vector2(0, -16)
 
@@ -3052,7 +3050,6 @@ texture = ExtResource("3_4k2qp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost5"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yiosp")
 
 [node name="LampPost6" type="StaticBody2D" parent="TileMap"]
@@ -3063,7 +3060,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_e82xo")
 offset = Vector2(0, -16)
 
@@ -3086,7 +3082,6 @@ texture = ExtResource("3_4k2qp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost6"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yiosp")
 
 [node name="LampPost7" type="StaticBody2D" parent="TileMap"]
@@ -3097,7 +3092,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_e82xo")
 offset = Vector2(0, -16)
 
@@ -3120,7 +3114,6 @@ texture = ExtResource("3_4k2qp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost7"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yiosp")
 
 [node name="LampPost8" type="StaticBody2D" parent="TileMap"]
@@ -3131,7 +3124,6 @@ collision_layer = 2
 modulate = Color(1, 1, 1, 0.99)
 z_index = 1
 y_sort_enabled = true
-scale = Vector2(1, 1)
 texture = ExtResource("2_e82xo")
 offset = Vector2(0, -16)
 
@@ -3154,7 +3146,6 @@ texture = ExtResource("3_4k2qp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost8"]
 position = Vector2(-1.49953, 6.32614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yiosp")
 
 [node name="ExitPoints" type="Node2D" parent="."]
@@ -3178,10 +3169,13 @@ metadata/Direction = 0
 position = Vector2(23.7114, -15.6513)
 shape = SubResource("RectangleShape2D_j8qhw")
 
-[node name="Booze" parent="." instance=ExtResource("7_omfax")]
-position = Vector2(555, -207)
+[node name="ConsumableSpawn" parent="." instance=ExtResource("7_oe78k")]
+position = Vector2(240, -237)
 
-[node name="Marijuana" parent="." instance=ExtResource("8_skqml")]
-position = Vector2(224, -243)
+[node name="ConsumableSpawn2" parent="." instance=ExtResource("7_oe78k")]
+position = Vector2(559, -234)
+
+[node name="ConsumableSpawn3" parent="." instance=ExtResource("7_oe78k")]
+position = Vector2(107, -78)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
