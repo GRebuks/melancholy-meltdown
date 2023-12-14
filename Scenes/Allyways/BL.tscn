@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=34 format=3 uid="uid://x0bxfebx5vnv"]
-
+[gd_scene load_steps=35 format=3 uid="uid://x0bxfebx5vnv"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_2nyap"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_bapr4"]
@@ -11,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_s8xfu"]
 [ext_resource type="Texture2D" uid="uid://c8mni3jtdwo0u" path="res://Assets/Sprites/Signs/SignGreen.png" id="6_q65ps"]
 [ext_resource type="Texture2D" uid="uid://rbtfn0fyvgo2" path="res://Assets/Sprites/Signs/NeonSign.png" id="7_xaf77"]
-[ext_resource type="Texture2D" uid="uid://fvwex6wq7q01" path="res://Assets/Sprites/Signs/LightsRoundCyan.png" id="8_iydsb"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_i6fpo"]
+[ext_resource type="Texture2D" uid="uid://fvwex6wq7q01" path="res://Assets/Sprites/Signs/LightsRoundCyan.png" id="8_iydsb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3111,7 +3109,6 @@ y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_1wbkf")
 position = Vector2(-89.9719, -48.7348)
 rotation = 1.5708
-scale = Vector2(1, 1)
 texture = ExtResource("6_q65ps")
 offset = Vector2(0, -16)
 
@@ -3132,7 +3129,6 @@ y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_1wbkf")
 position = Vector2(-22.6804, -65.4171)
 rotation = -3.14159
-scale = Vector2(1, 1)
 texture = ExtResource("7_xaf77")
 offset = Vector2(0, -16)
 
@@ -3153,7 +3149,6 @@ y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_1wbkf")
 position = Vector2(7.31021, -65.0422)
 rotation = -3.14159
-scale = Vector2(1, 1)
 texture = ExtResource("7_xaf77")
 offset = Vector2(0, -16)
 
@@ -3250,5 +3245,8 @@ position = Vector2(255, 366)
 
 [node name="ConsumableSpawn3" parent="." instance=ExtResource("8_i6fpo")]
 position = Vector2(256, 0)
+
+[node name="ConsumableSpawn4" parent="." instance=ExtResource("8_i6fpo")]
+position = Vector2(295, 205)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

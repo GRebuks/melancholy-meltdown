@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d4a7koh72e6dj"]
+[gd_scene load_steps=27 format=3 uid="uid://d4a7koh72e6dj"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_gbuc6"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="2_ad0vb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="4_1gyqg"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="5_8vb5n"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="6_a4lb3"]
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_lgs46"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="10_1nts8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
@@ -2268,7 +2269,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(6.97157e-06, -0.74977)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_nx6c5")
 
 [node name="Booze" parent="." instance=ExtResource("10_1nts8")]
@@ -2282,5 +2282,8 @@ position = Vector2(-196, -161)
 
 [node name="Booze4" parent="." instance=ExtResource("10_1nts8")]
 position = Vector2(-130, -161)
+
+[node name="ConsumableSpawn" parent="." instance=ExtResource("8_lgs46")]
+position = Vector2(-146, 13)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

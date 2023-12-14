@@ -3102,7 +3102,6 @@ z_index = 1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_eqqfa")
 position = Vector2(-0.187441, -33.3646)
-scale = Vector2(1, 1)
 texture = ExtResource("6_gvpta")
 offset = Vector2(0, -16)
 
@@ -3133,7 +3132,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(-0.0937194, -0.0937125)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
