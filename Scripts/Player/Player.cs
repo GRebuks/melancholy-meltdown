@@ -581,15 +581,8 @@ public partial class Player : CharacterBody2D
         QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").Text = quest.RequiredConsumableNode.Title;
         QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").AddThemeColorOverride("font_color", quest.RequiredConsumableNode.DisplayColor);
 
-        if (quest.RewardConsumableNode != null)
-        {
-            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardObject").Visible = true;
-            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardObject").Text = quest.RequiredConsumableNode.Title;
-            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardObject").AddThemeColorOverride("font_color", new Color(100, 100, 0, 1));
-        } else {
-            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardObject").Visible = false;
-            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardObject").Text = "";
-        }
+        QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Text = quest.RewardConsumableNode.Title;
+        QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").AddThemeColorOverride("font_color", quest.RewardConsumableNode.DisplayColor);
 
         // Foreach effect in the quest
         foreach (KeyValuePair<string, float> effect in quest.Effects)

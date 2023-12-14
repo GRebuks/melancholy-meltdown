@@ -20,5 +20,7 @@ public partial class PantsQuest : Quest
         RewardConsumableFile = "marijuana.tscn";
         RewardConsumable = (PackedScene)ResourceLoader.Load(ConsumablePath + RewardConsumableFile);
         RewardConsumableNode = RewardConsumable.Instantiate() as Consumable;
+
+        rewardClothes = new Pants();
     }
 }
