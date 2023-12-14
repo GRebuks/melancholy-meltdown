@@ -2378,7 +2378,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(0.281112, -0.281084)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_nx6c5")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
