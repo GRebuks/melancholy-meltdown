@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://d36ifwtp41fg2"]
+[gd_scene load_steps=26 format=3 uid="uid://d36ifwtp41fg2"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_ijemb"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_f0ira"]
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="3_vpf6t"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_am24v"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_xcog8"]
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="7_h2l0c"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_yiwe0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
@@ -3109,5 +3110,8 @@ metadata/Direction = 0
 position = Vector2(-3.78744e-06, -7.95473e-06)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
+
+[node name="ConsumableSpawn" parent="." instance=ExtResource("7_h2l0c")]
+position = Vector2(194, 196)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

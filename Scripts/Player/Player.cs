@@ -11,11 +11,17 @@ public partial class Player : CharacterBody2D
     [Export] public float Speed = 300.0f;
     Texture2D texture;
     public Dictionary<string, Texture2D> skins;
+    public string currentSkin = "naked";
 
     public float timePassed = 0f;
     Vector2 targetPosition = new Vector2();
 
     public Consumable consumable = null;
+
+    // Audio
+    public AudioStreamPlayer2D useConsumableSFX;
+    public AudioStreamPlayer2D putDownConsumableSFX;
+    public AudioStreamPlayer2D pickUpConsumableSFX;
 
     // Animation
     public Sprite2D sprite;
@@ -62,6 +68,8 @@ public partial class Player : CharacterBody2D
     private bool theChemist = false;
     private bool closeCall = false;
     private bool lightsOut = false;
+
+    private int isInQuestArea = 0;
 
     public float MaxBAC { get; private set; } = 6f;
     public float MaxTHC { get; private set; } = 3f;
@@ -148,13 +156,17 @@ public partial class Player : CharacterBody2D
         sprite = GetNode<Sprite2D>("Sprite");
         skins = new Dictionary<string, Texture2D>();
         Resource textureResource = ResourceLoader.Load("res://Assets/Sprites/Dzhupels.png");
-        skins.Add("dzhupels", (Texture2D)textureResource);
+        skins.Add("naked", (Texture2D)textureResource);
         textureResource = ResourceLoader.Load("res://Assets/Sprites/1DzhupelsSarkanasBikses.png");
-        skins.Add("biksains", (Texture2D)textureResource);
+        skins.Add("pants", (Texture2D)textureResource);
         textureResource = ResourceLoader.Load("res://Assets/Sprites/2DzhupelsSarkansDzempers.png");
-        skins.Add("dzempers", (Texture2D)textureResource);
+        skins.Add("sweater", (Texture2D)textureResource);
         textureResource = ResourceLoader.Load("res://Assets/Sprites/3DzhupelsSarkansKostims.png");
-        skins.Add("kostims", (Texture2D)textureResource);
+        skins.Add("costume", (Texture2D)textureResource);
+
+        useConsumableSFX = GetNode<AudioStreamPlayer2D>("useConsumable");
+        putDownConsumableSFX = GetNode<AudioStreamPlayer2D>("putDownConsumable");
+        pickUpConsumableSFX = GetNode<AudioStreamPlayer2D>("pickUpConsumable");
 
         AchievementManager.ResetAchievements();
         AchievementManager.AddProgress("The Tester", progress);
@@ -242,6 +254,7 @@ public partial class Player : CharacterBody2D
             // Consume the consumable on key press E
             if (Input.IsActionJustPressed("use"))
             {
+                useConsumableSFX.Play();
                 ConsumeConsumable();
             }
             // Drop consumable on key press Q
@@ -251,6 +264,7 @@ public partial class Player : CharacterBody2D
                 RemoveChild(consumable);
                 GetParent().AddChild(consumable);
                 consumable.ZIndex = 1;
+                putDownConsumableSFX.Play();
                 consumable.Position = new Vector2(GlobalPosition.X, GlobalPosition.Y + 30f);
                 consumable = null;
                 ClearConsumableCard();
@@ -262,16 +276,16 @@ public partial class Player : CharacterBody2D
             // Camera shaka
             Vector2 cameraPosition = camera.Position;
 
-            //// Add camera shake
-            //cameraPosition.X += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
-            //cameraPosition.Y += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+            // Add camera shake
+            cameraPosition.X += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
+            cameraPosition.Y += (float)GD.RandRange(-BloodAlcoholContent, BloodAlcoholContent);
 
-            //// Add mathf.clamp to keep the camera within the screen
-            //cameraPosition.X = Mathf.Clamp(cameraPosition.X, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
-            //cameraPosition.Y = Mathf.Clamp(cameraPosition.Y, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+            // Add mathf.clamp to keep the camera within the screen
+            cameraPosition.X = Mathf.Clamp(cameraPosition.X, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
+            cameraPosition.Y = Mathf.Clamp(cameraPosition.Y, -BloodAlcoholContent * 100, BloodAlcoholContent * 100);
 
-            //// Set the camera's position
-            //camera.Position = cameraPosition;
+            // Set the camera's position
+            camera.Position = cameraPosition;
 
             if (BloodAlcoholContent > 0f)
             {
@@ -302,6 +316,7 @@ public partial class Player : CharacterBody2D
                 {
                     AchievementManager.AddProgress("Lights Out!", progress);
                     lightsOut = true;
+                    Health -= 10f;
                 }
                 Blackout.Visible = true;
                 if (Blackout.Color.A < 1)
@@ -319,6 +334,7 @@ public partial class Player : CharacterBody2D
                 {
                     Blackout.Visible = false;
                 }
+                lightsOut = false;
             }
 
             BloodAlcoholContent -= _alcoholDecreaseRate * (float)delta * 100;
@@ -360,7 +376,6 @@ public partial class Player : CharacterBody2D
     // on area entered
     private void _on_area_entered(Area2D area)
     {
-        GD.Print("Area entered: ", area.Name);
         // If the area is in group consumable
         if (area.IsInGroup("Consumable"))
         {
@@ -368,9 +383,11 @@ public partial class Player : CharacterBody2D
             Consumable consumable = (Consumable)area;
             if (this.consumable == null)
             {
+                pickUpConsumableSFX.Play();
                 this.consumable = consumable;
                 UpdateConsumableCard(consumable);
             }
+
         }
 
         // If the area is in group consumable
@@ -378,6 +395,8 @@ public partial class Player : CharacterBody2D
         {
             // Get information about the consumable
             Quest quest = (Quest)area;
+            isInQuestArea++;
+            ClearQuestCard();
             UpdateQuestCard(quest);
             if (this.consumable != null)
             {
@@ -386,8 +405,6 @@ public partial class Player : CharacterBody2D
                     ClearConsumableCard();
                     // Apply effects
                     ApplyQuestEffects(quest);
-                    ApplyClothing(quest.rewardClothes);
-                    GD.Print("Quest completed!");
                     AchievementManager.AddProgress("The Good Citizen", progress);
                     theGoodCitizen = true;
 
@@ -406,7 +423,11 @@ public partial class Player : CharacterBody2D
     {
         if (area.IsInGroup("Quest"))
         {
-            ClearQuestCard();
+            isInQuestArea--;
+            if (isInQuestArea == 0)
+            {
+                ClearQuestCard();
+            }
         }
     }
 
@@ -461,18 +482,20 @@ public partial class Player : CharacterBody2D
 
     private void ConsumeConsumable()
     {
-        // If health is less than 1f
-        if (Health <= 1f && !closeCall)
+        if (consumable.Type == "Clothes")
         {
-            AchievementManager.AddProgress("Close Call", progress);
-            closeCall = true;
+            ApplyClothing(consumable);
+        } else {
+            // If health is less than 1f
+            if (Health <= 1f && !closeCall)
+            {
+                AchievementManager.AddProgress("Close Call", progress);
+                closeCall = true;
+            }
+            consumedItems++;
+            // Apply effects
+            ApplyConsumableEffects(consumable);
         }
-        consumedItems++;
-        // Apply effects
-        ApplyConsumableEffects(consumable);
-        GD.Print("");
-        GD.Print("You consumed a " + consumable.Title);
-
         // Destroy the consumable
         consumable.QueueFree();
         consumable = null;
@@ -507,7 +530,7 @@ public partial class Player : CharacterBody2D
         if (effect.Value > 0)
         {
             // If the effect is health or speed
-            if (effect.Key == "Health" || effect.Key == "Speed")
+            if (effect.Key == "Health" || effect.Key == "Speed" || effect.Key == "Max Health" || effect.Key == "Base Speed")
             {
                 Label EffectLabelNode = CreateEffectLabel(effect, card);
                 EffectLabelNode.AddThemeColorOverride("font_color", new Color(0, 1, 0));
@@ -526,7 +549,7 @@ public partial class Player : CharacterBody2D
         else if (effect.Value < 0)
         {
             // If the effect is health or speed
-            if (effect.Key == "Health" || effect.Key == "Speed")
+            if (effect.Key == "Health" || effect.Key == "Speed" || effect.Key == "Max Health" || effect.Key == "Base Speed")
             {
                 Label EffectLabelNode = CreateEffectLabel(effect, card);
                 EffectLabelNode.AddThemeColorOverride("font_color", new Color(1, 0, 0));
@@ -575,8 +598,17 @@ public partial class Player : CharacterBody2D
         QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").Text = quest.RequiredConsumableNode.Title;
         QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RequiredConsumable").AddThemeColorOverride("font_color", quest.RequiredConsumableNode.DisplayColor);
 
-        QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Text = quest.RewardConsumableNode.Title;
-        QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").AddThemeColorOverride("font_color", quest.RewardConsumableNode.DisplayColor);
+        if(quest.RewardConsumableNode != null)
+        {
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Text = quest.RewardConsumableNode.Title;
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").AddThemeColorOverride("font_color", quest.RewardConsumableNode.DisplayColor);
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Visible = true;
+        }
+        else
+        {
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Text = "";
+            QuestCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("RewardConsumable").Visible = false;
+        }
 
         // Foreach effect in the quest
         foreach (KeyValuePair<string, float> effect in quest.Effects)
@@ -602,9 +634,12 @@ public partial class Player : CharacterBody2D
     private void ClearConsumableCard()
     {
         // Iterate through quest effect labels
-        foreach (Label label in ConsumableEffectLabels)
+        if(ConsumableEffectLabels.Count > 0)
         {
-            label.QueueFree();
+            foreach (Label label in ConsumableEffectLabels)
+            {
+                label.QueueFree();
+            }
         }
 
         ConsumableEffectLabels.Clear();
@@ -613,25 +648,40 @@ public partial class Player : CharacterBody2D
 
     private void SkinChoice(string skinName)
     {
-        sprite.Texture = skins[skinName];
+        if (currentSkin != skinName)
+        {
+            if (currentSkin != "naked")
+            {
+                currentSkin = "costume";
+                sprite.Texture = skins[currentSkin];
+                AchievementManager.AddProgress("Dressed to Impress", progress);
+                return;
+            }
+        }
+
+        if(currentSkin == "naked")
+        {
+            currentSkin = skinName;
+            sprite.Texture = skins[skinName];
+        }
     }
 
-    private void ApplyClothing(Clothes clothes)
+    private void ApplyClothing(Consumable clothes)
     {
         SkinChoice(clothes.TextureName);
         ApplyClothingEffects(clothes);
     }
 
-    private void ApplyClothingEffects(Clothes clothes)
+    private void ApplyClothingEffects(Consumable clothes)
     {
         foreach (KeyValuePair<string, float> effect in clothes.Effects)
         {
-            if (effect.Key == "PermanentHealth")
+            if (effect.Key == "Max Health")
             {
                 MaxHealth += effect.Value;
                 Health += effect.Value;
             }
-            if (effect.Key == "PermanentSpeed")
+            if (effect.Key == "Base Speed")
             {
                 BaseSpeed += effect.Value;
                 Speed += effect.Value;

@@ -1,14 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://ndrk3ik18w6a"]
+[gd_scene load_steps=19 format=3 uid="uid://ndrk3ik18w6a"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_1hnh8"]
 [ext_resource type="Texture2D" uid="uid://dm1cyyu4rjl7o" path="res://Assets/Sprites/Dzhupels.png" id="2_r8a8e"]
-[ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_vwmyc"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="3_ko5uy"]
 [ext_resource type="Texture2D" uid="uid://kaj5tt3dpwbo" path="res://Assets/Sprites/map.jpg" id="3_spi8j"]
 [ext_resource type="Texture2D" uid="uid://y3ty734chgbh" path="res://Assets/Sprites/brick.jpg" id="4_ryrue"]
 [ext_resource type="PackedScene" uid="uid://c0ffrdweapx57" path="res://Assets/Objects/Consumables/marijuana.tscn" id="7_7e1nr"]
-[ext_resource type="Script" path="res://Scripts/Quests/TestQuest.cs" id="8_78inp"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="8_jj00s"]
+
+[ext_resource type="PackedScene" uid="uid://dtpdmipjticcc" path="res://Assets/Objects/Quests/test_quest.tscn" id="8_xsyx8"]
 [ext_resource type="PackedScene" uid="uid://c06mnf28ys2um" path="res://Assets/Objects/Consumables/sugar.tscn" id="10_6h4ev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1y67"]
@@ -111,9 +111,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyjj"]
 size = Vector2(120, 80)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
-radius = 45.0999
-
 [node name="TestScene" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
@@ -181,15 +178,7 @@ position = Vector2(100, 50)
 [node name="Booze3" parent="." instance=ExtResource("8_jj00s")]
 position = Vector2(50, 100)
 
-[node name="TestQuest" type="Area2D" parent="." groups=["Quest"]]
-position = Vector2(91, 231)
-script = ExtResource("8_78inp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestQuest"]
-shape = SubResource("CircleShape2D_ccqtk")
-
-[node name="Sprite" type="Sprite2D" parent="TestQuest"]
-texture = ExtResource("2_vwmyc")
+[node name="TestQuest" parent="." instance=ExtResource("8_xsyx8")]
 
 [node name="Sugar" parent="." instance=ExtResource("10_6h4ev")]
 position = Vector2(81, -9)

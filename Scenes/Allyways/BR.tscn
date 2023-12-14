@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://qf5v1l84l71m" path="res://Assets/Sprites/Signs/SignCyan.png" id="6_m711j"]
 [ext_resource type="Texture2D" uid="uid://d3m23opfquca4" path="res://Assets/Sprites/Signs/SignPink.png" id="7_cf1af"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="7_fivxj"]
-[ext_resource type="PackedScene" uid="uid://c06mnf28ys2um" path="res://Assets/Objects/Consumables/sugar.tscn" id="8_3yip3"]
+[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_m1d8d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3167,7 +3167,13 @@ position = Vector2(0.187537, -31.6776)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
-[node name="Sugar" parent="." instance=ExtResource("8_3yip3")]
-position = Vector2(295, 220)
+[node name="ConsumableSpawn" parent="." instance=ExtResource("8_m1d8d")]
+position = Vector2(-299, 216)
+
+[node name="ConsumableSpawn2" parent="." instance=ExtResource("8_m1d8d")]
+position = Vector2(-212, 387)
+
+[node name="ConsumableSpawn3" parent="." instance=ExtResource("8_m1d8d")]
+position = Vector2(298, 227)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

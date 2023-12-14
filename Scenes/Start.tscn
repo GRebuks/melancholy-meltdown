@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cu0ckxoh0h84j"]
+[gd_scene load_steps=48 format=3 uid="uid://cu0ckxoh0h84j"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="2_4bxcj"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_1352e"]
@@ -10,6 +10,20 @@
 [ext_resource type="Texture2D" uid="uid://dm1cyyu4rjl7o" path="res://Assets/Sprites/Dzhupels.png" id="8_wyr8h"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="9_c45f1"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="9_hm58e"]
+[ext_resource type="PackedScene" uid="uid://bua6b1ms165h6" path="res://Assets/Objects/sweater_quest.tscn" id="12_rys28"]
+[ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="13_o3ja6"]
+[ext_resource type="PackedScene" path="res://Assets/Objects/Quests/playtime_quest.tscn" id="15_0iqw8"]
+[ext_resource type="PackedScene" uid="uid://bugd2urlwauwm" path="res://Assets/Objects/Quests/pants_quest.tscn" id="15_b4ndk"]
+[ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="17_1empj"]
+[ext_resource type="AudioStream" uid="uid://ceic3cvrnkupx" path="res://Assets/Audio/gulpingEffect.mp3" id="10_dhm1e"]
+[ext_resource type="AudioStream" uid="uid://d02bmftsnpx5s" path="res://Assets/Audio/putDownEffect.mp3" id="11_hyl8d"]
+[ext_resource type="PackedScene" uid="uid://dtpdmipjticcc" path="res://Assets/Objects/Quests/test_quest.tscn" id="11_syvun"]
+[ext_resource type="AudioStream" uid="uid://brqdvvkv0sevd" path="res://Assets/Audio/pickUpEffect.mp3" id="12_1jt01"]
+[ext_resource type="Script" path="res://Scripts/Quests/PantsQuest.cs" id="12_nu0dv"]
+[ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="13_o3ja6"]
+[ext_resource type="PackedScene" uid="uid://dfphki6ndrdx0" path="res://Assets/Objects/Consumables/sweater.tscn" id="14_swu7r"]
+[ext_resource type="PackedScene" uid="uid://b5g16h1sw8tdc" path="res://Assets/Objects/Consumables/pants.tscn" id="15_7083u"]
+[ext_resource type="AudioStream" uid="uid://dgbicg2jxwpj1" path="res://Assets/Audio/bgMusic.mp3" id="16_2brl0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
 
@@ -2157,6 +2171,9 @@ _data = {
 "RESET": SubResource("Animation_5txud")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
+radius = 45.0999
+
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
@@ -2286,7 +2303,7 @@ offset = Vector2(0, -16)
 [node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost4/LampPost"]
 z_index = 1
 position = Vector2(4.73281, 6.80075)
-scale = Vector2(2.05543, 1.87217)
+scale = Vector2(1.98188, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
@@ -2423,6 +2440,18 @@ libraries = {
 "": SubResource("AnimationLibrary_n7qdl")
 }
 
+[node name="useConsumable" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("10_dhm1e")
+volume_db = 10.0
+
+[node name="putDownConsumable" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("11_hyl8d")
+volume_db = 10.0
+
+[node name="pickUpConsumable" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("12_1jt01")
+volume_db = 10.0
+
 [node name="Booze" parent="." instance=ExtResource("9_hm58e")]
 position = Vector2(-168, -161)
 
@@ -2434,6 +2463,29 @@ position = Vector2(-196, -161)
 
 [node name="Booze4" parent="." instance=ExtResource("9_hm58e")]
 position = Vector2(-130, -161)
+
+[node name="PantsQuest" parent="." instance=ExtResource("15_b4ndk")]
+position = Vector2(-164, 402)
+
+[node name="SweaterQuest" parent="." instance=ExtResource("12_rys28")]
+
+[node name="SweaterQuest2" type="Area2D" parent="." groups=["Quest"]]
+position = Vector2(-446, 169)
+script = ExtResource("13_o3ja6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SweaterQuest2"]
+shape = SubResource("CircleShape2D_ccqtk")
+
+[node name="Sprite" type="Sprite2D" parent="SweaterQuest2"]
+texture = ExtResource("17_1empj")
+
+[node name="PlaytimeQuest" parent="." instance=ExtResource("15_0iqw8")]
+position = Vector2(-161, 276)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_2brl0")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]

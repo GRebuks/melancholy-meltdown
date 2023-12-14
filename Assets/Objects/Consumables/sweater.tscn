@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfphki6ndrdx0"]
+
+[ext_resource type="Script" path="res://Scripts/Consumables/SweaterConsumable.cs" id="1_2xsoy"]
+[ext_resource type="Texture2D" uid="uid://b6s05jiat580k" path="res://Assets/Sprites/Dzemperis.png" id="1_xa8c2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3n1e"]
+size = Vector2(32, 26)
+
+[node name="Sweater" type="Area2D" groups=["Consumable"]]
+script = ExtResource("1_2xsoy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_xa8c2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.500001)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_d3n1e")

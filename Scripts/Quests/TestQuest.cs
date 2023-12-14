@@ -22,7 +22,6 @@ public partial class TestQuest : Quest
         RewardConsumableFile = "booze.tscn";
         RewardConsumable = (PackedScene)ResourceLoader.Load(ConsumablePath + RewardConsumableFile);
         RewardConsumableNode = RewardConsumable.Instantiate() as Consumable;
-        rewardClothes = new Pants();
 
         Effects.Add("Health", HealthEffect);
         Effects.Add("Speed", SpeedEffect);
