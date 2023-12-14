@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cafy0wpi1td6w"]
+[gd_scene load_steps=25 format=3 uid="uid://cafy0wpi1td6w"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_otru5"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_70q33"]
@@ -619,11 +619,6 @@ texture = ExtResource("1_otru5")
 9:9/0/physics_layer_0/angular_velocity = 0.0
 9:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 9:9/0/physics_layer_1/angular_velocity = 0.0
-10:9/0 = 0
-10:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-10:9/0/physics_layer_0/angular_velocity = 0.0
-10:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-10:9/0/physics_layer_1/angular_velocity = 0.0
 11:9/0 = 0
 11:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:9/0/physics_layer_0/angular_velocity = 0.0
@@ -669,11 +664,6 @@ texture = ExtResource("1_otru5")
 9:10/0/physics_layer_0/angular_velocity = 0.0
 9:10/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 9:10/0/physics_layer_1/angular_velocity = 0.0
-10:10/0 = 0
-10:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-10:10/0/physics_layer_0/angular_velocity = 0.0
-10:10/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-10:10/0/physics_layer_1/angular_velocity = 0.0
 7:11/0 = 0
 7:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:11/0/physics_layer_0/angular_velocity = 0.0
@@ -844,6 +834,15 @@ texture = ExtResource("1_otru5")
 10:14/0/physics_layer_0/angular_velocity = 0.0
 10:14/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 10:14/0/physics_layer_1/angular_velocity = 0.0
+10:9/size_in_atlas = Vector2i(1, 2)
+10:9/next_alternative_id = 2
+10:9/0 = 0
+10:9/0/z_index = 1
+10:9/0/y_sort_origin = 10
+10:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:9/0/physics_layer_0/angular_velocity = 0.0
+10:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:9/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xptm"]
 texture = ExtResource("2_70q33")
@@ -2961,26 +2960,30 @@ texture = ExtResource("3_ndh2a")
 
 [sub_resource type="TileSet" id="TileSet_7e2ao"]
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_6ba6g")
-physics_layer_1/collision_layer = 1
+physics_layer_1/collision_layer = 0
+physics_layer_1/collision_mask = 0
 physics_layer_1/physics_material = SubResource("PhysicsMaterial_v5hjn")
 sources/2 = SubResource("TileSetAtlasSource_4r5lt")
 sources/0 = SubResource("TileSetAtlasSource_2w1se")
 sources/1 = SubResource("TileSetAtlasSource_5xptm")
 
-[sub_resource type="Gradient" id="Gradient_7rmpf"]
+[sub_resource type="Gradient" id="Gradient_ff42o"]
 offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
 colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0r03p"]
-gradient = SubResource("Gradient_7rmpf")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3fbug"]
+gradient = SubResource("Gradient_ff42o")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.183761, 0)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a8lgq"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s1cf5"]
 blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oooxv"]
+size = Vector2(5.62324, 1.96813)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifdg"]
 size = Vector2(14.2783, 15.9981)
@@ -2989,8 +2992,10 @@ size = Vector2(14.2783, 15.9981)
 size = Vector2(190.815, 191.94)
 
 [node name="Node2D" type="Node2D"]
+y_sort_enabled = true
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 scale = Vector2(5.335, 5.335)
 tile_set = SubResource("TileSet_7e2ao")
 format = 2
@@ -3011,45 +3016,75 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
 
-[node name="LampPost" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(32.6148, 14.2456)
-texture = ExtResource("4_fv2qi")
+[node name="LampPost2" type="StaticBody2D" parent="TileMap"]
+y_sort_enabled = true
+position = Vector2(-32.9897, 29.4283)
+collision_layer = 2
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost2"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("4_fv2qi")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost2/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_3fbug")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost2/LampPost"]
 modulate = Color(2, 2, 2, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+z_index = 1
+material = SubResource("CanvasItemMaterial_s1cf5")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("5_bm8rn")
 
-[node name="LampPost3" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(-33.0047, 13.4808)
-texture = ExtResource("4_fv2qi")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_oooxv")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost3"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost4" type="StaticBody2D" parent="TileMap"]
+y_sort_enabled = true
+position = Vector2(32.4274, 30.1781)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost4"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("4_fv2qi")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost4/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0r03p")
+texture = SubResource("GradientTexture2D_3fbug")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost3"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost4/LampPost"]
 modulate = Color(2, 2, 2, 1)
-material = SubResource("CanvasItemMaterial_a8lgq")
-position = Vector2(4.49859, -18.3693)
+z_index = 1
+material = SubResource("CanvasItemMaterial_s1cf5")
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("5_bm8rn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_oooxv")
 
 [node name="ExitPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)

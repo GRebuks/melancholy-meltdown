@@ -6,6 +6,7 @@ using System.Collections;
 
 public partial class AchievementManager : Node
 {
+    //private Node2D sceneNode;
     // Achievement UI element
     private static PackedScene achievementUI = (PackedScene)ResourceLoader.Load("res://Assets/UI/achievement_panel.tscn");
     // Make a dictionary of all the achievements
@@ -19,7 +20,12 @@ public partial class AchievementManager : Node
 
     public override void _Ready()
     {
-        UI = GetTree().Root.GetNode<Node2D>("TestScene").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
+        //sceneNode = GetTree().Root.GetChild<Node2D>(0);
+        //UI = GetTree().Root.GetNode<Node2D>("TestScene").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
+
+        UI = GetTree().Root.GetNode<Node2D>("Node2D").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
+
+        //UI = sceneNode.GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
         AchievementNameQueue = new List<string>();
     }
 

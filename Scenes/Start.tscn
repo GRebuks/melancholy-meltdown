@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://yiwtwg6jm1st"]
+[gd_scene load_steps=39 format=3 uid="uid://cu0ckxoh0h84j"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="2_4bxcj"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_1352e"]
@@ -2021,24 +2021,28 @@ texture = ExtResource("2_4bxcj")
 
 [sub_resource type="TileSet" id="TileSet_nd0gl"]
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_mbpw6")
-physics_layer_1/collision_layer = 1
+physics_layer_1/collision_layer = 0
+physics_layer_1/collision_mask = 0
 physics_layer_1/physics_material = SubResource("PhysicsMaterial_1ei0y")
 sources/1 = SubResource("TileSetAtlasSource_ljh5v")
 
-[sub_resource type="Gradient" id="Gradient_ff42o"]
+[sub_resource type="Gradient" id="Gradient_ta123"]
 offsets = PackedFloat32Array(0, 0.00826446, 0.578512, 0.673554)
 colors = PackedColorArray(1, 1, 1, 1, 0.967065, 0.967065, 0.967065, 1, 0.138614, 0.138614, 0.138614, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_flgpj"]
-gradient = SubResource("Gradient_ff42o")
+gradient = SubResource("Gradient_ta123")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.183761, 0)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4tsql"]
 blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23gfk"]
+size = Vector2(5.62324, 1.96813)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifdg"]
 size = Vector2(14.2783, 15.9981)
@@ -2054,8 +2058,11 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx6c5"]
 size = Vector2(191.003, 191.378)
 
+[sub_resource type="Sky" id="Sky_qxp1q"]
+
 [sub_resource type="Environment" id="Environment_j5ly4"]
 background_mode = 3
+sky = SubResource("Sky_qxp1q")
 glow_enabled = true
 glow_intensity = 8.0
 glow_strength = 2.0
@@ -2063,10 +2070,10 @@ glow_blend_mode = 0
 glow_hdr_threshold = 1.12
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_867qn"]
-size = Vector2(31, 32)
+size = Vector2(66, 21.5771)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ukpnn"]
-radius = 22.0
+radius = 39.2046
 
 [sub_resource type="Animation" id="Animation_gk4up"]
 resource_name = "Dzhupels1"
@@ -2160,8 +2167,10 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
+y_sort_enabled = true
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 scale = Vector2(5.335, 5.335)
 tile_set = SubResource("TileSet_nd0gl")
 format = 2
@@ -2175,13 +2184,22 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(-196614, 786433, 4, -196613, 1, 5, -196612, 917505, 4, 262138, 1, 20, 262139, 65537, 20, 262140, 131073, 20, 327676, 131073, 21, 393212, 131073, 22, 327674, 1, 21, 393210, 1, 22, 327675, 65537, 21, 393211, 65537, 22, 196611, 786433, 20, 262147, 786433, 21, 327683, 786433, 22, 196612, 851969, 20, 262148, 851969, 21, 327684, 851969, 22, 196613, 917505, 20, 262149, 917505, 21, 327685, 917505, 22, -262150, 786433, 3, -262149, 851969, 3, -262148, 917505, 3, -327686, 786433, 2, -327685, 851969, 2, -327684, 917505, 2, -393222, 786433, 1, -393221, 851969, 1, -393220, 917505, 1, -458758, 786433, 0, -458757, 851969, 0, -458756, 917505, 0)
 
-[node name="LampPost" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(58.8566, 9.9344)
-texture = ExtResource("2_wy47o")
+[node name="LampPost" type="StaticBody2D" parent="TileMap"]
+y_sort_enabled = true
+position = Vector2(59.6064, 28.866)
+collision_layer = 2
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_wy47o")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
@@ -2189,19 +2207,34 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_flgpj")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost/LampPost"]
 modulate = Color(2, 2, 2, 1)
+z_index = 1
 material = SubResource("CanvasItemMaterial_4tsql")
-position = Vector2(4.49859, -18.3693)
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_8pyiq")
 
-[node name="LampPost2" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(57.3571, -48.5473)
-texture = ExtResource("2_wy47o")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_23gfk")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost2"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost2" type="StaticBody2D" parent="TileMap"]
+position = Vector2(59.7938, -33.552)
+scale = Vector2(1, 1)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost2"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_wy47o")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost2/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
@@ -2209,19 +2242,34 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_flgpj")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost2"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost2/LampPost"]
 modulate = Color(2, 2, 2, 1)
+z_index = 1
 material = SubResource("CanvasItemMaterial_4tsql")
-position = Vector2(4.49859, -18.3693)
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_8pyiq")
 
-[node name="LampPost3" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(-52.5436, 12.7535)
-texture = ExtResource("2_wy47o")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost2"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_23gfk")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost3"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost3" type="StaticBody2D" parent="TileMap"]
+position = Vector2(-56.2325, -34.8641)
+scale = Vector2(1, 1)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost3"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_wy47o")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost3/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
@@ -2229,19 +2277,34 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_flgpj")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost3"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost3/LampPost"]
 modulate = Color(2, 2, 2, 1)
+z_index = 1
 material = SubResource("CanvasItemMaterial_4tsql")
-position = Vector2(4.49859, -18.3693)
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_8pyiq")
 
-[node name="LampPost4" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.99)
-position = Vector2(-54.0431, -45.7282)
-texture = ExtResource("2_wy47o")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost3"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_23gfk")
 
-[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost4"]
-position = Vector2(4.68603, 22.8679)
+[node name="LampPost4" type="StaticBody2D" parent="TileMap"]
+position = Vector2(-58.4818, 26.6167)
+scale = Vector2(1, 1)
+collision_layer = 2
+
+[node name="LampPost" type="Sprite2D" parent="TileMap/LampPost4"]
+modulate = Color(1, 1, 1, 0.99)
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_wy47o")
+offset = Vector2(0, -16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMap/LampPost4/LampPost"]
+z_index = 1
+position = Vector2(4.73281, 6.80075)
 scale = Vector2(2.05543, 1.87217)
 color = Color(1, 0.968627, 0.0196078, 1)
 energy = 0.5
@@ -2249,11 +2312,17 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_flgpj")
 texture_scale = 0.83
 
-[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost4"]
+[node name="Bulb" type="Sprite2D" parent="TileMap/LampPost4/LampPost"]
 modulate = Color(2, 2, 2, 1)
+z_index = 1
 material = SubResource("CanvasItemMaterial_4tsql")
-position = Vector2(4.49859, -18.3693)
+position = Vector2(4.54537, -34.4365)
 texture = ExtResource("3_8pyiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/LampPost4"]
+position = Vector2(-1.49953, 6.32614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_23gfk")
 
 [node name="ExitPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
@@ -2339,11 +2408,16 @@ color = Color(0.101961, 0.156863, 0.160784, 1)
 environment = SubResource("Environment_j5ly4")
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
-scale = Vector2(2.27, 2.27)
+z_index = 1
+y_sort_enabled = true
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("7_p6m7v")
+BaseSpeed = 600.0
+Speed = 600.0
 
 [node name="Sprite" type="Sprite2D" parent="Player"]
+scale = Vector2(2.25, 2.25)
 texture = ExtResource("8_wyr8h")
 hframes = 11
 
@@ -2358,7 +2432,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-0.5, 0)
+position = Vector2(0, 24.7885)
 shape = SubResource("RectangleShape2D_867qn")
 
 [node name="Area2D" type="Area2D" parent="Player"]

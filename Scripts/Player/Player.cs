@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
+    private Node2D sceneNode;
 
-
-    public float BaseSpeed = 300.0f;
-    public float Speed = 300.0f;
+    [Export] public float BaseSpeed = 300.0f;
+    [Export] public float Speed = 300.0f;
     Texture2D texture;
     public Dictionary<string, Texture2D> skins;
 
@@ -119,6 +119,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
+        //sceneNode = GetTree().Root.GetChild<Node2D>(0);
         camera = (Camera2D)GetNode("Camera2D");
         _healthBar = camera.GetNode<ProgressBar>("UI/HealthBar");
         _healthBarLabel = _healthBar.GetNode<Label>("EmotionalDamage");
@@ -154,6 +155,8 @@ public partial class Player : CharacterBody2D
         skins.Add("dzempers", (Texture2D)textureResource);
         textureResource = ResourceLoader.Load("res://Assets/Sprites/3DzhupelsSarkansKostims.png");
         skins.Add("kostims", (Texture2D)textureResource);
+
+        AchievementManager.ResetAchievements();
         AchievementManager.AddProgress("The Tester", progress);
     }
 
@@ -199,26 +202,23 @@ public partial class Player : CharacterBody2D
         {
             if (direction.Y < 0)
             {
-                sprite.Scale = new Vector2(-1, sprite.Scale.Y);
+                sprite.Scale = new Vector2(-Math.Abs(sprite.Scale.X), sprite.Scale.Y);
                 animation.Play("Dzhupels4");
             } 
             else if (direction.Y > 0) 
             {
-                GD.Print(direction);
                 animation.Play("Dzhupels2");
-                sprite.Scale = new Vector2(1, sprite.Scale.Y);
+                sprite.Scale = new Vector2(Math.Abs(sprite.Scale.X), sprite.Scale.Y);
             } 
             else if (direction.X < 0)
             {
-                GD.Print(direction);
                 animation.Play("Dzhupels3");
-                sprite.Scale = new Vector2(-1, sprite.Scale.Y);
+                sprite.Scale = new Vector2(-Math.Abs(sprite.Scale.X), sprite.Scale.Y);
             }
             else if (direction.X > 0)
             {
-                GD.Print(direction);
                 animation.Play("Dzhupels3");
-                sprite.Scale = new Vector2(1, sprite.Scale.Y);
+                sprite.Scale = new Vector2(Math.Abs(sprite.Scale.X), sprite.Scale.Y);
             }
 
             velocity.X = direction.X * Speed;
@@ -353,6 +353,7 @@ public partial class Player : CharacterBody2D
     // on area entered
     private void _on_area_entered(Area2D area)
     {
+        GD.Print("Area entered: ", area.Name);
         // If the area is in group consumable
         if (area.IsInGroup("Consumable"))
         {
@@ -473,7 +474,10 @@ public partial class Player : CharacterBody2D
 
     private void InstantiateRewardConsumable(Quest quest)
     {
-        GetTree().Root.GetNode("TestScene").AddChild(quest.RewardConsumableNode);
+        // SCENE CHANGE
+        //GetTree().Root.GetNode("TestScene").AddChild(quest.RewardConsumableNode);
+        GetTree().Root.GetNode<Node2D>("Node2D").AddChild(quest.RewardConsumableNode);
+        //sceneNode.AddChild(quest.RewardConsumableNode);
         quest.RewardConsumableNode.Position = new Vector2(quest.Position.X, quest.Position.Y);
     }
 

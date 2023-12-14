@@ -33,3 +33,4 @@ project/assembly_name="Melancholy Meltdown"
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0313726, 0.0745098, 0.0941176, 1)
