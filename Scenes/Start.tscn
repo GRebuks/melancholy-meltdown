@@ -10,11 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://dm1cyyu4rjl7o" path="res://Assets/Sprites/Dzhupels.png" id="8_wyr8h"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="9_c45f1"]
 [ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="9_hm58e"]
-[ext_resource type="PackedScene" uid="uid://dtpdmipjticcc" path="res://Assets/Objects/Quests/test_quest.tscn" id="11_syvun"]
-[ext_resource type="Script" path="res://Scripts/Quests/PantsQuest.cs" id="12_nu0dv"]
-[ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="13_o3ja6"]
-[ext_resource type="PackedScene" uid="uid://dfphki6ndrdx0" path="res://Assets/Objects/Consumables/sweater.tscn" id="14_swu7r"]
-[ext_resource type="PackedScene" uid="uid://b5g16h1sw8tdc" path="res://Assets/Objects/Consumables/pants.tscn" id="15_7083u"]
+[ext_resource type="PackedScene" uid="uid://bdm3naobqcjts" path="res://Assets/Objects/Quests/sweater_quest.tscn" id="11_shhqp"]
+[ext_resource type="PackedScene" uid="uid://bvo15ofrjbrk0" path="res://Assets/Objects/Quests/pants_quest.tscn" id="12_c4osr"]
+[ext_resource type="PackedScene" uid="uid://c0g5u1sxvo24u" path="res://Assets/Objects/Quests/junkie_quest.tscn" id="13_ppa4a"]
+[ext_resource type="PackedScene" uid="uid://bgrjsakofey6a" path="res://Assets/Objects/Quests/playtime_quest.tscn" id="14_1c3b5"]
+[ext_resource type="PackedScene" uid="uid://bno7w4ujiuq4a" path="res://Assets/Objects/Quests/alcoholic_quest.tscn" id="15_8v3bg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
 
@@ -2442,17 +2442,20 @@ position = Vector2(-196, -161)
 [node name="Booze4" parent="." instance=ExtResource("9_hm58e")]
 position = Vector2(-130, -161)
 
-[node name="PantsQuest" parent="." instance=ExtResource("11_syvun")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(-253, 169)
-script = ExtResource("12_nu0dv")
+[node name="AlcoholicQuest" parent="." instance=ExtResource("15_8v3bg")]
+position = Vector2(-156, 148)
 
-[node name="SweaterQuest" parent="." instance=ExtResource("11_syvun")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(-354, -130)
-script = ExtResource("13_o3ja6")
+[node name="SweaterQuest" parent="." instance=ExtResource("11_shhqp")]
+position = Vector2(-153, 429)
+
+[node name="PlaytimeQuest" parent="." instance=ExtResource("14_1c3b5")]
+position = Vector2(174, 438)
+
+[node name="PantsQuest" parent="." instance=ExtResource("12_c4osr")]
+position = Vector2(166, 159)
+
+[node name="JunkieQuest" parent="." instance=ExtResource("13_ppa4a")]
+position = Vector2(-153, -1)
 
 [node name="Sweater" parent="." instance=ExtResource("14_swu7r")]
 

@@ -6,8 +6,8 @@ public partial class Pants : Clothes
     public Pants()
     {
         Type = "Pants";
-        Title = "Pants";
-        Description = "Gives Dzhupel pants with a belt";
+        Title = "Stained Pants";
+        Description = "Old pair of pants. Comes with a belt and a conspicuous brown stain.";
         PermanentHealthEffect = 10f;
         PermanentSpeedEffect = 50f;
         TextureName = "pants";

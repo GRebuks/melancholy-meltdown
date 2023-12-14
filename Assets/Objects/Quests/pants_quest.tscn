@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvo15ofrjbrk0"]
+
+[ext_resource type="Script" path="res://Scripts/Quests/PantsQuest.cs" id="1_qpriu"]
+[ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_nhsk8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
+radius = 45.0999
+
+[node name="PantsQuest" type="Area2D" groups=["Quest"]]
+z_index = 1
+script = ExtResource("1_qpriu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ccqtk")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_nhsk8")
