@@ -18,6 +18,11 @@ public partial class Player : CharacterBody2D
 
     public Consumable consumable = null;
 
+    // Audio
+    public AudioStreamPlayer2D useConsumableSFX;
+    public AudioStreamPlayer2D putDownConsumableSFX;
+    public AudioStreamPlayer2D pickUpConsumableSFX;
+
     // Animation
     public Sprite2D sprite;
     private AnimationPlayer animation;
@@ -159,6 +164,10 @@ public partial class Player : CharacterBody2D
         textureResource = ResourceLoader.Load("res://Assets/Sprites/3DzhupelsSarkansKostims.png");
         skins.Add("costume", (Texture2D)textureResource);
 
+        useConsumableSFX = GetNode<AudioStreamPlayer2D>("useConsumable");
+        putDownConsumableSFX = GetNode<AudioStreamPlayer2D>("putDownConsumable");
+        pickUpConsumableSFX = GetNode<AudioStreamPlayer2D>("pickUpConsumable");
+
         AchievementManager.ResetAchievements();
         AchievementManager.AddProgress("The Tester", progress);
     }
@@ -245,6 +254,7 @@ public partial class Player : CharacterBody2D
             // Consume the consumable on key press E
             if (Input.IsActionJustPressed("use"))
             {
+                useConsumableSFX.Play();
                 ConsumeConsumable();
             }
             // Drop consumable on key press Q
@@ -254,6 +264,7 @@ public partial class Player : CharacterBody2D
                 RemoveChild(consumable);
                 GetParent().AddChild(consumable);
                 consumable.ZIndex = 1;
+                putDownConsumableSFX.Play();
                 consumable.Position = new Vector2(GlobalPosition.X, GlobalPosition.Y + 30f);
                 consumable = null;
                 ClearConsumableCard();
@@ -372,6 +383,7 @@ public partial class Player : CharacterBody2D
             Consumable consumable = (Consumable)area;
             if (this.consumable == null)
             {
+                pickUpConsumableSFX.Play();
                 this.consumable = consumable;
                 UpdateConsumableCard(consumable);
             }
