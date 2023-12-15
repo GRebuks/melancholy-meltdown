@@ -3,14 +3,15 @@
 [ext_resource type="Script" path="res://Scripts/Quests/PantsQuest.cs" id="1_wh45y"]
 [ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_riv4m"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
-radius = 45.0999
+[sub_resource type="CircleShape2D" id="CircleShape2D_ge3fc"]
+radius = 37.855
 
 [node name="PantsQuest" type="Area2D" groups=["Quest"]]
 script = ExtResource("1_wh45y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ccqtk")
+shape = SubResource("CircleShape2D_ge3fc")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("2_riv4m")

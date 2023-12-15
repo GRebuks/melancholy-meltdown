@@ -8,7 +8,7 @@ public partial class Sugar : Consumable
         Type = "Drug";
         Title = "\"Sugar\"";
         Description = "Adds some emotional stability and SPEEED";
-        HealthEffect = 20f;
+        HealthEffect = 10f;
         SpeedEffect = 500f;
         SugarEffect = 10f;
 

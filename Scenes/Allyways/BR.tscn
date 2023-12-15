@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=32 format=3 uid="uid://njrgek7lds3a"]
+[gd_scene load_steps=33 format=3 uid="uid://njrgek7lds3a"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_j4jp2"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_2u6vu"]
@@ -2990,7 +2989,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
 size = Vector2(190.44, 189.316)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D4" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -3085,7 +3084,6 @@ y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_bqi24")
 position = Vector2(-14.2455, -53.7957)
 rotation = 1.5708
-scale = Vector2(1, 1)
 texture = ExtResource("6_m711j")
 offset = Vector2(0, -16)
 
@@ -3106,7 +3104,6 @@ y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_bqi24")
 position = Vector2(48.7348, -53.2334)
 rotation = 1.5708
-scale = Vector2(1, 1)
 texture = ExtResource("7_cf1af")
 offset = Vector2(0, -16)
 
@@ -3142,7 +3139,7 @@ shape = SubResource("RectangleShape2D_cifdg")
 position = Vector2(0, 3.57628e-07)
 scale = Vector2(5.335, 5.335)
 
-[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(192, 0)
 script = ExtResource("3_tawc6")
 Direction = 3
@@ -3150,7 +3147,7 @@ Direction = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint2"]
 shape = SubResource("CircleShape2D_1jvnu")
 
-[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(0, 192)
 script = ExtResource("3_tawc6")
 Direction = 2
@@ -3166,7 +3163,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(0.187537, -31.6776)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_m1d8d")]

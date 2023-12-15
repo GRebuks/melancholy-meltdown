@@ -25,8 +25,10 @@ anchor_left = 0.183
 anchor_top = 0.55
 anchor_right = 1.0
 anchor_bottom = 0.55
-offset_left = 0.199989
-offset_top = -37.0
+offset_left = -0.800011
+offset_top = -46.0
+offset_right = -1.0
+offset_bottom = -8.99999
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
@@ -39,9 +41,10 @@ anchor_left = 0.183
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 0.199989
-offset_top = 1.0
-offset_bottom = 31.0
+offset_left = 1.19999
+offset_top = -2.99999
+offset_right = 1.0
+offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 18
@@ -57,7 +60,7 @@ offset_right = -0.200005
 texture = ExtResource("1_mlj6h")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 

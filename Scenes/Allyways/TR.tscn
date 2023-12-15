@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=33 format=3 uid="uid://c7ky31t14ese0"]
+[gd_scene load_steps=35 format=3 uid="uid://c7ky31t14ese0"]
 
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_j2tis"]
 [ext_resource type="Texture2D" uid="uid://tac5exfcdslx" path="res://Assets/Tilemaps/billboards.png" id="2_krmet"]
@@ -8,13 +7,10 @@
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="3_q0oja"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="4_ljoaf"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="5_6f1n1"]
-
 [ext_resource type="Texture2D" uid="uid://c8mni3jtdwo0u" path="res://Assets/Sprites/Signs/SignGreen.png" id="8_7x8ye"]
-[ext_resource type="Texture2D" uid="uid://215uftogaq3u" path="res://Assets/Sprites/Signs/Neon7.png" id="9_weef3"]
-
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_rr4ox"]
-[ext_resource type="PackedScene" path="res://Assets/Objects/Quests/alcoholic_quest.tscn" id="9_4otyd"]
-
+[ext_resource type="PackedScene" uid="uid://dvajnac4lv25p" path="res://Assets/Objects/Quests/alcoholic_quest.tscn" id="9_4otyd"]
+[ext_resource type="Texture2D" uid="uid://215uftogaq3u" path="res://Assets/Sprites/Signs/Neon7.png" id="9_weef3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -2975,7 +2971,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
 size = Vector2(186.504, 183.13)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D3" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -3079,7 +3075,6 @@ z_index = 1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_kxiiw")
 position = Vector2(-47.2352, -8.62231)
-scale = Vector2(1, 1)
 texture = ExtResource("8_7x8ye")
 offset = Vector2(0, -16)
 
@@ -3099,7 +3094,6 @@ z_index = 1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_kxiiw")
 position = Vector2(64.2924, -44.9859)
-scale = Vector2(1, 1)
 texture = ExtResource("9_weef3")
 offset = Vector2(0, -16)
 
@@ -3133,7 +3127,7 @@ shape = SubResource("RectangleShape2D_cifdg")
 [node name="SpawnRoomPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
 
-[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(192, 0)
 script = ExtResource("2_ll15j")
 Direction = 3
@@ -3141,7 +3135,7 @@ Direction = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint2"]
 shape = SubResource("CircleShape2D_1jvnu")
 
-[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(0, -192)
 script = ExtResource("2_ll15j")
 Direction = 1
@@ -3156,7 +3150,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(0.656044, -2.15557)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_rr4ox")]

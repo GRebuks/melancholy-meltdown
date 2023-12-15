@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Collections;
+using System.IO;
 
 public partial class AchievementManager : Node
 {
@@ -14,15 +15,15 @@ public partial class AchievementManager : Node
 
     private static Control UI; 
 
-    private static List<string> AchievementNameQueue;
+    public static List<string> AchievementNameQueue;
 
     private static Panel activeAchievementPanel;
 
-    public override void _Ready()
-    {
-        //UI = GetTree().Root.GetNode<Node2D>("TestScene").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<Control>("UI");
+    private static string achievementFilePath = "achievements.json";
 
-        UI = GetTree().Root.GetNode<Node2D>("Node2D").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<CanvasLayer>("CanvasLayer").GetNode<Control>("UI");
+    public static void LoadAchievementManager(Node root)
+    {
+        UI = root.GetNode<Node2D>("Node2D").GetNode<CharacterBody2D>("Player").GetNode<Camera2D>("Camera2D").GetNode<CanvasLayer>("CanvasLayer").GetNode<Control>("UI");
 
         AchievementNameQueue = new List<string>();
     }
@@ -51,15 +52,14 @@ public partial class AchievementManager : Node
     // Constructor
     public AchievementManager()
     {
-        achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
+        achievements = LoadAchievementsFromFile(achievementFilePath);
         if (achievements == null)
         {
             achievements = new Dictionary<string, Dictionary<string, object>>();
             AddNewAchievements();
-            achievements = LoadAchievementsFromFile("Scripts/Achievements/achievements.json");
+            achievements = LoadAchievementsFromFile(achievementFilePath);
         }
     }
-
     // Add progress to an achievement
     public static void AddProgress(string name, Int64 progress)
     {
@@ -74,7 +74,7 @@ public partial class AchievementManager : Node
                 CompleteAchievement(name);
             }
         }
-        SaveAchievementsToFile(achievements, "Scripts/Achievements/achievements.json");
+        SaveAchievementsToFile(achievements, achievementFilePath);
     }
 
     // Complete an achievement
@@ -101,7 +101,7 @@ public partial class AchievementManager : Node
             string json = JsonConvert.SerializeObject(achievements, Formatting.Indented);
 
             // Write the JSON string to the specified file
-            System.IO.File.WriteAllText(filePath, json);
+            File.WriteAllText(filePath, json);
         }
         catch (Exception e)
         {
@@ -114,7 +114,7 @@ public partial class AchievementManager : Node
         try
         {
             // Read the JSON string from the specified file
-            string json = System.IO.File.ReadAllText(filePath);
+            string json = File.ReadAllText(filePath);
 
             // Convert the JSON string to a dictionary
             Dictionary<string, Dictionary<string, object>> achievements = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(json);
@@ -137,7 +137,7 @@ public partial class AchievementManager : Node
             achievement.Value["progress"] = 0L;
             achievement.Value["completed"] = false;
         }
-        SaveAchievementsToFile(achievements, "Scripts/Achievements/achievements.json");
+        SaveAchievementsToFile(achievements, achievementFilePath);
     }
 
     // Hard reset all achievements
@@ -152,16 +152,13 @@ public partial class AchievementManager : Node
             achievement.Value["progress"] = 0L;
             achievement.Value["completed"] = false;
         }
-        SaveAchievementsToFile(achievements, "Scripts/Achievements/achievements.json");
+        SaveAchievementsToFile(achievements, achievementFilePath);
     }
 
     // Add new achievements
     public static void AddNewAchievements()
     {
         // Add new achievements
-        
-        // DONE
-        AddAchievement("The Tester", "Start the test scene", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
         // DONE
         AddAchievement("Lights Out!", "Black out from alcohol overconsumption for the first time", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
         // DONE
@@ -182,7 +179,7 @@ public partial class AchievementManager : Node
         AddAchievement("The New Generation", "Give an explosive device to a child", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
         // DONE
         AddAchievement("Go out in style", "Eat a pipe bomb [INSERT EXPLOSION EFFECT]", "res://Assets/Sprites/Achievements/test_achievement.png", 1L, 0L);
-        SaveAchievementsToFile(achievements, "Scripts/Achievements/achievements.json");
+        SaveAchievementsToFile(achievements, achievementFilePath);
     }
 
     // Output achievement completion as UI element

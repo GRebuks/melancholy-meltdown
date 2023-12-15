@@ -8,7 +8,7 @@ public partial class Coke : Consumable
         Type = "Food";
         Title = "Bottle of coke";
         Description = "A bottle of coke - the beverage kind.";
-        HealthEffect = 10f;
+        HealthEffect = 5f;
         SpeedEffect = 50f;
 
         Effects.Add("Health", HealthEffect);

@@ -3,18 +3,18 @@
 [ext_resource type="Script" path="res://Scripts/Quests/SweaterQuest.cs" id="1_m4ngr"]
 [ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_g7n3d"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
-radius = 45.0999
+[sub_resource type="CircleShape2D" id="CircleShape2D_0gvtv"]
+radius = 37.855
 
 [node name="SweaterQuest" type="Area2D" groups=["Quest"]]
 z_index = 1
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(-159, 168)
 script = ExtResource("1_m4ngr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ccqtk")
+shape = SubResource("CircleShape2D_0gvtv")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("2_g7n3d")

@@ -9,6 +9,8 @@ public partial class WeirdLiquid : Consumable
         Title = "Weird liquid";
         Description = "Smells funny. Will you take the risk?";
         
+        HasUnknownStats = true;
+
         Random random = new Random();
         int randomNumber = random.Next(1, 10);
         if (randomNumber == 1)
