@@ -8,7 +8,7 @@ public partial class Cigarettes : Consumable
         Type = "Drug";
         Title = "Pack of cigarettes";
         Description = "A momentary escape from the harsh realities of the dystopian cityscape";
-        HealthEffect = 15f;
+        HealthEffect = 8f;
         SpeedEffect = -50f;
 
         Effects.Add("Health", HealthEffect);

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0oxydm0g81it"]
+
+[ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="1_nd87x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx6c5"]
+size = Vector2(190.628, 191.003)
+
+[node name="TileCheck" type="Area2D"]
+scale = Vector2(5.335, 5.335)
+script = ExtResource("1_nd87x")
+metadata/Direction = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.281112, -0.281084)
+shape = SubResource("RectangleShape2D_nx6c5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

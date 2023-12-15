@@ -1,11 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://cu0ckxoh0h84j"]
+[gd_scene load_steps=44 format=3 uid="uid://cu0ckxoh0h84j"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="2_4bxcj"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="2_1352e"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="2_wy47o"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_8pyiq"]
 [ext_resource type="Texture2D" uid="uid://d0tjyaqft1big" path="res://Assets/Materials/new_gradient_texture_2d.tres" id="3_ptkvm"]
-[ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="4_w6kp0"]
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="7_p6m7v"]
 [ext_resource type="Texture2D" uid="uid://dm1cyyu4rjl7o" path="res://Assets/Sprites/Dzhupels.png" id="8_wyr8h"]
 [ext_resource type="PackedScene" uid="uid://dk401qd56y6i7" path="res://Assets/UI/ui.tscn" id="9_c45f1"]
@@ -15,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bua6b1ms165h6" path="res://Assets/Objects/Quests/sweater_quest.tscn" id="12_rys28"]
 [ext_resource type="PackedScene" uid="uid://bugd2urlwauwm" path="res://Assets/Objects/Quests/pants_quest.tscn" id="15_b4ndk"]
 [ext_resource type="AudioStream" uid="uid://dgbicg2jxwpj1" path="res://Assets/Audio/bgMusic.mp3" id="16_2brl0"]
-[ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="16_tyk7g"]
+[ext_resource type="PackedScene" uid="uid://b0oxydm0g81it" path="res://Scripts/LevelGen/tile_check.tscn" id="16_2lpxw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
 
@@ -2053,9 +2052,6 @@ size = Vector2(14.2783, 15.9981)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3mdo5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx6c5"]
-size = Vector2(190.628, 191.003)
-
 [sub_resource type="Sky" id="Sky_sl3iy"]
 
 [sub_resource type="Environment" id="Environment_j5ly4"]
@@ -2395,15 +2391,6 @@ metadata/Direction = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint"]
 shape = SubResource("CircleShape2D_3mdo5")
 
-[node name="TileCheck" type="Area2D" parent="."]
-scale = Vector2(5.335, 5.335)
-script = ExtResource("4_w6kp0")
-metadata/Direction = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
-position = Vector2(0.281112, -0.281084)
-shape = SubResource("RectangleShape2D_nx6c5")
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_as_relative = false
 color = Color(0.101961, 0.156863, 0.160784, 1)
@@ -2469,8 +2456,7 @@ position = Vector2(-153, 167)
 [node name="SweaterQuest" parent="." instance=ExtResource("12_rys28")]
 position = Vector2(161, 166)
 
-[node name="ConsumableSpawn" parent="." instance=ExtResource("16_tyk7g")]
+[node name="TileCheck" parent="." instance=ExtResource("16_2lpxw")]
 
-[connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Player/Area2D" to="Player" method="_on_area_exited"]

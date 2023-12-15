@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=34 format=3 uid="uid://21rxjor8dlhw"]
+[gd_scene load_steps=37 format=3 uid="uid://21rxjor8dlhw"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_7b2tw"]
 [ext_resource type="Texture2D" uid="uid://ckl0f48rumipj" path="res://Assets/Tilemaps/BuildingsMore.png" id="1_syq86"]
@@ -8,12 +7,10 @@
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="2_rppli"]
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_hcv4q"]
 [ext_resource type="Texture2D" uid="uid://cbihs2tis7txk" path="res://Assets/Tilemaps/Store.png" id="4_lbip7"]
-
 [ext_resource type="Texture2D" uid="uid://dqpsld45atkcw" path="res://Assets/Sprites/Signs/StoreSign.png" id="7_p61og"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_mwcef"]
 [ext_resource type="PackedScene" uid="uid://3530s1iw6sww" path="res://Assets/Objects/Quests/playtime_quest.tscn" id="9_8b5j8"]
-[ext_resource type="PackedScene" path="res://Assets/Objects/Quests/alcoholic_quest.tscn" id="10_32gmx"]
-
+[ext_resource type="PackedScene" uid="uid://dvajnac4lv25p" path="res://Assets/Objects/Quests/alcoholic_quest.tscn" id="10_32gmx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3227,7 +3224,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
 size = Vector2(235.801, 154.264)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D4" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -3374,7 +3371,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(-23.6177, -16.776)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_mwcef")]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bno7w4ujiuq4a"]
+[gd_scene load_steps=4 format=3 uid="uid://dvajnac4lv25p"]
 
 [ext_resource type="Script" path="res://Scripts/Quests/AlcoholicQuest.cs" id="1_vd86j"]
-[ext_resource type="Texture2D" uid="uid://c5tsjq4ef7i7a" path="res://Assets/Sprites/Player.png" id="2_hhw32"]
+[ext_resource type="Texture2D" uid="uid://b3cl8oyhn1vif" path="res://Assets/Sprites/alcoholic.png" id="2_eo6py"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ccqtk"]
-radius = 45.0999
+radius = 68.0074
 
 [node name="AlcoholicQuest" type="Area2D" groups=["Quest"]]
 z_index = 1
@@ -14,4 +14,6 @@ script = ExtResource("1_vd86j")
 shape = SubResource("CircleShape2D_ccqtk")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_hhw32")
+position = Vector2(5, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("2_eo6py")

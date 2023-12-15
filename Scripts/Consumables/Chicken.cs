@@ -8,7 +8,7 @@ public partial class Chicken : Consumable
         Type = "Food";
         Title = "Rotisserie chicken";
         Description = "A mighty meal for a mighty man";
-        HealthEffect = 20f;
+        HealthEffect = 8f;
         SpeedEffect = -50f;
 
         Effects.Add("Health", HealthEffect);

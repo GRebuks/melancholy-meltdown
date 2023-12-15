@@ -8,7 +8,7 @@ public partial class Money : Consumable
         Type = "Food";
         Title = "A wad of cash";
         Description = "Just the smell of it fills you with determination. Or, in this case, with emotional stability.";
-        HealthEffect = 15f;
+        HealthEffect = 5f;
         SugarEffect = 2f;
 
         Effects.Add("Health", HealthEffect);

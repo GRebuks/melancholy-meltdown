@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=32 format=3 uid="uid://cenaodo0rjj6t"]
+[gd_scene load_steps=33 format=3 uid="uid://cenaodo0rjj6t"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_jidyl"]
 [ext_resource type="Texture2D" uid="uid://btews5cyaaj15" path="res://Assets/Tilemaps/Building1.png" id="1_x6gtm"]
@@ -9,11 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dnamyjqkten2j" path="res://Assets/Sprites/Bulb.png" id="3_4k2qp"]
 [ext_resource type="Texture2D" uid="uid://dw7j25silutoe" path="res://Assets/Sprites/Signs/DeadSign.png" id="6_r8e2c"]
 [ext_resource type="Texture2D" uid="uid://rbtfn0fyvgo2" path="res://Assets/Sprites/Signs/NeonSign.png" id="7_1bkc4"]
-
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="7_oe78k"]
 [ext_resource type="PackedScene" uid="uid://chrp6ly1sy4xu" path="res://Assets/Objects/Quests/junkie_quest.tscn" id="8_vuevo"]
 [ext_resource type="PackedScene" path="res://Assets/Objects/Quests/alcoholic_quest.tscn" id="10_ry0bg"]
-
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6ba6g"]
 
@@ -3039,7 +3036,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
 size = Vector2(235.052, 155.951)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D4" type="Node2D"]
 y_sort_enabled = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -3198,7 +3195,6 @@ z_index = 1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_u112v")
 position = Vector2(-49.672, -80.4124)
-scale = Vector2(1, 1)
 texture = ExtResource("6_r8e2c")
 offset = Vector2(0, -16)
 
@@ -3208,7 +3204,6 @@ z_index = 1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_u112v")
 position = Vector2(103.843, -56.9822)
-scale = Vector2(1, 1)
 texture = ExtResource("7_1bkc4")
 offset = Vector2(0, -16)
 
@@ -3242,7 +3237,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(23.0553, -14.9954)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("7_oe78k")]

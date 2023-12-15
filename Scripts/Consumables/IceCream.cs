@@ -8,7 +8,7 @@ public partial class IceCream : Consumable
         Type = "Food";
         Title = "Ice Cream Cone";
         Description = "Each scoop is a momentary escape into a world of creamy bliss, offering a comforting hug for your taste buds.";
-        HealthEffect = 10f;
+        HealthEffect = 5f;
         SpeedEffect = 50f;
 
         Effects.Add("Health", HealthEffect);

@@ -106,8 +106,20 @@ public partial class RoomSpawner : Node2D
 
     public void RoomLists() 
     {
-        string path = "Scenes/Allyways/";
-        var allScenes = Directory.GetFiles(path, "*.tscn*");
+        // SLIMAA METODE
+        //string path = "Scenes/Allyways/";
+        //var allScenes = Directory.GetFiles(path, "*.tscn*");
+
+        // res://Scenes/Allyways/B.tscn
+
+
+        List<string> allScenes = new List<string>();
+        List<string> fileNames = new List<string>() {"B","BL","BR","BT","L","LR","R","T","TL","TR"};
+
+        foreach (var fileName in fileNames)
+        {
+            allScenes.Add("res://Scenes/Allyways/" + fileName + ".tscn");
+        }
 
         foreach (var scene in allScenes)
         {

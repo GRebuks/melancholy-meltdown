@@ -96,6 +96,11 @@ public partial class Player : CharacterBody2D
     private float _minTHCDecreaseRate = 0.001f;
 
     private const Int64 progress = 1L;
+
+    private Label ScoreLabel;
+    public int Score;
+
+    private bool isDzhupelsScored = false;
     public float Health
     {
         get { return _health; }
@@ -133,7 +138,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        //sceneNode = GetTree().Root.GetChild<Node2D>(0);
+        AchievementManager.LoadAchievementManager(GetTree().Root);
         camera = (Camera2D)GetNode("Camera2D");
         _healthBar = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<ProgressBar>("UI/HealthBar");
         _healthBarLabel = _healthBar.GetNode<Label>("EmotionalDamage");
@@ -152,6 +157,8 @@ public partial class Player : CharacterBody2D
 
         ConsumableCard = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<Panel>("UI/ConsumableCard");
         ClearConsumableCard();
+
+        ScoreLabel = camera.GetNode<CanvasLayer>("CanvasLayer").GetNode<Label>("UI/Score");
 
         EffectLabel = (PackedScene)ResourceLoader.Load(_effectLabelPath);
 
@@ -173,18 +180,18 @@ public partial class Player : CharacterBody2D
         useConsumableSFX = GetNode<AudioStreamPlayer2D>("useConsumable");
         putDownConsumableSFX = GetNode<AudioStreamPlayer2D>("putDownConsumable");
         pickUpConsumableSFX = GetNode<AudioStreamPlayer2D>("pickUpConsumable");
-
-        AchievementManager.ResetAchievements();
-        AchievementManager.AddProgress("The Tester", progress);
     }
 
 
     public override void _PhysicsProcess(double delta)
     {
         totalPassedTime += (float)delta;
+        Score = (int)(totalPassedTime * 100);
+        ScoreLabel.Text = $"Total score: {Score}";
+
         if(Health <= 0)
         {
-            if(consumedItems == 0 && !theMinimalist)
+            if (consumedItems == 0 && !theMinimalist)
             {
                 AchievementManager.AddProgress("The Minimalist", progress);
                 theMinimalist = true;
@@ -214,11 +221,13 @@ public partial class Player : CharacterBody2D
                 if (Blackout.Color.A < 1)
                 {
                     Blackout.Color = IncreaseAlpha(Blackout.Color);
+                    deathTimePassed = 3.5f;
                 }
-                else
+                else if (deathTimePassed > 5 && AchievementManager.AchievementNameQueue.Count < 1)
                 {
-                    // Put route to main menu here
+                    GetTree().ChangeSceneToFile("res://Scenes/Menu.tscn");
                 }
+                deathTimePassed += (float)delta;
             }
         }
 
@@ -468,14 +477,16 @@ public partial class Player : CharacterBody2D
 
                 quest.QueueFree();
                 activeQuest = null;
+
+                AchievementManager.AddProgress("The Good Citizen", progress);
+                theGoodCitizen = true;
+                Score += 2000;
             }
             else if (quest.RequiredConsumableNode.Name == this.consumable.Name)
             {
                 ClearConsumableCard();
                 // Apply effects
                 ApplyQuestEffects(quest);
-                AchievementManager.AddProgress("The Good Citizen", progress);
-                theGoodCitizen = true;
 
                 CallDeferred("InstantiateRewardConsumable", quest);
 
@@ -484,6 +495,10 @@ public partial class Player : CharacterBody2D
 
                 quest.QueueFree();
                 activeQuest = null;
+
+                AchievementManager.AddProgress("The Good Citizen", progress);
+                theGoodCitizen = true;
+                Score += 2000;
             }
         }
     }
@@ -654,19 +669,58 @@ public partial class Player : CharacterBody2D
         return EffectLabelNode;
     }
 
+    private Label CreateEffectLabel(KeyValuePair<string, string> effect, Panel card)
+    {
+        Label EffectLabelNode = EffectLabel.Instantiate() as Label;
+        card.GetNode<VBoxContainer>("VBoxContainer").AddChild(EffectLabelNode);
+        EffectLabelNode.Text = effect.Key + ": " + effect.Value;
+
+        return EffectLabelNode;
+    }
+
     private void UpdateConsumableCard(Consumable consumable)
     {
         ConsumableCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("Title").Text = consumable.Title;
         ConsumableCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("Title").AddThemeColorOverride("font_color", consumable.DisplayColor);
         ConsumableCard.GetNode<VBoxContainer>("VBoxContainer").GetNode<Label>("Description").Text = consumable.Description;
 
-        // Foreach effect in the quest
-        foreach (KeyValuePair<string, float> effect in consumable.Effects)
+        if(consumable.HasHiddenStats)
         {
-            ConsumableEffectLabels.Add(CreateAppropriateLabel(effect, ConsumableCard));
+            foreach (KeyValuePair<string, float> effect in consumable.Effects)
+            {
+                ConsumableEffectLabels.Add(CreateHiddenLabel(effect, ConsumableCard));
+            }
+        } 
+        else if(consumable.HasUnknownStats)
+        {
+            foreach (KeyValuePair<string, float> effect in consumable.Effects)
+            {
+                ConsumableEffectLabels.Add(CreateUnknownLabel(effect, ConsumableCard));
+            }
         }
-
+        else
+        {
+            // Foreach effect in the quest
+            foreach (KeyValuePair<string, float> effect in consumable.Effects)
+            {
+                ConsumableEffectLabels.Add(CreateAppropriateLabel(effect, ConsumableCard));
+            }
+        }
         ConsumableCard.Visible = true;
+    }
+
+    private Label CreateHiddenLabel(KeyValuePair<string, float> effect, Panel card)
+    {
+        Label EffectLabelNode = CreateEffectLabel(new KeyValuePair<string, string>("unknown", "unknown"), card);
+        EffectLabelNode.AddThemeColorOverride("font_color", new Color(120, 120, 0, 1));
+        return EffectLabelNode;
+    }
+
+    private Label CreateUnknownLabel(KeyValuePair<string, float> effect, Panel card)
+    {
+        Label EffectLabelNode = CreateEffectLabel(new KeyValuePair<string, string>(effect.Key, "unknown"), card);
+        EffectLabelNode.AddThemeColorOverride("font_color", new Color(120, 120, 0, 1));
+        return EffectLabelNode;
     }
 
     private void UpdateQuestCard(Quest quest)

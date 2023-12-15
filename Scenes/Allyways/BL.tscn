@@ -3004,7 +3004,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
 size = Vector2(190.815, 189.316)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D4" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -3196,14 +3196,14 @@ texture_scale = 0.83
 [node name="ExitPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
 
-[node name="ExitPoint" type="Area2D" parent="ExitPoints"]
+[node name="ExitPoint" type="Area2D" parent="ExitPoints" groups=["SpawnPoint"]]
 position = Vector2(1.12466, -0.37487)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitPoints/ExitPoint"]
 position = Vector2(-89.7845, 0.749758)
 shape = SubResource("RectangleShape2D_cifdg")
 
-[node name="ExitPoint3" type="Area2D" parent="ExitPoints"]
+[node name="ExitPoint3" type="Area2D" parent="ExitPoints" groups=["SpawnPoint"]]
 position = Vector2(1.12466, -0.37487)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitPoints/ExitPoint3"]
@@ -3213,7 +3213,7 @@ shape = SubResource("RectangleShape2D_cifdg")
 [node name="SpawnRoomPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
 
-[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(-192, 0)
 script = ExtResource("2_bapr4")
 Direction = 4
@@ -3221,7 +3221,7 @@ Direction = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint2"]
 shape = SubResource("CircleShape2D_1jvnu")
 
-[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(0, 192)
 script = ExtResource("2_bapr4")
 Direction = 2

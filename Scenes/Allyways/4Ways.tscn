@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d4a7koh72e6dj"]
+[gd_scene load_steps=26 format=3 uid="uid://d4a7koh72e6dj"]
 
 [ext_resource type="Texture2D" uid="uid://cigx45v0yaipq" path="res://Assets/Tilemaps/tilemap1.png" id="1_gbuc6"]
 [ext_resource type="Texture2D" uid="uid://djfvq8a3nj2eg" path="res://Assets/Sprites/Lamp.png" id="2_ad0vb"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/LevelGen/RoomSpawner.cs" id="5_8vb5n"]
 [ext_resource type="Script" path="res://Scripts/LevelGen/TileCheck.cs" id="6_a4lb3"]
 [ext_resource type="PackedScene" uid="uid://ctvuycqlcsgct" path="res://Scripts/Consumables/consumable_spawn.tscn" id="8_lgs46"]
-[ext_resource type="PackedScene" uid="uid://cn1c84ebfasj4" path="res://Assets/Objects/Consumables/booze.tscn" id="10_1nts8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbpw6"]
 
@@ -2050,6 +2049,7 @@ size = Vector2(187.067, 182.193)
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
+position = Vector2(-1, -1)
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -2229,7 +2229,7 @@ shape = SubResource("RectangleShape2D_cifdg")
 [node name="SpawnRoomPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
 
-[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(-192, 0)
 script = ExtResource("5_8vb5n")
 Direction = 4
@@ -2237,7 +2237,7 @@ Direction = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint2"]
 shape = SubResource("CircleShape2D_h4v3o")
 
-[node name="SpawnPoint3" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint3" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(0, 192)
 script = ExtResource("5_8vb5n")
 Direction = 2
@@ -2245,7 +2245,7 @@ Direction = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint3"]
 shape = SubResource("CircleShape2D_iqj06")
 
-[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(0, -192)
 script = ExtResource("5_8vb5n")
 Direction = 1
@@ -2253,7 +2253,7 @@ Direction = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint4"]
 shape = SubResource("CircleShape2D_fwdye")
 
-[node name="SpawnPoint" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(192, 0)
 script = ExtResource("5_8vb5n")
 Direction = 3
@@ -2271,19 +2271,10 @@ metadata/Direction = 0
 position = Vector2(6.97157e-06, -0.74977)
 shape = SubResource("RectangleShape2D_nx6c5")
 
-[node name="Booze" parent="." instance=ExtResource("10_1nts8")]
-position = Vector2(-168, -161)
-
-[node name="Booze2" parent="." instance=ExtResource("10_1nts8")]
-position = Vector2(-219, -157)
-
-[node name="Booze3" parent="." instance=ExtResource("10_1nts8")]
-position = Vector2(-196, -161)
-
-[node name="Booze4" parent="." instance=ExtResource("10_1nts8")]
-position = Vector2(-130, -161)
-
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_lgs46")]
-position = Vector2(-146, 13)
+position = Vector2(-166, -154)
+
+[node name="ConsumableSpawn2" parent="." instance=ExtResource("8_lgs46")]
+position = Vector2(175, 155)
 
 [connection signal="area_entered" from="TileCheck" to="TileCheck" method="_on_area_entered"]

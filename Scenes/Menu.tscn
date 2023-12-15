@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsoma4ek2qs1c"]
+[gd_scene load_steps=5 format=3 uid="uid://bsoma4ek2qs1c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.cs" id="1_5y0dj"]
 [ext_resource type="Texture2D" uid="uid://dpltyypfcu5ms" path="res://Assets/UI/MainMenu.png" id="1_6wjxl"]
-[ext_resource type="Script" path="res://Scripts/Consumables/ConsumableSpawn.cs" id="3_xs1tr"]
 
 [sub_resource type="FontVariation" id="FontVariation_n2a1d"]
 
@@ -33,7 +32,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_6wjxl")
-script = ExtResource("3_xs1tr")
 
 [node name="Label" type="Label" parent="TextureRect"]
 layout_mode = 2

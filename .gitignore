@@ -1,6 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,godot
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,godot
-
+Build/
 ### Godot ###
 # Godot 4+ specific ignores
 .godot/

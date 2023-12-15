@@ -7,9 +7,14 @@ public partial class ConsumableSpawn : Node2D
 	private List<string> consumables = new List<string>()
 	{
 		"booze",
-		"marijuana",
-		"sugar",
-		"pipe_bomb",
+        "booze",
+        "booze",
+        "marijuana",
+        "marijuana",
+        "marijuana",
+        "sugar",
+        "sugar",
+        "pipe_bomb",
 		"cigarettes",
 		"chicken",
 		"chinese_food",

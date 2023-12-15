@@ -2998,7 +2998,7 @@ size = Vector2(14.2783, 15.9981)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8qhw"]
 size = Vector2(190.815, 188.941)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D4" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -3127,7 +3127,7 @@ shape = SubResource("RectangleShape2D_cifdg")
 [node name="SpawnRoomPoints" type="Node2D" parent="."]
 scale = Vector2(5.335, 5.335)
 
-[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint2" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(0, -192)
 script = ExtResource("2_4y32e")
 Direction = 1
@@ -3135,7 +3135,7 @@ Direction = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRoomPoints/SpawnPoint2"]
 shape = SubResource("CircleShape2D_1jvnu")
 
-[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints"]
+[node name="SpawnPoint4" type="Area2D" parent="SpawnRoomPoints" groups=["SpawnPoint"]]
 position = Vector2(0, 192)
 script = ExtResource("2_4y32e")
 Direction = 2
@@ -3150,7 +3150,6 @@ metadata/Direction = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCheck"]
 position = Vector2(0, 0.374889)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_j8qhw")
 
 [node name="ConsumableSpawn" parent="." instance=ExtResource("8_psb50")]
